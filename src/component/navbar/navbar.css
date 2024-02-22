@@ -1,0 +1,22 @@
+.navbar-cont{
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+}
+.navbar-extra-cont{
+    display: flex;
+    grid-gap: 10px;
+}
+
+.navbar-comp-name{
+    padding: 20px 10px;
+}
+
+.navbar-extra-cont>a
+{
+    text-decoration: none;
+}
+
+.navbar-extra-cont>a>div{
+    padding: 20px 10px;
+}

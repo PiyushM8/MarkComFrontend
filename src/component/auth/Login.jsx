@@ -2,7 +2,8 @@ import { Link } from "react-router-dom"
 
 function Login()
 {
-    const login = async () => {
+    const login = async (e) => {
+        e.preventDefault()
         // Retrieve email and password from the dom
         const email = document.getElementById("email").value
         const password = document.getElementById("password").value
@@ -17,7 +18,7 @@ function Login()
     return (
         <div class="signin-register-main">
             <h1>Login</h1>
-            <form class="signin-register-div" onSubmit={login}>
+            <form class="signin-register-div" onSubmit={e => login(e)}>
                 <h2>Login to Sell Your Products With MarCom</h2>
 
                 <p>Email</p>

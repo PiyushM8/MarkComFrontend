@@ -6,3 +6,5 @@ const api = axios.create(
         baseURL: AppConstants.BASE_URL
     }
 )
+
+export default api;

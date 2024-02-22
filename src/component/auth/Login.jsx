@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import { requestLogin } from "../../services/auth"
 
 function Login()
 {
@@ -11,7 +12,7 @@ function Login()
         // Double check if email and password exist
         if(email && password)
         {
-            
+            const loginStatus = await requestLogin(email, password)
         }
     }
 

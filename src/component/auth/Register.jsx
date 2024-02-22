@@ -1,20 +1,33 @@
 import { Link } from "react-router-dom";
+import axios from 'axios'
 import "./register.css"
 
 function Register()
 {
-    const register = () =>
+    const register = async () =>
     {
         const email = document.getElementById("email").value
         const username = document.getElementById("username").value
         const password = document.getElementById("password").value
         const confirmPassword = document.getElementById("confirm-password").value
 
-        
-
         if(password === confirmPassword)
         {
-
+            console.log(email, username, password)
+            const seller = {
+                email: email,
+                username: username,
+                password: password
+            }
+            try{
+                const response = await axios.post(`http://localhost:5050/auth/register`, seller)
+                
+                console.log(response)
+                alert("Successfully Created Seller")
+            }catch(err){
+                console.log(err)
+                alert("[ERROR]: Sending request to /register route to server")
+            }
         }else{
             alert("Passwords Don't Match")
         }

@@ -4,4 +4,5 @@ export const AppConstants = {
 
 export const RouteConstants = {
     LOGIN: "/auth/login",
+    REGISTER: "/auth/register"
 }

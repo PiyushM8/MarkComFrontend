@@ -1,49 +1,73 @@
 import { Link } from "react-router-dom";
 import axios from 'axios'
 import "./register.css"
+import { requestRegistration } from "../../services/auth";
 
 function Register()
 {
-    const register = async () =>
+    /**
+     * Attempt to register a user
+     */
+    const register = async (e) =>
     {
+        // Prevent default form submission
+        e.preventDefault()
+
+        // Get all the values from the dom
         const email = document.getElementById("email").value
         const username = document.getElementById("username").value
         const password = document.getElementById("password").value
         const confirmPassword = document.getElementById("confirm-password").value
 
+        // Run input checks
+        // Check if all inputs have been entered
+        if(!email || !username || !password || !confirmPassword)
+        {
+            alert("Fill in all values")
+            return;
+        }
+
+        // Check if pass and confirm password match
         if(password === confirmPassword)
         {
-            console.log(email, username, password)
-            const seller = {
-                email: email,
-                username: username,
-                password: password
-            }
-            try{
-                const response = await axios.post(`http://localhost:5050/auth/register`, seller)
-                
-                console.log(response)
-                alert("Successfully Created Seller")
-            }catch(err){
-                console.log(err)
-                alert("[ERROR]: Sending request to /register route to server")
-            }
-        }else{
             alert("Passwords Don't Match")
+            return;
+        }
+        
+        // Vague check of email format
+        if(!email.includes("@") || !email.includes(".") || !email.length < 7)
+        {
+            alert("Invalid Email")
+            return;
+        }
+
+        const seller = {
+            email: email,
+            username: username,
+            password: password
+        }
+        try{
+            const response = await requestRegistration(seller);
+            
+            console.log(response)
+            alert("Successfully Created Seller")
+        }catch(err){
+            console.log(err)
+            alert("[ERROR]: Sending request to /register route to server")
         }
     }
 
     return (
         <div class="signin-register-main">
             <h1>Register</h1>
-            <div class="signin-register-div">
+            <form class="signin-register-div">
                 <h2>Register to Sell Your Products With MarCom</h2>
 
                 <p>Email</p>
                 <input placeholder="Enter your email" id="email"/>
 
                 <p>Username</p>
-                <input placeholder="Enter your username" id="username"/>
+                <input placeholder="Enter your username" id="username" maxLength="20"/>
 
                 <p>Password</p>
                 <input placeholder="Enter your password" id="password" type="password"/>
@@ -55,8 +79,8 @@ function Register()
                     Have an account? <Link to={"/login"}>Sign in</Link>
                 </div>
 
-                <button class="signin-register-btn" onClick={register}>Register</button>
-            </div>
+                <input class="signin-register-btn" onClick={e => register(e)} value="Register"/>
+            </form>
         </div>
     )
 }

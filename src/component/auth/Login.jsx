@@ -15,6 +15,8 @@ function Login()
             const response = await requestLogin(email, password)
 
             const responseStatus = response.status;
+
+            // Will need to be store on web storage either
             const responseData = response.data;
 
             if(responseStatus === 200)

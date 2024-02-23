@@ -5,9 +5,10 @@ export const requestRegistration = async (sellerInfo) =>
 {
     try{
         const response = await api.post(RouteConstants.REGISTER, sellerInfo)
-        console.log(response)
+        return response;
     }catch(err){
         console.log(err)
+        return err.response;
     }
 }
 

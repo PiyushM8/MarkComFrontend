@@ -28,14 +28,14 @@ function Register()
         }
 
         // Check if pass and confirm password match
-        if(password === confirmPassword)
+        if(password !== confirmPassword)
         {
             alert("Passwords Don't Match")
             return;
         }
         
         // Vague check of email format
-        if(!email.includes("@") || !email.includes(".") || !email.length < 7)
+        if(!email.includes("@") || !email.includes(".") || email.length < 7)
         {
             alert("Invalid Email")
             return;
@@ -50,9 +50,21 @@ function Register()
         try{
             // Try to register the user
             const response = await requestRegistration(seller);
-            
-            console.log(response)
-            alert("Successfully Created Seller")
+            const responseStatus = response.status;
+            if(responseStatus === 200)
+            {
+                alert("Registration Successful")
+            }else if(responseStatus === 409){
+                const resData = response.data;
+                if(resData === "Email already exist")
+                {
+                    alert("Email already taken")
+                }else if(resData === "Username already exist"){
+                    alert("Username already taken")
+                }
+            }else if(responseStatus === 500){
+                alert("Internal Server Error")
+            }
         }catch(err){
             console.log(err)
             alert("[ERROR]: Sending request to /register route to server")

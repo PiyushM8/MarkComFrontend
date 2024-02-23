@@ -41,12 +41,14 @@ function Register()
             return;
         }
 
+        // Create the seller object which will be sent to the backend
         const seller = {
             email: email,
             username: username,
             password: password
         }
         try{
+            // Try to register the user
             const response = await requestRegistration(seller);
             
             console.log(response)

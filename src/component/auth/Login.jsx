@@ -12,7 +12,21 @@ function Login()
         // Double check if email and password exist
         if(email && password)
         {
-            const loginStatus = await requestLogin(email, password)
+            const response = await requestLogin(email, password)
+
+            const responseStatus = response.status;
+            const responseData = response.data;
+
+            if(responseStatus === 200)
+            {
+                alert("Successful Login")
+            }else if(responseStatus === 401){
+                alert("Incorrect Password")
+            }else{
+                alert("Unknown Error")
+            }
+        }else{
+            alert("Email or Password Missing")
         }
     }
 

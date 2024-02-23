@@ -11,15 +11,28 @@ export const requestRegistration = async (sellerInfo) =>
     }
 }
 
-export const requestLogin = async (email, pass) =>
+/**
+ * Request a login
+ * 
+ * @param {*} email The email to login with
+ * @param {*} password The password to login with
+ * @returns The response from the backend
+ */
+export const requestLogin = async (email, password) =>
 {
     try{
+        // Send a request to the backend
         const response = await api.post(RouteConstants.LOGIN, {
             email: email,
-            password: pass
+            password: password
         })
-        console.log(response)
+
+        // If there were no errors then just return the response
+        return response;
     }catch(err){
+
+        // Return the response in the error
         console.log(err)
+        return err.response
     }
 }

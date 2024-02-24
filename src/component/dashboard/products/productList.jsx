@@ -6,13 +6,11 @@ function ProductList()
 {
     const openUpload = () => {
         document.getElementById("upload-cancel").style.display = "block"
-        document.getElementById("save-product").style.display = "block"
         document.getElementById("add-product").style.display = "none"
     }
 
     const cancel = () => {
         document.getElementById("upload-cancel").style.display = "none"
-        document.getElementById("save-product").style.display = "none"
         document.getElementById("add-product").style.display = "block"
     }
 
@@ -23,7 +21,6 @@ function ProductList()
                 <div className="db-page-header-actions">
                     <Link to={"/dashboard/products"} className="db-page-action-btn" id="upload-cancel" onClick={cancel}>Cancel</Link>
                     <Link to={"/dashboard/products/add"} className="db-page-action-btn" id="add-product" onClick={openUpload}>Add Product</Link>
-                    <Link to={"/dashboard/products"} className="db-page-action-btn" id="save-product">Save Product</Link>
                 </div>
             </div>
             <div className="db-page-item">

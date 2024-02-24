@@ -1,13 +1,24 @@
+import { createProduct } from "../../../services/product"
 import "./uploadProduct.css"
 
 function UploadProduct()
 {
-    const uploadProduct = (e) => {
+    const uploadProduct = async (e) => {
+        e.preventDefault()
+        console.log("Hey")
         const title = document.getElementById("title").value
         const price = document.getElementById("price").value
-        const type = document.getElementById("type").value
+        const productType = document.getElementById("productType").value
         const description = document.getElementById("description").value
-        e.preventDefault()
+
+        const product = {
+            title: title,
+            price: price,
+            productType: productType,
+            description: description
+        }
+
+        const response = await createProduct(product)
     }
 
     return (
@@ -23,7 +34,7 @@ function UploadProduct()
                 </div>
                 <div className="input-item">
                     <h3 className="input-item-header">Product Type</h3>
-                    <input className="upload-input" placeholder="Product Type" id="type"/>
+                    <input className="upload-input" placeholder="Product Type" id="productType"/>
                 </div>
             </div>
             <div className="input-item">

@@ -1,9 +1,20 @@
-import { Link, Route, Routes } from "react-router-dom";
+import { Link, Route, Routes, useNavigate } from "react-router-dom";
 import "./dashboard.css"
 import ProductList from "./products/productList";
+import { useEffect } from "react";
 
 function Dashboard()
 {
+    let navigate = useNavigate()
+
+    useEffect(() => {
+        const jwtToken = window.sessionStorage.getItem("Authorization")
+        if(!jwtToken)
+        {
+            navigate("/login")
+        }
+    }, [])
+
     return (
         <div className="dashboard-cont">
             <div className="dashboard-top-cont">

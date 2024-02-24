@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { requestLogin } from "../../services/auth"
 
 function Login()
 {
+    let navigate = useNavigate()
+
     const login = async (e) => {
         e.preventDefault()
         // Retrieve email and password from the dom
@@ -23,7 +25,7 @@ function Login()
             {
                 window.sessionStorage.setItem("UserDetails", JSON.stringify(responseData.seller));
                 window.sessionStorage.setItem("Authorization", responseData.jwtToken);
-                alert("Successful Login")
+                navigate("/dashboard")
             }else if(responseStatus === 401){
                 alert("Incorrect Password")
             }else{

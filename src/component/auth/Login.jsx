@@ -21,6 +21,8 @@ function Login()
 
             if(responseStatus === 200)
             {
+                window.sessionStorage.setItem("UserDetails", JSON.stringify(responseData.seller));
+                window.sessionStorage.setItem("Authorization", responseData.jwtToken);
                 alert("Successful Login")
             }else if(responseStatus === 401){
                 alert("Incorrect Password")

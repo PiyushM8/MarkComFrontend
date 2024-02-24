@@ -1,20 +1,60 @@
 .navbar-cont{
-    background-color: white;
+    background: linear-gradient(180deg, rgb(71, 87, 153) 0%, transparent 70%);
+    height: 100px;
+}
+
+.navbar-items-cont{
+    color: rgb(255, 255, 255);
+    width: 75%;
+    border-bottom: 1px white solid;
+    margin: auto;
+    padding: 5px;
     display: flex;
     justify-content: space-between;
+    font-size: 16px;
 }
+
 .navbar-extra-cont{
     display: flex;
     grid-gap: 10px;
 }
 
+.navbar-comp-info{
+    margin: auto 0;
+    grid-gap: 10px;
+    display: flex;
+}
+
+.nav-comp-logo{
+    margin: auto;
+    width: 50px;
+    height: 50px;
+}
+
+.navbar-name-moto{
+    display: flex;
+    flex-direction: column;
+}
+
 .navbar-comp-name{
-    padding: 20px 10px;
+    margin: 0;
+    font-size: 22px;
+    letter-spacing: 1.2px;
+    color: rgb(255, 255, 255);
+}
+
+.navbar-moto{
+    color: rgb(0, 0, 0);
 }
 
 .navbar-extra-cont>a
 {
     text-decoration: none;
+}
+
+.navbar-extra-cont>a:visited{
+    text-decoration: none;
+    color: white;
 }
 
 .navbar-extra-cont>a>div{

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-import axios from 'axios'
+
 import "./register.css"
+
 import { requestRegistration } from "../../services/auth";
 
 function Register()
@@ -72,10 +73,10 @@ function Register()
     }
 
     return (
-        <div class="signin-register-main">
+        <div className="signin-register-main">
             <h1>Register</h1>
-            <form class="signin-register-div">
-                <h2>Register to Sell Your Products With MarCom</h2>
+            <form class="signin-register-div" onSubmit={e => register(e)}>
+                <h2>Register to display your products to the world</h2>
 
                 <p>Email</p>
                 <input placeholder="Enter your email" id="email"/>
@@ -93,7 +94,7 @@ function Register()
                     Have an account? <Link to={"/login"}>Sign in</Link>
                 </div>
 
-                <input class="signin-register-btn" onClick={e => register(e)} value="Register"/>
+                <input class="signin-register-btn" value="Register" type="submit"/>
             </form>
         </div>
     )

@@ -1,16 +1,13 @@
-import { Routes, Route, Link } from "react-router-dom";
-import Register from "./component/auth/Register";
-import Login from "./component/auth/Login";
-import Navbar from "./component/navbar/Navbar"
+import { Routes, Route } from "react-router-dom";
+import Dashboard from "./component/dashboard/dashboard";
+import Homepage from "./component/homepage/homepage";
 
 function App() {
   return (
     <div>
-      <Navbar/>
       <Routes>
-        <Route path="*" element={<div>d</div>}/>
-        <Route path="/register" element={<Register/>}/>
-        <Route path="/login" element={<Login/>}/>
+        <Route path="*" element={<Homepage/>}/>
+        <Route path="/dashboard" element={<Dashboard/>}/>
       </Routes>
     </div>
   );

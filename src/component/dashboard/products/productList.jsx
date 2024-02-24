@@ -1,9 +1,15 @@
 import { Link, Route, Routes } from "react-router-dom"
 import "./product.css"
 import UploadProduct from "./uploadProduct"
+import { useEffect } from "react"
+import { getProducts } from "../../../services/product"
 
 function ProductList()
 {
+    useEffect(() => {
+        getProducts()
+    }, [])
+
     const openUpload = () => {
         document.getElementById("upload-cancel").style.display = "block"
         document.getElementById("add-product").style.display = "none"

@@ -11,3 +11,14 @@ export const createProduct = async (product) =>
         return err.response;
     }
 }
+
+export const getProducts = async (product) =>
+{
+    try{
+        const response = await api.get(RouteConstants.PRODUCT, product)
+        return response;
+    }catch(err){
+        console.log(err)
+        return err.response;
+    }
+}

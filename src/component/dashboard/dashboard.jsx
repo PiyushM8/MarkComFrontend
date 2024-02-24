@@ -15,6 +15,12 @@ function Dashboard()
         }
     }, [])
 
+    const signout = () => {
+        window.sessionStorage.removeItem("Authorization")
+        window.sessionStorage.removeItem("UserDetails")
+        navigate("/")
+    }
+
     return (
         <div className="dashboard-cont">
             <div className="dashboard-top-cont">
@@ -57,7 +63,7 @@ function Dashboard()
             </div>
             <div className="dashboard-bottom-cont">
                 <div className="column-one">
-                    c
+                    <button onClick={signout}>Sign Out</button>
                 </div>
             </div>
         </div>

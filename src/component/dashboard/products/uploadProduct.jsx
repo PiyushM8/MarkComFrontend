@@ -5,7 +5,7 @@ function UploadProduct()
 {
     const uploadProduct = async (e) => {
         e.preventDefault()
-        console.log("Hey")
+        
         const title = document.getElementById("title").value
         const price = document.getElementById("price").value
         const productType = document.getElementById("productType").value

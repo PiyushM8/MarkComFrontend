@@ -1,13 +1,37 @@
-import { Link, Route, Routes } from "react-router-dom"
-import "./product.css"
+import { Link, Route, Routes, useLocation } from "react-router-dom"
+
+import ProductItem from "./productItem"
+
 import UploadProduct from "./uploadProduct"
-import { useEffect } from "react"
+
+import "./product.css"
+
+
+import { useEffect, useState } from "react"
 import { getProducts } from "../../../services/product"
 
 function ProductList()
 {
+    const location = useLocation()
+    const [ products, setProducts ] = useState([])
+
+    // Since useEffect is not async we will create a function for it
+
     useEffect(() => {
-        getProducts()
+        const load = async () => {
+            const pathName = location.pathname;
+            console.log(pathName)
+            if(pathName === "/dashboard/products")
+            {
+                const response = await getProducts()
+                const retrievedProducts = response.data;
+                console.log(retrievedProducts)
+                setProducts(retrievedProducts)
+                return response
+            }
+        }
+
+        load()
     }, [])
 
     const openUpload = () => {
@@ -31,6 +55,28 @@ function ProductList()
             </div>
             <div className="db-page-item">
                 <Routes>
+                    <Route path="/" element={
+                        <div className="product-table-cont">
+                            <div className="product-item-cont product-table-head">
+                                <div className="product-item-title product-table-header-item">
+                                    Title
+                                </div>
+                                <div className="product-table-header-item">
+                                    Stock
+                                </div>
+                                <div className="product-table-header-item">
+                                    Price
+                                </div>
+                                <div className="product-table-header-item">
+                                    Actions
+                                </div>
+                            </div>
+
+                            {products.map((product) => {
+                                return <ProductItem key={product.productId} product={product}/>
+                            })}
+                        </div>
+                    }/>
                     <Route path='/add' element={<UploadProduct/>}/>
                 </Routes>
             </div>

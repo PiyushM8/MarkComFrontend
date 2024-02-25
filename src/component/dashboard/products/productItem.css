@@ -1,0 +1,19 @@
+.product-table-cont{
+    display: flex;
+    flex-direction: column;
+    grid-gap: 15px;
+    color: whites;
+}
+
+.product-item-cont{
+    display: flex;
+    justify-content: space-between;
+}
+
+.product-table-head{
+    box-sizing: border-box;
+}
+
+.product-item-title{
+    width: 40%;
+}

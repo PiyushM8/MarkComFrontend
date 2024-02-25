@@ -61,13 +61,13 @@ function ProductList()
                                 <div className="product-item-title product-table-header-item">
                                     Title
                                 </div>
-                                <div className="product-table-header-item">
+                                <div className="product-item-stock">
                                     Stock
                                 </div>
-                                <div className="product-table-header-item">
+                                <div className="product-item-price">
                                     Price
                                 </div>
-                                <div className="product-table-header-item">
+                                <div className="product-item-actions">
                                     Actions
                                 </div>
                             </div>

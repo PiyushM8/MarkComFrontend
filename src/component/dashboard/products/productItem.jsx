@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import "./productItem.css"
 
 function ProductItem({ product })
@@ -14,7 +15,15 @@ function ProductItem({ product })
                 {product.Price}
             </div>
             <div className="product-item-actions">
-                Actions
+                <div className="product-action-item">
+                    <div><i class="fas fa-eye"/></div>
+                </div>
+                <Link className="product-action-item">
+                    <i class="fas fa-edit"/>
+                </Link>
+                <div className="product-action-item">
+                    <div><i class="fas fa-trash"/></div>
+                </div>
             </div>
         </div>
     )

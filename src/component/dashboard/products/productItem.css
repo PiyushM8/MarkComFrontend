@@ -17,3 +17,34 @@
 .product-item-title{
     width: 40%;
 }
+
+.product-item-stock{
+    width: 10%;
+    text-align: right;
+}
+
+.product-item-price{
+    text-align: right;
+    width: 10%;
+}
+
+.product-item-actions{
+    display: flex;
+    grid-gap: 7px;
+    justify-content: right;
+    text-align: right;
+    width: 20%;
+}
+
+.product-action-item{
+    color: white;
+    content: white;
+}
+
+.product-action-item:hover{
+    cursor: pointer;
+}
+
+.product-action-item:visited{
+    color: white;
+}

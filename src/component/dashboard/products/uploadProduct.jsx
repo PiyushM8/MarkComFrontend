@@ -1,8 +1,11 @@
+import { useNavigate } from "react-router-dom"
 import { createProduct } from "../../../services/product"
 import "./uploadProduct.css"
 
 function UploadProduct()
 {
+    const navigate = useNavigate()
+
     const uploadProduct = async (e) => {
         e.preventDefault()
         
@@ -19,6 +22,23 @@ function UploadProduct()
         }
 
         const response = await createProduct(product)
+        switch(response.status)
+        {
+            case 201:
+                alert("Success: Product Created")
+                navigate("/dashboard/products")
+                window.location.reload()
+                break;
+            case 422:
+                alert("Failed to Create: Invalid Input")
+                break;
+            case 500:
+                alert("Failed to Create: Internal Server Erro")
+                break;
+            default:
+                alert("Unknown Error")
+                break;
+        }
     }
 
     return (
@@ -30,7 +50,7 @@ function UploadProduct()
                 </div>
                 <div className="input-item">
                     <h3 className="input-item-header">Price</h3>
-                    <input className="upload-input" placeholder="Enter Price" id="price"/>
+                    <input className="upload-input" placeholder="Enter Price" id="price" type="number"/>
                 </div>
                 <div className="input-item">
                     <h3 className="input-item-header">Product Type</h3>

@@ -1,8 +1,20 @@
 import { Link } from "react-router-dom"
 import "./productItem.css"
+import { deleteProductById } from "../../../services/product"
 
 function ProductItem({ product })
 {
+    const deleteProduct = async () => {
+        console.log("Dete")
+        const response = await deleteProductById(product.ProductId)
+        if(response.data.rowsAffected > 0)
+        {
+            window.location.reload()
+        }else{
+            alert("Product not deleted")
+        }
+    }
+
     return (
         <div className="product-item-cont">
             <div className="product-item-title">
@@ -21,7 +33,7 @@ function ProductItem({ product })
                 <Link className="product-action-item">
                     <i class="fas fa-edit"/>
                 </Link>
-                <div className="product-action-item">
+                <div className="product-action-item" onClick={deleteProduct}>
                     <div><i class="fas fa-trash"/></div>
                 </div>
             </div>

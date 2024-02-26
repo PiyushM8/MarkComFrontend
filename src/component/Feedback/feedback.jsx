@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./feedback.css"; // Import your feedback page styling file
+import "./feedback.css"; // Import feedback page css
 
 function Feedback() {
   const [feedback, setFeedback] = useState(""); // State to hold user's feedback
@@ -22,13 +22,13 @@ function Feedback() {
 
     try {
       // Implement the logic to send the feedback to the backend
-      // For simplicity, let's assume there's a function named 'sendFeedback' in your services
+      // For simplicity, let's assume there's a function named 'sendFeedback' in our services
       // const response = await sendFeedback(feedbackData);
 
       // Display success message or handle response accordingly
       alert("Feedback submitted successfully!");
 
-      // Optionally, you can clear the feedback input after submission
+      // Optionally, we can clear the feedback input after submission
       setFeedback("");
     } catch (error) {
       console.error("Error submitting feedback:", error);

@@ -1,6 +1,7 @@
 // ./src/components/homepage/landing.jsx
 
 import React from "react";
+import { Link } from "react-router-dom";
 import "./landing.css";
 
 function Landing() {
@@ -29,8 +30,7 @@ function Landing() {
       </section>
       
       <section className="cta-section">
-        <p>Ready to get started? Join MarCom today!</p>
-        <button className="cta-button">Sign Up</button>
+        <Link to="/register"className="cta-button"> Ready to get started? Join MarCom today! </Link>
       </section>
     </div>
   );

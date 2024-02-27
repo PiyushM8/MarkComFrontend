@@ -15,7 +15,7 @@ function Landing() {
       <section className="landing-features">
         <div className="feature">
           <h2>Create Your Storefront</h2>
-          <p>Empower sellers to design and customize their storefronts.</p>
+          <p>We empower sellers to design and customize their storefronts.</p>
         </div>
         
         <div className="feature">

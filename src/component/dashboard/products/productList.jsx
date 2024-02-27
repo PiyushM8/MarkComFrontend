@@ -78,6 +78,7 @@ function ProductList()
                         </div>
                     }/>
                     <Route path='/add' element={<UploadProduct/>}/>
+                    <Route path="/edit/*" element={<UploadProduct/>}/> 
                 </Routes>
             </div>
         </div>

@@ -1,11 +1,10 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import "./productItem.css"
 import { deleteProductById } from "../../../services/product"
 
 function ProductItem({ product })
 {
     const deleteProduct = async () => {
-        console.log("Dete")
         const response = await deleteProductById(product.ProductId)
         if(response.data.rowsAffected > 0)
         {
@@ -30,7 +29,7 @@ function ProductItem({ product })
                 <div className="product-action-item">
                     <div><i class="fas fa-eye"/></div>
                 </div>
-                <Link className="product-action-item">
+                <Link to={`/dashboard/products/edit/${product.ProductId}`} className="product-action-item">
                     <i class="fas fa-edit"/>
                 </Link>
                 <div className="product-action-item" onClick={deleteProduct}>

@@ -24,6 +24,17 @@ export const getProducts = async (product) =>
     }
 }
 
+export const getProductById = async (productId) => 
+{
+    try{
+        const response = await api.get(`${RouteConstants.PRODUCT}/${productId}`)
+        return response;
+    }catch(err){
+        console.log(err)
+        return err.response
+    }
+}
+
 export const deleteProductById = async (productId) =>
 {
     try{

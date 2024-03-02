@@ -12,6 +12,17 @@ export const createProduct = async (product) =>
     }
 }
 
+export const updateProduct = async (productId, newProduct) =>
+{
+    try{
+        const response = await api.put(`${RouteConstants.PRODUCT}/${productId}`, newProduct)
+        return response;
+    }catch(err){
+        console.log(err)
+        return err.response;
+    }
+}
+
 export const getProducts = async (product) =>
 {
     try{

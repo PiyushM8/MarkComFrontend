@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom"
-import { createProduct, getProductById } from "../../../services/product"
+import { createProduct, getProductById, updateProduct } from "../../../services/product"
 import "./uploadProduct.css"
 import { useEffect, useState } from "react"
 /**
@@ -17,10 +17,8 @@ function UploadProduct()
     const navigate = useNavigate()
     const location = useLocation()
 
-    const [ price, setPrice ] = useState()
-    const [ title, setTitle ] = useState("")
-    const [ productType, setProducType ] = useState("")
-    const [ description, setDescription ] = useState("")
+    const [ productData, setProductData ] = useState({})
+
 
     /**
      * This function will load the product details into the inputs if we're editing the product.
@@ -34,10 +32,7 @@ function UploadProduct()
             const response = await getProductById(productId)
             const product = response.data
             
-            setPrice(product.Price)
-            setTitle(product.Title)
-            setProducType(product.ProductType)
-            setDescription(product.Description)
+            setProductData(product)
         }
     }
 
@@ -48,19 +43,9 @@ function UploadProduct()
     const uploadProduct = async (e) => {
         e.preventDefault()
         
-        const title = document.getElementById("title").value
-        const price = document.getElementById("price").value
-        const productType = document.getElementById("productType").value
-        const description = document.getElementById("description").value
+        console.log(productData)
 
-        const product = {
-            title: title,
-            price: price,
-            productType: productType,
-            description: description
-        }
-
-        const response = await createProduct(product)
+        const response = await createProduct(productData)
         switch(response.status)
         {
             case 201:
@@ -80,39 +65,48 @@ function UploadProduct()
         }
     }
 
-    const updateProduct = async (e) => {
-        e.preventDefault()
-    }
-
     const handleSubmit = async (e) => {
+        e.preventDefault()
         const pathName = location.pathname
         if(pathName.includes("/dashboard/products/edit"))
         {
-            updateProduct(e)
+            const productId = pathName.split("/edit/")[1]
+            await updateProduct(productId, productData)
+
+            navigate("/dashboard/products")
+            window.location.reload()
         }else{
-            uploadProduct(e)
+            await uploadProduct(e)
         }
     }
+
+    const handleChange = (e) => {
+        let { name, value } = e.target;
+        setProductData({
+            ...productData,
+            [name]: value
+        })
+    };
 
     return (
         <form className="upload-product-form-cont" onSubmit={e => handleSubmit(e)}>
             <div className="upload-top-inputs">
                 <div className="input-item title-input-item">
                     <h3 className="input-item-header">Title</h3>
-                    <input className="upload-input" placeholder="Enter Title" id="title" name="title" value={title}/>
+                    <input className="upload-input" placeholder="Enter Title" name="Title" value={productData.Title} onChange={handleChange}/>
                 </div>
                 <div className="input-item">
                     <h3 className="input-item-header">Price</h3>
-                    <input className="upload-input" placeholder="Enter Price" id="price" name="price" value={price} type="number"/>
+                    <input className="upload-input" placeholder="Enter Price" name="Price" value={productData.Price} onChange={handleChange} type="number"/>
                 </div>
                 <div className="input-item">
                     <h3 className="input-item-header">Product Type</h3>
-                    <input className="upload-input" placeholder="Product Type" id="productType" name="productType" value={productType}/>
+                    <input className="upload-input" placeholder="Product Type" name="ProductType" value={productData.ProductType} onChange={handleChange}/>
                 </div>
             </div>
             <div className="input-item">
                 <h3 className="input-item-header">Description</h3>
-                <textarea className="upload-textarea" placeholder="Enter Title" id="description" name="description" value={description}/>
+                <textarea className="upload-textarea" placeholder="Enter Title" name="Description" value={productData.Description} onChange={handleChange}/>
             </div>
             <div className="upload-action-btn">
                 <input type="submit" value="Save Product" className="save-product"/>

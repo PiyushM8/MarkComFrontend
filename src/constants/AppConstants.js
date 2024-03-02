@@ -5,5 +5,6 @@ export const AppConstants = {
 export const RouteConstants = {
     LOGIN: "/auth/login",
     REGISTER: "/auth/register",
-    PRODUCT: "/products"
+    PRODUCT: "/products",
+    USER: "/users",
 }

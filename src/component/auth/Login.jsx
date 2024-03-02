@@ -23,7 +23,7 @@ function Login()
 
             if(responseStatus === 200)
             {
-                window.sessionStorage.setItem("UserDetails", JSON.stringify(responseData.seller));
+                window.sessionStorage.setItem("UserDetails", JSON.stringify(responseData.user));
                 window.sessionStorage.setItem("Authorization", responseData.jwtToken);
                 navigate("/dashboard")
             }else if(responseStatus === 401){

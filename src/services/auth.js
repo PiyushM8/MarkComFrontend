@@ -1,10 +1,10 @@
 import { RouteConstants } from "../constants/AppConstants"
 import api from "./apiConfig"
 
-export const requestRegistration = async (sellerInfo) =>
+export const requestRegistration = async (userInfo) =>
 {
     try{
-        const response = await api.post(RouteConstants.REGISTER, sellerInfo)
+        const response = await api.post(RouteConstants.REGISTER, userInfo)
         return response;
     }catch(err){
         console.log(err)

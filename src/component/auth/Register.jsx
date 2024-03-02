@@ -3,9 +3,12 @@ import { Link } from "react-router-dom";
 import "./register.css"
 
 import { requestRegistration } from "../../services/auth";
+import { useState } from "react";
 
 function Register()
 {
+    const [ accountType, setAccountType ] = useState("")
+
     /**
      * Attempt to register a user
      */
@@ -72,10 +75,31 @@ function Register()
         }
     }
 
+    const pickAccountType = async (e) => {
+        const accountType = e.target.id;
+        
+        setAccountType(accountType)
+
+        document.getElementById("account-type-selector").style.display = "none"
+        document.getElementById("register-form").style.display = "block"
+    }
+
     return (
         <div className="signin-register-main">
             <h1>Register</h1>
-            <form class="signin-register-div" onSubmit={e => register(e)}>
+            <div id="account-type-selector" class="signin-register-div account-type-choices fade-in">
+                <h2>Choose your type of account</h2>
+                <div className="register-acc-types" id="Merchant" onClick={e => pickAccountType(e)}>
+                    <i class="fa-solid fa-store"/> Merchant
+                </div>
+                <div className="register-acc-types" id="Customer" onClick={e => pickAccountType(e)}>
+                    <i class="fa-solid fa-cart-shopping"/> Customer
+                </div>
+                <div class="signin-register-options">
+                    Have an account? <Link to={"/login"}>Sign in</Link>
+                </div>
+            </div>
+            <form id="register-form" class="signin-register-div fade-in" onSubmit={e => register(e)}>
                 <h2>Register to display your products to the world</h2>
 
                 <p>Email</p>

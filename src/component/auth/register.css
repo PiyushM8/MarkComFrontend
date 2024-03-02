@@ -3,10 +3,43 @@
     width: 425px;
 }
 
+.register-acc-types{
+    position: relative;
+    padding: 20px;
+    width: 100%;
+    border: 1px solid rgb(127, 127, 127);
+    border-radius: 10px;
+    margin: auto;
+    background: linear-gradient(to right, #e6e6e6 , rgb(121, 143, 231) );
+    box-sizing: border-box;
+    color: rgb(56, 55, 55);
+    transition: width 1s ease;
+    -webkit-transition: background 1s;
+}
+
+.register-acc-types:hover{
+    cursor: pointer;
+    opacity: 0.8;
+    background: linear-gradient(to right, #e6e6e6 , rgb(134, 134, 134) );
+    color: black;
+    font-weight: bold;
+    box-shadow: 0px 0px 2px 1px rgb(145, 150, 171);
+}
+
+.account-type-choices{
+    display: flex;
+    flex-direction: column;
+    grid-gap: 20px;
+}
+
 .signin-register-main>h1{
     font-size: 28px;
     color: rgb(101, 101, 101);
     margin: 10px 0;
+}
+
+#register-form{
+    display: none;
 }
 
 .signin-register-div{
@@ -83,4 +116,34 @@
 .signin-register-btn:hover{
     opacity: 0.8;
     cursor: pointer;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        visibility: hidden;
+    }
+    to {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+      opacity: 1;
+      visibility: visible;
+    }
+    to {
+      opacity: 0;
+      visibility: hidden;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-in forwards; /* Play the fadeIn animation over 1 second */
+}
+
+.fade-out {
+    animation: fadeOut 1s ease-in forwards; /* Play the fadeOut animation over 1 second */
 }

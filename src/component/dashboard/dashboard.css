@@ -60,7 +60,9 @@
     padding: 20px;
     overflow-y: auto;
     background-color: #f0f0f0;
+    color: #ffffff; /* Ensuring text is dark enough to be visible */
   }
+  
   
   @media (max-width: 768px) {
     .dashboard-nav {

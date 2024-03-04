@@ -1,0 +1,59 @@
+html
+Copy code
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Reviews</title>
+  <style>
+    /* Add your CSS styles here */
+  </style>
+</head>
+<body>
+  <h1>Product Reviews</h1>
+
+  <div id="reviews-container">
+    <!-- Reviews will be displayed here dynamically using JavaScript -->
+  </div>
+
+  <script>
+    // Sample reviews data (you can replace this with actual data from your platform)
+    var reviews = [
+      { name: "John Doe", rating: 4, comment: "Great product! Very satisfied." },
+      { name: "Jane Smith", rating: 5, comment: "Excellent service and fast delivery." },
+      { name: "Alice Johnson", rating: 3, comment: "Average quality, but worth the price." }
+    ];
+
+    // Function to display reviews
+    function displayReviews() {
+      var reviewsContainer = document.getElementById('reviews-container');
+      reviewsContainer.innerHTML = ''; // Clear previous reviews
+
+      // Loop through the reviews data and create HTML elements for each review
+      reviews.forEach(function(review) {
+        var reviewDiv = document.createElement('div');
+        reviewDiv.classList.add('review');
+
+        var namePara = document.createElement('p');
+        namePara.textContent = 'Name: ' + review.name;
+
+        var ratingPara = document.createElement('p');
+        ratingPara.textContent = 'Rating: ' + review.rating + '/5';
+
+        var commentPara = document.createElement('p');
+        commentPara.textContent = 'Comment: ' + review.comment;
+[12:23 PM]
+reviewDiv.appendChild(namePara);
+        reviewDiv.appendChild(ratingPara);
+        reviewDiv.appendChild(commentPara);
+
+        reviewsContainer.appendChild(reviewDiv);
+      });
+    }
+
+    // Call the displayReviews function to initially display reviews
+    displayReviews();
+  </script>
+</body>
+</html>

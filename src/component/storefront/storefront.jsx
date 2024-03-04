@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react"
 import "./storefront.css"
+
+import { useEffect, useState } from "react"
 import { getUserByUsername } from "../../services/user"
-import Product from "./products/product"
+import { Link, Route, Routes } from "react-router-dom"
+import ProductPage from "./products/productPage"
 
 function StoreFront({ storeName })
 {
@@ -18,10 +20,25 @@ function StoreFront({ storeName })
     }, [])
 
     return (
-        <div>
-            {products.map(product => (<Product product={product}/>))}
-        </div>
-    )
+        <div className="storefront-container">
+            <div className="storefront-header-cont">
+                <div>{storeName}</div>
+                <div className="storefront-nav-cont">
+                    <Link to={`/${storeName}`}>Home</Link>
+                    <Link to={`/${storeName}/contact`}>Contact</Link>
+                    <Link to={`/${storeName}/reviews`}>Reviews</Link>
+                    <Link to={`/${storeName}/tos`}>TOS</Link>
+                </div>
+            </div>
+            <div>
+                <Routes>
+                    <Route path="/" element={<ProductPage products={products}/>}/>
+                    <Route path="/contact"/>
+                    <Route path="/reviews"/>
+                    <Route path="/tos"/>
+                </Routes>
+            </div>
+        </div>)
 }
 
 export default StoreFront

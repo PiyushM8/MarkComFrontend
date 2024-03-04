@@ -1,0 +1,19 @@
+.storefront-container{
+    margin: 30px auto;
+    width: 55%;
+    height: 100%;
+}
+
+.storefront-header-cont{
+    width: 100%;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: rgb(209, 209, 209);
+    display: flex;
+    justify-content: space-between;
+}
+
+.storefront-nav-cont{
+    display: flex;
+    grid-gap: 10px;
+}

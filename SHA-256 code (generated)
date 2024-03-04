@@ -1,0 +1,41 @@
+const express = require('express');
+const crypto = require('crypto');
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Simulated user database
+const users = [
+    { username: 'user1', passwordHash: 'a92b1c...' }, // This is the hashed version of the password 'password1'
+    // Add more users here
+];
+
+// Middleware to parse JSON requests
+app.use(express.json());
+
+// Login endpoint
+app.post('/api/login', (req, res) => {
+    const { username, password } = req.body;
+
+    // Find user by username
+    const user = users.find(user => user.username === username);
+
+    if (!user) {
+        return res.status(401).json({ error: 'User not found' });
+    }
+
+    // Hash the password provided by the user
+    const hash = crypto.createHash('sha256');
+    const hashedPassword = hash.update(password).digest('hex');
+
+    // Compare the hashed password with the stored hashed password
+    if (hashedPassword === user.passwordHash) {
+        return res.json({ message: 'Login successful' });
+    } else {
+        return res.status(401).json({ error: 'Incorrect password' });
+    }
+});
+
+app.listen(PORT, () => {
+    console.log(Server is running on http://localhost:${PORT});
+});

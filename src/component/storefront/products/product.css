@@ -1,5 +1,11 @@
 .products-cont{
     display: flex;
     margin: auto;
-    justify-content: space-between;
+    grid-gap: 40px;
+    justify-content: left;
+}
+
+.store-product-item-cont{
+    padding: 20px;
+    background-color: aliceblue;
 }

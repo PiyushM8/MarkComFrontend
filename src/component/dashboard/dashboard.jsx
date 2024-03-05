@@ -48,6 +48,9 @@ function Dashboard()
                     <Link to={"/dashboard/coupons"} className="db-n-item">
                         Coupons
                     </Link>
+                    <Link to={"/dashboard/feedback"} className="db-n-item">
+                        Feedback
+                    </Link>
                 </div>
                 <div className="column-two dashboard-page-cont">
                     <Routes>
@@ -57,6 +60,7 @@ function Dashboard()
                         <Route path='/payments' element={<ProductList/>}/>
                         <Route path='/categories' element={<ProductList/>}/>
                         <Route path='/coupons' element={<ProductList/>}/>
+                        <Route path='/feedback' element={<ProductList/>}/>
                     </Routes>
                 </div>
                 <div className="column-three">b</div>

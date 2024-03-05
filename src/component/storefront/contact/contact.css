@@ -1,0 +1,23 @@
+.store-contact-page-container{
+    width: 65%;
+    height: 100px;
+    margin: auto;
+    box-sizing: border-box;
+}
+
+.store-contact-form{
+    width: 100%;
+}
+
+.store-contact-form>input{
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.store-contact-form>textarea{
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 250px;
+    max-height: 250px;
+}

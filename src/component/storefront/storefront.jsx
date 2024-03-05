@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { getUserByUsername } from "../../services/user"
 import { Link, Route, Routes } from "react-router-dom"
 import ProductPage from "./products/productPage"
+import Contact from "./contact/contact"
 
 function StoreFront({ storeName })
 {
@@ -33,7 +34,7 @@ function StoreFront({ storeName })
             <div>
                 <Routes>
                     <Route path="/" element={<ProductPage products={products}/>}/>
-                    <Route path="/contact"/>
+                    <Route path="/contact" element={<Contact/>}/>
                     <Route path="/reviews"/>
                     <Route path="/tos"/>
                 </Routes>

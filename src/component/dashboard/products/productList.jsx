@@ -20,7 +20,7 @@ function ProductList()
     useEffect(() => {
         const load = async () => {
             const pathName = location.pathname;
-            console.log(pathName)
+
             if(pathName === "/dashboard/products")
             {
                 const response = await getProducts()

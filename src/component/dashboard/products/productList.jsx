@@ -45,7 +45,7 @@ function ProductList()
     }
 
     return (
-        <div className="product-page-cont">
+        <div className="db-page-containter">
             <div className="db-page-title db-page-item">
                 <h2 className="db-page-title-header">Products</h2>
                 <div className="db-page-header-actions">
@@ -58,7 +58,7 @@ function ProductList()
                     <Route path="/" element={
                         <div className="product-table-cont">
                             <div className="product-item-cont product-table-head">
-                                <div className="product-item-title product-table-header-item">
+                                <div className="product-item-title">
                                     Title
                                 </div>
                                 <div className="product-item-stock">

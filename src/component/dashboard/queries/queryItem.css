@@ -1,0 +1,50 @@
+.query-table-cont{
+    display: flex;
+    flex-direction: column;
+    grid-gap: 15px;
+    color: whites;
+}
+
+.query-item-cont{
+    display: flex;
+    justify-content: space-between;
+}
+
+.query-table-head{
+    box-sizing: border-box;
+}
+
+.query-item-sender{
+    width: 25%;
+}
+
+.query-item-reason{
+    width: 35%;
+    text-align: left;
+}
+
+.query-item-status{
+    text-align: right;
+    width: 15%;
+}
+
+.query-item-actions{
+    display: flex;
+    grid-gap: 7px;
+    justify-content: right;
+    text-align: right;
+    width: 25%;
+}
+
+.query-action-item{
+    color: white;
+    content: white;
+}
+
+.query-action-item:hover{
+    cursor: pointer;
+}
+
+.query-action-item:visited{
+    color: white;
+}

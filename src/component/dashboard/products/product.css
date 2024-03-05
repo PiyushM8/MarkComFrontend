@@ -44,13 +44,6 @@
     
 }
 
-.product-page-cont{
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    grid-gap: 30px
-}
-
 #upload-cancel, #save-product{
     display: none;
 }

@@ -14,6 +14,13 @@
   align-items: center;
 }
 
+.db-page-containter{
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  grid-gap: 30px
+}
+
 .marcom-slogan {
   font-size: 18px;
   font-weight: bold;

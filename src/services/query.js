@@ -1,6 +1,17 @@
 import { RouteConstants } from "../constants/AppConstants"
 import api from "./apiConfig"
 
+export const getQueriesBySellerId = async () =>
+{
+    try{
+        const response = await api.get(RouteConstants.QUERY)
+        return response;
+    }catch(err){
+        console.log(err)
+        return err.response;
+    }
+}
+
 export const createQuery = async (query) =>
 {
     try{

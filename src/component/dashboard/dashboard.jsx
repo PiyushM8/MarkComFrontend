@@ -2,6 +2,7 @@ import { Link, Route, Routes, useNavigate } from "react-router-dom";
 import "./dashboard.css";
 import ProductList from "./products/productList";
 import { useEffect } from "react";
+import Queries from "./queries/queries";
 
 function Dashboard() {
   let navigate = useNavigate();
@@ -57,7 +58,7 @@ function Dashboard() {
           <Routes>
             <Route path="/products/*" element={<ProductList />} />
             <Route path="/invoices" element={<ProductList />} />
-            <Route path="/queries" element={<ProductList />} />
+            <Route path="/queries" element={<Queries />} />
             <Route path="/payments" element={<ProductList />} />
             <Route path="/categories" element={<ProductList />} />
             <Route path="/coupons" element={<ProductList />} />

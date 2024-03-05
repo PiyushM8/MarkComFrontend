@@ -1,44 +1,52 @@
-import "./storefront.css"
+// storefront.jsx
+import "./storefront.css";
+import { useEffect, useState } from "react";
+import { getUserByUsername } from "../../services/user";
+import { Link, Route, Routes } from "react-router-dom";
+import ProductPage from "./products/productPage";
+import Reviews from "./reviews/reviews"; // Import the reviews component
 
-import { useEffect, useState } from "react"
-import { getUserByUsername } from "../../services/user"
-import { Link, Route, Routes } from "react-router-dom"
-import ProductPage from "./products/productPage"
+function StoreFront({ storeName }) {
+  const [products, setProducts] = useState([]);
+  const [reviews, setReviews] = useState([
+    { rating: 5, message: "Excellent service!" },
+    { rating: 4, message: "Good products, fast shipping" },
+    // Continue hardcoded reviews
+  ]);
 
-function StoreFront({ storeName })
-{
-    const [ products, setProducts ] = useState([])
+  const getProducts = async () => {
+    const retrievedProducts = await getUserByUsername(storeName);
+    setProducts(retrievedProducts.data);
+  };
 
-    const getProducts = async () => {
-        const retrievedProducts = await getUserByUsername(storeName)
-        console.log(retrievedProducts.data)
-        setProducts(retrievedProducts.data)
-    }
+  useEffect(() => {
+    getProducts();
+  }, []);
 
-    useEffect(() => {
-        getProducts()
-    }, [])
-
-    return (
-        <div className="storefront-container">
-            <div className="storefront-header-cont">
-                <div>{storeName}</div>
-                <div className="storefront-nav-cont">
-                    <Link to={`/${storeName}`}>Home</Link>
-                    <Link to={`/${storeName}/contact`}>Contact</Link>
-                    <Link to={`/${storeName}/reviews`}>Reviews</Link>
-                    <Link to={`/${storeName}/tos`}>TOS</Link>
-                </div>
-            </div>
-            <div>
-                <Routes>
-                    <Route path="/" element={<ProductPage products={products}/>}/>
-                    <Route path="/contact"/>
-                    <Route path="/reviews"/>
-                    <Route path="/tos"/>
-                </Routes>
-            </div>
-        </div>)
+  return (
+    <div className="storefront-container">
+      <div className="storefront-header-cont">
+        <div>{storeName}</div>
+        <div className="storefront-nav-cont">
+          <Link to={`/${storeName}`}>Home</Link>
+          <Link to={`/${storeName}/contact`}>Contact</Link>
+          <Link to={`/${storeName}/reviews`}>Reviews</Link>
+          <Link to={`/${storeName}/tos`}>TOS</Link>
+        </div>
+      </div>
+      <div>
+        <Routes>
+          <Route path="/" element={<ProductPage products={products} />} />
+          <Route
+            path="/reviews"
+            element={<Reviews reviews={reviews} />} // Pass reviews to the Reviews component
+          />
+          <Route path="/contact" />
+          <Route path="/tos" />
+        </Routes>
+      </div>
+    </div>
+  );
 }
 
-export default StoreFront
+export default StoreFront;

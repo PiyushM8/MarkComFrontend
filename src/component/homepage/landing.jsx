@@ -21,8 +21,6 @@ function Landing() {
   ];
 
   useEffect(() => {
-    // Add animations or interactive features here
-    // For example, you can use vanilla JavaScript to create animations
     const landingHeader = document.querySelector(".landing-header");
     const landingFeatures = document.querySelectorAll(".feature");
     const ctaSection = document.querySelector(".cta-section");

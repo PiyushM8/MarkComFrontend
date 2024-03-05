@@ -5,20 +5,25 @@ import { getUserByUsername } from "../../services/user"
 import { Link, Route, Routes } from "react-router-dom"
 import ProductPage from "./products/productPage"
 import Contact from "./contact/contact"
+import Reviews from "./reviews/reviews"
+import TOS from "./tos/tos"
 
-function StoreFront({ storeName })
-{
-    const [ products, setProducts ] = useState([])
+function StoreFront({ storeName }) {
+  const [products, setProducts] = useState([]);
+  const [reviews, setReviews] = useState([
+    { rating: 5, message: "Excellent service!" },
+    { rating: 4, message: "Good products, fast shipping" },
+    // Continue hardcoded reviews
+  ]);
 
-    const getProducts = async () => {
-        const retrievedProducts = await getUserByUsername(storeName)
-        console.log(retrievedProducts.data)
-        setProducts(retrievedProducts.data)
-    }
+  const getProducts = async () => {
+    const retrievedProducts = await getUserByUsername(storeName);
+    setProducts(retrievedProducts.data);
+  };
 
-    useEffect(() => {
-        getProducts()
-    }, [])
+  useEffect(() => {
+    getProducts();
+  }, []);
 
     return (
         <div className="storefront-container">
@@ -35,11 +40,11 @@ function StoreFront({ storeName })
                 <Routes>
                     <Route path="/" element={<ProductPage products={products}/>}/>
                     <Route path="/contact" element={<Contact/>}/>
-                    <Route path="/reviews"/>
-                    <Route path="/tos"/>
+                    <Route path="/reviews" element={<Reviews reviews={reviews}/>}/>
+                    <Route path="/tos" element={<TOS/>}/>
                 </Routes>
             </div>
         </div>)
 }
 
-export default StoreFront
+export default StoreFront;

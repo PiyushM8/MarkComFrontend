@@ -1,0 +1,36 @@
+/* reviews.css */
+
+.reviews-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .review-item {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .review-item:hover {
+    transform: translateY(-5px);
+  }
+  
+  .review-rating {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ff9800; /* Orange color */
+  }
+  
+  .review-message {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #333;
+  }
+  

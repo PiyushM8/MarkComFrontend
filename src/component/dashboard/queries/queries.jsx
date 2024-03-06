@@ -1,8 +1,9 @@
-import { Link } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "./queries.css";
 import { useEffect, useState } from "react";
 import QueryItem from "./queryItem";
 import { getQueriesBySellerId } from "../../../services/query";
+import QueryMessage from "./queryMessage";
 
 function Queries() {
 
@@ -14,6 +15,7 @@ function Queries() {
     }
 
     useEffect(() => {
+        console.log(window.location)
         loadQueries()
     }, [])
 
@@ -21,27 +23,33 @@ function Queries() {
         <div className="db-page-containter">
             <div className="db-page-title db-page-item">
                 <h2 className="db-page-title-header">Queries</h2>
-
             </div>
             <div className="db-page-item">
-                <div className="query-item-cont query-table-head">
-                    <div className="query-item-sender query-table-header-item">
-                        Sender
-                    </div>
-                    <div className="query-item-reason">
-                        Reason
-                    </div>
-                    <div className="query-item-status">
-                        Status
-                    </div>
-                    <div className="query-item-actions">
-                        Actions
-                    </div>
-                </div>
-                
-                {queries.map((query) => {
-                    return <QueryItem key={query.queryId} query={query}/>
-                })}
+                <Routes>
+                    <Route path="/" element={
+                        <div>
+                            <div className="query-item-cont query-table-head">
+                                <div className="query-item-sender query-table-header-item">
+                                    Sender
+                                </div>
+                                <div className="query-item-reason">
+                                    Reason
+                                </div>
+                                <div className="query-item-status">
+                                    Status
+                                </div>
+                                <div className="query-item-actions">
+                                    Actions
+                                </div>
+                            </div>
+                            
+                            {queries.map((query) => {
+                                return <QueryItem key={query.queryId} query={query}/>
+                            })}
+                        </div>
+                    }/>
+                    <Route path={`/*`} element={<QueryMessage/>}/>
+                </Routes>
             </div>
         </div>
     );

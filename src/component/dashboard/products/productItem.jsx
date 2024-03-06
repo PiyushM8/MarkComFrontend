@@ -27,13 +27,13 @@ function ProductItem({ product })
             </div>
             <div className="product-item-actions">
                 <div className="product-action-item">
-                    <div><i class="fas fa-eye"/></div>
+                    <div><i className="fas fa-eye"/></div>
                 </div>
                 <Link to={`/dashboard/products/edit/${product.ProductId}`} className="product-action-item">
-                    <i class="fas fa-edit"/>
+                    <i className="fas fa-edit"/>
                 </Link>
                 <div className="product-action-item" onClick={deleteProduct}>
-                    <div><i class="fas fa-trash"/></div>
+                    <div><i className="fas fa-trash"/></div>
                 </div>
             </div>
         </div>

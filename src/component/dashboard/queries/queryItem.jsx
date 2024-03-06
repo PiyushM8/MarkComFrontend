@@ -13,17 +13,19 @@ function QueryItem({ query })
                 {query.Reason}
             </div>
             <div className="query-item-status">
-                {query.Status}
+                <div className={`${query.QueryStatus}`}>
+                    {query.QueryStatus}
+                </div>
             </div>
             <div className="query-item-actions">
                 <div className="query-action-item">
-                    <div><i class="fas fa-eye"/></div>
+                    <div><i className="fas fa-reply"/></div>
                 </div>
-                <Link to={`/dashboard/querys/edit/${query.QueryId}`} className="query-action-item">
-                    <i class="fas fa-edit"/>
+                <Link to={`/dashboard/queries/${query.QueryId}`} className="query-action-item">
+                    <i className="fas fa-edit"/>
                 </Link>
                 <div className="query-action-item">
-                    <div><i class="fas fa-trash"/></div>
+                    <div><i className="fas fa-trash"/></div>
                 </div>
             </div>
         </div>

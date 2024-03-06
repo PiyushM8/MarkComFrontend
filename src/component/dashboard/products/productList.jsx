@@ -4,11 +4,10 @@ import ProductItem from "./productItem"
 
 import UploadProduct from "./uploadProduct"
 
-import "./product.css"
-
-
 import { useEffect, useState } from "react"
 import { getProducts } from "../../../services/product"
+
+import "./product.css"
 
 function ProductList()
 {

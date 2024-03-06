@@ -37,9 +37,9 @@ function Login()
     }
 
     return (
-        <div class="signin-register-main">
+        <div className="signin-register-main">
             <h1>Login</h1>
-            <form class="signin-register-div" onSubmit={e => login(e)}>
+            <form className="signin-register-div" onSubmit={e => login(e)}>
                 <h2>Login to Sell Your Products With MarCom</h2>
 
                 <p>Email</p>
@@ -48,11 +48,11 @@ function Login()
                 <p>Password</p>
                 <input placeholder="Enter your password" id="password" type="password" required/>
 
-                <div class="signin-register-options">
+                <div className="signin-register-options">
                     Need an account <Link to={"/register"}>Register</Link>
                 </div>
 
-                <input class="signin-register-btn" type="submit" value={"Login"}  onClick={login}/>
+                <input className="signin-register-btn" type="submit" value={"Login"}  onClick={login}/>
             </form>
         </div>
     )

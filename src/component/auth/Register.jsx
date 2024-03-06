@@ -88,19 +88,19 @@ function Register()
     return (
         <div className="signin-register-main">
             <h1>Register</h1>
-            <div id="account-type-selector" class="signin-register-div account-type-choices fade-in">
+            <div id="account-type-selector" className="signin-register-div account-type-choices fade-in">
                 <h2>Choose your type of account</h2>
                 <div className="register-acc-types" id="Merchant" onClick={e => pickAccountType(e)}>
-                    <i class="fa-solid fa-store"/> Merchant
+                    <i className="fa-solid fa-store"/> Merchant
                 </div>
                 <div className="register-acc-types" id="Customer" onClick={e => pickAccountType(e)}>
-                    <i class="fa-solid fa-cart-shopping"/> Customer
+                    <i className="fa-solid fa-cart-shopping"/> Customer
                 </div>
-                <div class="signin-register-options">
+                <div className="signin-register-options">
                     Have an account? <Link to={"/login"}>Sign in</Link>
                 </div>
             </div>
-            <form id="register-form" class="signin-register-div fade-in" onSubmit={e => register(e)}>
+            <form id="register-form" className="signin-register-div fade-in" onSubmit={e => register(e)}>
                 <h2>Register to display your products to the world</h2>
 
                 <p>Email</p>
@@ -115,11 +115,11 @@ function Register()
                 <p>Confirm Password</p>
                 <input placeholder="Confirm your password" id="confirm-password" type="password"/>
 
-                <div class="signin-register-options">
+                <div className="signin-register-options">
                     Have an account? <Link to={"/login"}>Sign in</Link>
                 </div>
 
-                <input class="signin-register-btn" value="Register" type="submit"/>
+                <input className="signin-register-btn" value="Register" type="submit"/>
             </form>
         </div>
     )

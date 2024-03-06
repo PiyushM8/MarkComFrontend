@@ -1,0 +1,22 @@
+.db-query-msg-containter{
+    display: flex;
+    flex-direction: column;
+}
+
+.query-sender-msg{
+    display: flex;
+    justify-content: right;
+    width: 100%;
+    background-color: 2;
+}
+
+.query-owner-msg{
+
+}
+
+.db-query-response-input{
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    outline: none;
+}

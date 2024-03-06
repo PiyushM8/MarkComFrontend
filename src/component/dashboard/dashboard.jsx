@@ -58,14 +58,14 @@ function Dashboard() {
           <Routes>
             <Route path="/products/*" element={<ProductList />} />
             <Route path="/invoices" element={<ProductList />} />
-            <Route path="/queries" element={<Queries />} />
+            <Route path="/queries/*" element={<Queries />} />
             <Route path="/payments" element={<ProductList />} />
             <Route path="/categories" element={<ProductList />} />
             <Route path="/coupons" element={<ProductList />} />
             <Route path="/feedback" element={<ProductList />} />
           </Routes>
         </div>
-        <div className="column-three">b</div>
+        <div className="column-three"></div>
       </div>
       <div className="dashboard-bottom-cont">
         <div className="column-one">

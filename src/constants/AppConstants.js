@@ -7,5 +7,6 @@ export const RouteConstants = {
     REGISTER: "/auth/register",
     PRODUCT: "/products",
     USER: "/users",
-    QUERY: "/queries"
+    QUERY: "/queries",
+    MESSAGE: "/messages"
 }

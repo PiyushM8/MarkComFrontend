@@ -5,7 +5,7 @@ function ProductPage({products})
     return (<div>
         <h2>Products</h2>
         <div className="products-cont">
-            {products.map(product => (<Product product={product}/>))}
+            
         </div>
     </div>)
 }

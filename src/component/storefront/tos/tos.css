@@ -1,5 +1,5 @@
 .Tos-container {
-    max-width: 600px;
+    max-width: 450px;
     margin: 0 auto;
     padding: 20px;
     background-color: #f8f8f8;
@@ -9,9 +9,12 @@
 
 
 .Tos-container-scroll {
-    height:550px;
-    width:550px;
-    border:1px solid #ccc;
+    height: 400px;
+    width: 450px;
+    padding-left: 2%;
+    border:2px solid #000000;
     font:16px/26px Georgia, Garamond, Serif;
     overflow:auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    object-fit: contain;
 }

@@ -4,10 +4,10 @@ function Product({product})
 {
     return (
         <div className="store-product-item-cont">
-            <div>Title: {product.Title}</div>
-            <div>Price: {product.Price}</div>
-            <div>Description: {product.Description}</div>
-            <div>Stock: {product.Stock}</div>
+            <div><b>Title:</b> {product.Title}</div>
+            <div><b>Price:</b> {product.Price}</div>
+            <div><b>Description:</b> {product.Description}</div>
+            <div><b>Stock:</b> {product.Stock}</div>
             <button>Purchase - ${(product.Price).toFixed(2)}</button>
         </div>
     )

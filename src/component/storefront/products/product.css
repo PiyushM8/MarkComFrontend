@@ -9,3 +9,24 @@
     padding: 20px;
     background-color: aliceblue;
 }
+
+button {
+    background-color: #8177f3; 
+    color: white;
+    border: none;
+    border-radius: 10px; 
+    padding: 8px 10px; 
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #a080ec; 
+  }
+   
+  button:active {
+    background-color: #a587eb
+  }

@@ -28,12 +28,12 @@ function StoreFront({ storeName }) {
     return (
         <div className="storefront-container">
             <div className="storefront-header-cont">
-                <div>{storeName}</div>
+                <div>{storeName + "'s Store"}</div>
                 <div className="storefront-nav-cont">
-                    <Link to={`/${storeName}`}>Home</Link>
-                    <Link to={`/${storeName}/contact`}>Contact</Link>
-                    <Link to={`/${storeName}/reviews`}>Reviews</Link>
-                    <Link to={`/${storeName}/tos`}>TOS</Link>
+                    <Link to={`/${storeName}`} className="storefront-nav-link">Home</Link>
+                    <Link to={`/${storeName}/contact`} className="storefront-nav-link">Contact</Link>
+                    <Link to={`/${storeName}/reviews`} className="storefront-nav-link">Reviews</Link>
+                    <Link to={`/${storeName}/tos`} className="storefront-nav-link">TOS</Link>
                 </div>
             </div>
             <div>

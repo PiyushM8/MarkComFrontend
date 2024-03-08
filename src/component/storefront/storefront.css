@@ -9,12 +9,40 @@
     padding: 20px;
     border-radius: 5px;
     box-sizing: border-box;
-    background-color: rgb(209, 209, 209);
+    background: linear-gradient(180deg, rgb(71, 87, 153) 0%, transparent 70%);
+    height: 100px;
     display: flex;
     justify-content: space-between;
 }
 
-.storefront-nav-cont{
+.storefront-nav-cont{ 
+    color: rgb(71, 87, 153);
+    width: 75%;
+    margin: auto;
+    padding: 2px;
     display: flex;
-    grid-gap: 10px;
+    justify-content: space-between;
+    font-size: 16px;
+ 
 }
+
+.storefront-nav-link{
+    color:rgb(131, 81, 224);
+    text-decoration:none;
+    font:Verdana;
+    padding: 5px;
+    
+
+}
+
+.storefront-nav-link:hover {
+    color:rgb(250, 239, 239)
+    
+}
+
+.storefront-nav-link:active {
+    color:rgb(255, 255, 255)
+    
+}
+
+

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+</head>
+<body>
+    <h1>Product Details</h1>
+    <div id="product-info">
+        <!-- Product information will be displayed here -->
+    </div>
+
+    <script>
+        // Function to parse URL parameters
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        };
+
+        // Extract shop name and product ID from URL
+        var shopName = getUrlParameter('shop');
+        var productId = getUrlParameter('productId');
+
+        // Fetch product information from backend
+        fetch(`https://your-backend-url.com/products/${productId}`)
+            .then(response => response.json())
+            .then(data => {
+                // Display product information on the page
+                document.getElementById('product-info').innerHTML = `
+                    <h2>${data.name}</h2>
+                    <p>Description: ${data.description}</p>
+                    <p>Price: ${data.price}</p>
+                    <!-- Add more details as needed -->
+                `;
+            })
+            .catch(error => {
+                console.error('Error fetching product information:', error);
+            });
+    </script>
+</body>
+</html>

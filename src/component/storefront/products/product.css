@@ -7,8 +7,19 @@
 
 .store-product-item-cont{
     padding: 20px;
-    background-color: aliceblue;
+    background-color: 	rgb(230, 230, 250);
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
+
+.product-text-cont{
+  padding:5px;
+}
+
+.store-product-item-cont:hover{
+  transform: translateY(-8px);
+}
+
+
 
 button {
     background-color: #8177f3; 

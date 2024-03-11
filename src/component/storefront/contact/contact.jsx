@@ -33,8 +33,8 @@ function Contact()
                 <h3>Reason</h3>
                 <input name="Reason" onChange={handleChange}/>
                 <h3>Message</h3>
-                <textarea name="Content" onChange={handleChange}/>
-                <input type="submit"/>
+                <textarea name="Content" onChange={handleChange} placeholder="Type your message here..."/>
+                <input className="store-contact-form-submit" type="submit"/> 
             </form>
         </div>
     )

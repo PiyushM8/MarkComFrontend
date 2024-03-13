@@ -3,10 +3,11 @@ import "./storefront.css"
 import { useEffect, useState } from "react"
 import { getUserByUsername } from "../../services/user"
 import { Link, Route, Routes } from "react-router-dom"
-import ProductPage from "./products/productPage"
+import ProductSection from "./products/productSection"
 import Contact from "./contact/contact"
 import Reviews from "./reviews/reviews"
 import TOS from "./tos/tos"
+import ProductPage from "./products/productPage"
 
 function StoreFront({ storeName }) {
   const [products, setProducts] = useState([]);
@@ -25,26 +26,31 @@ function StoreFront({ storeName }) {
     getProducts();
   }, []);
 
-    return (
-        <div className="storefront-container">
-            <div className="storefront-header-cont">
-                <div>{storeName + "'s Store"}</div>
-                <div className="storefront-nav-cont">
-                    <Link to={`/${storeName}`} className="storefront-nav-link">Home</Link>
-                    <Link to={`/${storeName}/contact`} className="storefront-nav-link">Contact</Link>
-                    <Link to={`/${storeName}/reviews`} className="storefront-nav-link">Reviews</Link>
-                    <Link to={`/${storeName}/tos`} className="storefront-nav-link">TOS</Link>
-                </div>
-            </div>
-            <div>
-                <Routes>
-                    <Route path="/" element={<ProductPage products={products}/>}/>
-                    <Route path="/contact" element={<Contact/>}/>
-                    <Route path="/reviews" element={<Reviews reviews={reviews}/>}/>
-                    <Route path="/tos" element={<TOS/>}/>
-                </Routes>
-            </div>
-        </div>)
+  return (
+    <div className="storefront-container">
+      <div className="storefront-header-cont">
+        <div className="storefront-navbar-cont column-two">
+          <div className="storefront-info-cont">
+            <div className="storefront-info-item">{storeName.charAt(0).toUpperCase() + storeName.slice(1) + "'s Store"}</div>
+          </div>
+          <div className="storefront-extra-cont">
+            <Link to={`/${storeName}/contact`} className="storefront-nav-link">Contact</Link>
+            <Link to={`/${storeName}/reviews`} className="storefront-nav-link">Reviews</Link>
+            <Link to={`/${storeName}/tos`} className="storefront-nav-link">TOS</Link>
+            <Link to={`/${storeName}`} className="storefront-nav-link product-nav">Products</Link>
+          </div>
+        </div>
+      </div>
+      <div>
+        <Routes>
+          <Route path="/" element={<ProductSection storeName={storeName} products={products} />} />
+          <Route path="/product/*" element={<ProductPage />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/reviews" element={<Reviews reviews={reviews} />} />
+          <Route path="/tos" element={<TOS />} />
+        </Routes>
+      </div>
+    </div>)
 }
 
 export default StoreFront;

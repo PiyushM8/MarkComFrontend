@@ -27,7 +27,7 @@ function Login()
                 window.sessionStorage.setItem("Authorization", responseData.jwtToken);
                 navigate("/dashboard")
             }else if(responseStatus === 401){
-                alert("Incorrect Password")
+                alert("Incorrect Credentials")
             }else{
                 alert("Unknown Error")
             }

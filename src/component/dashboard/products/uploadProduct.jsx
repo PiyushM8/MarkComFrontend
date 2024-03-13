@@ -17,9 +17,12 @@ function UploadProduct()
     const navigate = useNavigate()
     const location = useLocation()
 
+    const [ selectedFile, setSelectedFile ] = useState();
     const [ productData, setProductData ] = useState({})
 
-
+    const handleFileChange = (event) => {
+        setSelectedFile(event.target.files[0]);
+    };
     /**
      * This function will load the product details into the inputs if we're editing the product.
      * If checks the url to check if we are editing the product
@@ -40,12 +43,8 @@ function UploadProduct()
         load()
     }, [])
 
-    const uploadProduct = async (e) => {
-        e.preventDefault()
-        
-        console.log(productData)
-
-        const response = await createProduct(productData)
+    const uploadProduct = async (formData) => {
+        const response = await createProduct(formData)
         switch(response.status)
         {
             case 201:
@@ -76,16 +75,26 @@ function UploadProduct()
             navigate("/dashboard/products")
             window.location.reload()
         }else{
-            await uploadProduct(e)
+            const formData = new FormData();
+            formData.append('image', selectedFile);
+            formData.append("product", JSON.stringify(productData))
+
+            await uploadProduct(formData)
         }
     }
 
     const handleChange = (e) => {
         let { name, value } = e.target;
-        setProductData({
-            ...productData,
-            [name]: value
-        })
+        if(name === "image")
+        {
+            const img = document.getElementById("imageInput").files[0]
+            console.log(img)
+        }else{
+            setProductData({
+                ...productData,
+                [name]: value
+            })
+        }
     };
 
     return (
@@ -107,6 +116,9 @@ function UploadProduct()
             <div className="input-item">
                 <h3 className="input-item-header">Description</h3>
                 <textarea className="upload-textarea" placeholder="Enter Title" name="Description" value={productData.Description} onChange={handleChange}/>
+            </div>
+            <div>
+                <input type="file" name="image" id="imageInput" accept="image/*" onChange={e => handleFileChange(e)}/>
             </div>
             <div className="upload-action-btn">
                 <input type="submit" value="Save Product" className="save-product"/>

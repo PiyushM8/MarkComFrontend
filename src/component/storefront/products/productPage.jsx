@@ -1,15 +1,27 @@
-import Product from "./product"
+import { useEffect } from "react"
+import "./product"
+import { useLocation } from "react-router"
+import { getProductById } from "../../../services/product"
 
-function ProductPage({products})
+function ProductPage()
 {
-    return (<div>
-        <h2>Products</h2>
-        <div className="products-cont">
-        {products.map(product => {
-                return <Product product={product}/>
-            })}
+    const location = useLocation()
+
+    const onload = async () => {
+        const productId = location.pathname.split("/product/")[1]
+        const product = await getProductById(productId)
+        console.log(product)
+    }
+
+    useEffect(() => {
+        onload()
+    })
+
+    return (
+        <div>
+            Product
         </div>
-    </div>)
+    )
 }
 
 export default ProductPage

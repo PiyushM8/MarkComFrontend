@@ -1,21 +1,30 @@
+/* Adjusted styling for the TOS container */
 .Tos-container {
-    max-width: 450px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f8f8f8;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1)
-}
-
-
-.Tos-container-scroll {
+    max-width: 800px;
+    margin: 0 auto; 
+    padding: 30px; /* Increased padding for better spacing */
+    background-color: #f5f5f5; /* Light gray background */
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    background: linear-gradient(to bottom, #f5f5f5 0%, #e0e0e0 100%); /* Gradient background */
+  }
+  
+  /* Scrollable container for TOS content */
+  .Tos-container-scroll {
     height: 400px;
-    width: 450px;
-    padding-left: 2%;
-    border:2px solid #000000;
+    width: 800px; /* Adjusted width */
+    padding: 20px; /* Adjusted padding */
+    border: 1px solid #ddd; /* Adjusted border */
     box-sizing: border-box;
-    font:16px/26px Georgia, Garamond, Serif;
-    overflow:auto;
+    font: 16px/26px Georgia, Garamond, Serif;
+    overflow: auto;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     object-fit: contain;
-}
+  }
+  
+  /* Universal style */
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  

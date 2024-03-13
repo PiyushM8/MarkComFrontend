@@ -5,13 +5,17 @@ function Product({storeName, product})
 {
     return (
         <div className="store-product-item-cont">
-                <div className="product-text-cont"><b>Title:</b> {product.Title}</div>
-                <div className="product-text-cont"><b>Price:</b> {product.Price}</div>
-                <div className="product-text-cont"><b>Description:</b> {product.Description}</div>
-                <div className="product-text-cont"><b>Stock:</b> {product.Stock}</div>
-                <Link to={`/${storeName}/product/${product.ProductId}`}>
-
-                <div className="product-text-cont"><button>Purchase - ${(product.Price).toFixed(2)}</button></div>
+            <Link  to={`/${storeName}/product/${product.ProductId}`}>
+                <img className="p-item-image" src={`https://imagedelivery.net/BMDilndsvZPipd90__49rQ/${product.ProductImage}/public`}/>
+                <div className="p-item-info">
+                    <div>
+                        <div className="product-text-cont p-item-title">{product.Title}</div>
+                    </div>
+                    <div className="p-item-extra-info">
+                        <div className="product-text-cont">$ {product.Price}</div>
+                        <div className="p-item-stock">3 in stock</div>
+                    </div>
+                </div>
             </Link>
         </div>
     )

@@ -1,42 +1,71 @@
 /* reviews.css */
 
+/* Main container */
 .reviews-container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 0 auto; 
+  padding: 30px; /* Increased padding for better spacing */
+  background-color: #f5f5f5; /* Light gray background */
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  background: linear-gradient(to bottom, #f5f5f5 0%, #e0e0e0 100%); /* Gradient background */
 }
 
-.review-item {
+/* Header */
+.reviews-header {
   margin-bottom: 20px;
-  padding: 15px;
-  border: 1px solid #ddd;
+  font-size: 32px;
+  color: #333; /* Dark text color */
+  text-align: center;
+}
+
+/* Reviews list */
+.reviews-list {
+  display: grid;
+  gap: 20px; /* review spacing */
+}
+
+/* Individual review item */
+.review-item {
+  padding: 20px;
+  margin-bottom: 20px; 
   border-radius: 10px;
-  background-color: #f9f9f9;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
   transition: transform 0.3s ease-in-out;
 }
 
 .review-item:hover {
-  transform: translateY(-8px);
+  transform: translateY(-5px); /* hover effect */
 }
 
+/* Rating stars */
 .review-rating {
-  font-size: 20px;
-  font-weight: bold;
-  color: #ff9800; /* Orange color */
+  font-size: 24px;
+  color: #f4c542; /* Gold color for ratings */
+  margin-bottom: 10px;
 }
 
+/* Review message */
 .review-message {
-  margin-top: 12px;
-  font-size: 16px;
-  color: #555;
+  font-size: 18px;
+  color: #444; /* Slightly darker text color */
 }
 
-/* Unicode character for stars symbol */
-.star {
-  color: #ff9800;
-  font-size: 1.2em;
-  margin-right: 5px;
+/* Add review button */
+.add-review-button {
+  display: block;
+  margin: 20px auto;
+  padding: 15px 30px;
+  background-color: #ff4081; /* Pink button color */
+  color: #fff; /* White text color */
+  border: none;
+  border-radius: 30px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-review-button:hover {
+  background-color: #d81b60; /* Darker shade of pink on hover */
 }

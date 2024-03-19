@@ -2,19 +2,30 @@ import { useEffect, useState } from "react";
 import Product from "./product"
 import { useLocation } from "react-router";
 import TypingAnimation from "./typingAnimation";
+import { getUserByUsername } from "../../../services/user";
 
-function ProductSection({ storeName, products }) {
+function ProductSection({ storeName }) {
     const location = useLocation();
 
     let isDoing = false;
     const [charIndex, setCharIndex] = useState(0);
     const [isDeleting, setIsDeleting] = useState(false);
+    const [products, setProducts] = useState([]);
 
     const phrase = `${storeName.charAt(0).toUpperCase() + storeName.slice(1)}'s Store!`
+    
+    const getProducts = async () => 
+    {
+        const retrievedProducts = await getUserByUsername(storeName);
+        setProducts(retrievedProducts.data);
+    };
 
-    useEffect(() => {
+    const onload = async () => 
+    {
+        await getProducts();
         if (location.pathname.split("/").length == 2)
         {
+            
             function typeWriter() 
             {
                 if (isDoing === false) {
@@ -38,6 +49,10 @@ function ProductSection({ storeName, products }) {
                 clearTimeout(); // Clear all timeouts to cancel ongoing animations
             };
         }
+    }
+
+    useEffect(() => {
+        onload()
     }, []);
 
     return (<div>

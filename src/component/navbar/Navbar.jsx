@@ -8,7 +8,7 @@ function Navbar() {
         <div className="navbar-comp-info">
           <img
             className="nav-comp-logo"
-            src="https://cdn.discordapp.com/attachments/1024529988210413632/1210397763972632616/globe.png?ex=65ea69c3&is=65d7f4c3&hm=53c276b3830b969b017a672512620f2aa2d2e12562dc4b37414457e3df55dbf8&"
+            src=""
             alt="Company Logo"
           />
           <div className="navbar-name-">

@@ -4,6 +4,7 @@ import Homepage from "./component/homepage/homepage";
 import CustomerPage from "./component/customer/customerPage";
 import { useEffect, useState } from "react";
 import StoreFront from "./component/storefront/storefront";
+import CustomerInvoicePage from "./component/storefront/customerInvoicePage/customerInvoicePage";
 
 
 function App() {

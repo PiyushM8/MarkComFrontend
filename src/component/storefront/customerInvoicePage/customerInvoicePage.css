@@ -1,0 +1,18 @@
+.customer-invoice-page-cont{
+    margin: 100px auto;
+}
+
+.rating {
+    unicode-bidi: bidi-override;
+  }
+  
+  .star {
+    display: inline-block;
+    font-size: 24px;
+    cursor: pointer;
+    color: #ccc; /* Default color for unfilled stars */
+  }
+  
+  .star.filled {
+    color: orange; /* Color for filled stars */
+  }

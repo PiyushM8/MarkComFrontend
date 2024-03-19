@@ -11,3 +11,14 @@ export const createFeedback = async (feedback) =>
         return err.response;
     }
 }
+
+export const getFeedbackByProductId = async (productId) =>
+{
+    try{
+        const response = await api.get(`${RouteConstants.FEEDBACK}/${productId}`)
+        return response;
+    }catch(err){
+        console.log(err)
+        return err.response;
+    }
+}

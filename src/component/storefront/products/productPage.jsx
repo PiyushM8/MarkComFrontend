@@ -6,18 +6,26 @@ import { getProductById } from "../../../services/product"
 
 import Checkout from "../checkout/checkout"
 import { createInvoice } from "../../../services/invoice"
+import { getFeedbackByProductId } from "../../../services/feedback"
 
 function ProductPage()
 {
     const location = useLocation()
     const [ product, setProduct ] = useState({})
+    const [ feedback, setFeedback ] = useState([])
     const [ orderAmount, setOrderAmount ] = useState(1)
+
+    const [ orderPrice, setOrderPrice ] = useState(0)
 
     const onload = async () => {
         const productId = location.pathname.split("/product/")[1]
         console.log(productId)
-        const response = await getProductById(productId)
-        setProduct(response.data)
+        const productResponse = await getProductById(productId)
+        const feedbackResponse = await getFeedbackByProductId(productId)
+        console.log(feedbackResponse.data)
+        setFeedback(feedbackResponse.data)
+        setProduct(productResponse.data)
+        setOrderPrice(productResponse.data.Price.toFixed(2))
     }
 
     /**
@@ -100,11 +108,11 @@ function ProductPage()
                             <input className="p-page-quantity-input" type="number" onChange={onChange} value={orderAmount} placeholder="0" min={0}/>
                             <div className="p-page-quantity-up" id="i-quantity" onClick={changeQuantity}>+</div>
                         </div>
-                        <button className="p-page-checkout" onClick={submitOrder}><i class="fa-solid fa-cart-shopping"/> Purchase - $9.99</button>
+                        <button className="p-page-checkout" onClick={submitOrder}><i class="fa-solid fa-cart-shopping"/> Purchase - ${`${orderPrice}`}</button>
                     </div>
                     <input id="p-page-email" className="p-page-quantity-input" type="email" placeholder="Ex. example@gmail.com"/>
                 </div>
-                <div className="">
+                <div className="reviews-cont">
 
                 </div>
             </div>

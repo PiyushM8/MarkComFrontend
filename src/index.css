@@ -2,6 +2,7 @@ html{
   margin: 0;
   font-family: roboto,sans-serif;
   box-sizing: border-box;
+  background-color: rgb(237, 237, 237);
 }
 
 body {

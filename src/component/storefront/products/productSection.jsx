@@ -69,9 +69,12 @@ function ProductSection({ storeName, products }) {
             <div  className="product-section-cont">
                 <h2 className="products-header">Products</h2>
                 <div className="products-cont">
-                    {products.map(product => {
-                        return <Product storeName={storeName} product={product} />
-                    })}
+                    {
+                        products.map(product => 
+                        {
+                            return <Product storeName={storeName} product={product} />
+                        })
+                    }
                 </div>
             </div>
         </div>

@@ -18,12 +18,14 @@
 
 .products-cont{
     display: flex;
-    justify-content: space-between;
+    grid-gap: 20px;
+    flex-wrap: wrap;
+    justify-content: left;
     width: 100%;
 }
 
 .store-product-item-cont{
-    width: 300px;
+    width: 280px;
     padding: 10px;
     border-radius: 10px;
     background-color: 	rgb(221, 221, 221);

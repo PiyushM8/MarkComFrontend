@@ -1,8 +1,8 @@
 .storefront-container{
     font-family: Poppins, sans-serif;
     margin: auto;
+    background-color: rgb(237, 237, 237);
     width: 100%;
-    min-height: 1000px;
 }
 
 .storefront-intro-cont{
@@ -114,6 +114,7 @@
 .storefront-header-cont{
     background: linear-gradient(180deg, rgb(166, 166, 166) 0%, transparent 90%);
     position: fixed;
+    top: 0;
     margin: auto;
     width: 100%;
     letter-spacing: 0.5px;

@@ -8,5 +8,6 @@ export const RouteConstants = {
     PRODUCT: "/products",
     USER: "/users",
     QUERY: "/queries",
-    MESSAGE: "/messages"
+    MESSAGE: "/messages",
+    INVOICE: "/invoices"
 }

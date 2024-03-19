@@ -5,6 +5,7 @@ import { useLocation } from "react-router"
 import { getProductById } from "../../../services/product"
 
 import Checkout from "../checkout/checkout"
+import { createInvoice } from "../../../services/invoice"
 
 function ProductPage()
 {
@@ -19,22 +20,55 @@ function ProductPage()
         setProduct(response.data)
     }
 
+    /**
+     * 
+     * @param {*} e 
+     */
+    const submitOrder = async () =>
+    {
+        const email = document.getElementById("p-page-email").value
+        const productId = location.pathname.split("/product/")[1]
+
+        const order = {
+            ProductId: productId,
+            Quantity: orderAmount,
+            CustomerEmail: email,
+            IpAddress: "0.0.0.0",
+            PaymentMethod: "Credit Card",
+        }
+
+        const response = await createInvoice(order);
+        const status = response.status
+        if(status === 200)
+        {
+            alert("Successfully Created Order")
+        }else{
+            alert("Error with creating order")
+        }
+    }
+
+    /**
+     * Increment/Decrement quantity for the quantity input
+     * 
+     * @param {*} e The click event
+     */
     const changeQuantity = (e) => 
     {
+        // Change the value to an int or else it will concat the "1"
         let oAmount = parseInt(orderAmount);
-        console.log(e.target.id)
-        console.log(orderAmount)
+
         if (e.target.id === "i-quantity") {
             oAmount += 1
         }else {
             oAmount -= 1
         }
+
+        // Change the state of the order amount to the new quantity
         setOrderAmount(oAmount)
     }
 
     const onChange = (e) => {
-        if(!isNaN(e.target.value))
-            setOrderAmount(e.target.value)
+        setOrderAmount(e.target.value)
     }
 
     useEffect(() => {
@@ -66,8 +100,9 @@ function ProductPage()
                             <input className="p-page-quantity-input" type="number" onChange={onChange} value={orderAmount} placeholder="0" min={0}/>
                             <div className="p-page-quantity-up" id="i-quantity" onClick={changeQuantity}>+</div>
                         </div>
-                        <button className="p-page-checkout"><i class="fa-solid fa-cart-shopping"/> Purchase - $9.99</button>
+                        <button className="p-page-checkout" onClick={submitOrder}><i class="fa-solid fa-cart-shopping"/> Purchase - $9.99</button>
                     </div>
+                    <input id="p-page-email" className="p-page-quantity-input" type="email" placeholder="Ex. example@gmail.com"/>
                 </div>
                 <div className="">
 

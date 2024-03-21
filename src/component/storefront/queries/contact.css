@@ -3,7 +3,7 @@
 /* Main container */
 .store-contact-page-container {
     max-width: 800px;
-    margin: 0 auto 50px; 
+    margin: 120px auto 50px; 
     padding: 30px; /* better spacing */
     background-color: #f5f5f5; /* Light gray background */
     border-radius: 20px;

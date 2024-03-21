@@ -49,3 +49,30 @@
 .db-query-response-btn:hover{
     cursor: pointer;
 }
+
+
+.query-msg-cont{
+    display: inline-block;  
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-top: 7px;
+}
+
+/* CSS for separate messages when opening messenger*/
+.query-msg{
+    border-radius: 5px;
+    padding: 5px 8px;
+}
+
+.query-sender-msg{
+    background-color: white;
+    color: black;
+    float: right;
+}
+
+.query-owner-msg{
+    background-color: rgb(77, 95, 201);
+    color: white;
+    float: left;
+}

@@ -1,7 +1,7 @@
 import { useState } from "react"
 import "./contact.css"
 import { createQuery } from "../../../services/query"
-import { useLocation } from "react-router-dom"
+import { Router, useLocation } from "react-router-dom"
 
 function Contact()
 {

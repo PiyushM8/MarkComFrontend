@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import "./message.css"
 
 function Message({ message }) 
 {

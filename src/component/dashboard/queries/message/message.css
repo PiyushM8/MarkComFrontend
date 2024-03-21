@@ -1,0 +1,24 @@
+.query-msg-cont{
+    display: inline-block;  
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.query-msg{
+    border-radius: 5px;
+    padding: 5px 8px;
+}
+
+.query-sender-msg{
+    background-color: white;
+    color: black;
+    float: right;
+}
+
+.query-owner-msg{
+    background-color: rgb(77, 95, 201);
+    color: white;
+    float: left;
+}

@@ -4,7 +4,7 @@ function Checkout()
 {
     return (
         <div className="checkout-cont">
-
+            
         </div>
     )
 }

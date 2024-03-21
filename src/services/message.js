@@ -12,3 +12,16 @@ export const getMessagesByQueryId = async (queryId) =>
         return err.response;
     }
 }
+
+export const addMessageToQueryId = async (queryId, content) =>
+{
+    try{
+        const response = await api.post(`${RouteConstants.MESSAGE}/${queryId}`, {
+            Content: content
+        })
+        return response;
+    }catch(err){
+        console.log(err)
+        return err.response
+    }
+}

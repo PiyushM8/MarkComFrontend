@@ -3,7 +3,7 @@ import "./message.css"
 
 function Message({ message }) 
 {
-    const [ messageClass, setMessageClass ] = useState({})
+    const [ messageClass, setMessageClass ] = useState("")
 
     useEffect(() => {
         const author = message.Author;
@@ -11,14 +11,18 @@ function Message({ message })
         if(author.includes("@") && author.includes("."))
         {
             setMessageClass("query-sender-msg")
+        }else{
+            setMessageClass("query-owner-msg")
         }
     })
 
-    return (<div className="query-sender-msg">
-        <div>
-            {message.Content}
+    return (
+        <div className="query-msg-cont">
+            <div className={`query-msg ${messageClass}`}>
+                {message.Content}
+            </div>
         </div>
-    </div>)
+    )
 }
 
 export default Message

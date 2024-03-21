@@ -12,6 +12,17 @@ export const getQueriesBySellerId = async () =>
     }
 }
 
+export const getQueryById = async (queryId) =>
+{
+    try{
+        const response = await api.get(`${RouteConstants.QUERY}/${queryId}`)
+        return response;
+    }catch(err){
+        console.log(err)
+        return err.response;
+    }
+}
+
 export const createQuery = async (query) =>
 {
     try{

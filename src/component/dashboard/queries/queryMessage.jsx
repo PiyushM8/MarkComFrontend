@@ -4,16 +4,22 @@ import { useLocation } from "react-router-dom"
 import "./queries.css"
 import Message from "./message/message"
 import { addMessageToQueryId, getMessagesByQueryId } from "../../../services/message"
+import { getQueryById } from "../../../services/query"
 
 function QueryMessage()
 {
     const location = useLocation()
     const queryId = location.pathname.split("/")[3]
+
     const [ messages, setMessages ] = useState([])
+    const [ query, setQuery ] = useState({})
 
     const loadMessage = async () => {
-        const response = await getMessagesByQueryId(queryId)
-        setMessages(response.data)
+        const messagesResponse = await getMessagesByQueryId(queryId)
+        const queryResponse = await getQueryById(queryId)
+
+        setMessages(messagesResponse.data)
+        setQuery(queryResponse.data)
     }
 
     const handleSubmit = async (e) => {
@@ -38,7 +44,7 @@ function QueryMessage()
     return (
         <div className="db-query-messenger-container">
             <div className="db-query-messenger-header">
-                Messages with {messages[0].Author}
+                Messages with {query.Email}
             </div>
             <div>
                 {messages.map((message) => {

@@ -15,12 +15,12 @@
 .db-query-respond-cont{
     display: flex;
     width: 100%;
+    margin: 20px 0 10px 0;
 }
 
 .db-query-response-input{
     border: none;
     border-radius: 5px;
-    margin-top: 20px;
     box-sizing: border-box;
     font-size: 15px;
     padding: 10px;

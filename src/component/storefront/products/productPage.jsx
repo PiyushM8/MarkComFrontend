@@ -1,41 +1,37 @@
-import "./productPage.css"
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router";
+import { getProductById } from "../../../services/product";
+import { createInvoice } from "../../../services/invoice";
+import { getFeedbackByProductId } from "../../../services/feedback";
+import "./productPage.css";
 
-import { useEffect, useState } from "react"
-import { useLocation } from "react-router"
-import { getProductById } from "../../../services/product"
-
-import Checkout from "../checkout/checkout"
-import { createInvoice } from "../../../services/invoice"
-import { getFeedbackByProductId } from "../../../services/feedback"
-
-function ProductPage()
-{
-    const location = useLocation()
-    const [ product, setProduct ] = useState({})
-    const [ feedback, setFeedback ] = useState([])
-    const [ orderAmount, setOrderAmount ] = useState(1)
-
-    const [ orderPrice, setOrderPrice ] = useState(0)
+function ProductPage() {
+    const location = useLocation();
+    const [product, setProduct] = useState({});
+    const [feedback, setFeedback] = useState([]);
+    const [orderAmount, setOrderAmount] = useState(1);
+    const [orderPrice, setOrderPrice] = useState(0);
+    const [averageRating, setAverageRating] = useState(0);
 
     const onload = async () => {
-        const productId = location.pathname.split("/product/")[1]
-        console.log(productId)
-        const productResponse = await getProductById(productId)
-        const feedbackResponse = await getFeedbackByProductId(productId)
-        console.log(feedbackResponse.data)
-        setFeedback(feedbackResponse.data)
-        setProduct(productResponse.data)
-        setOrderPrice(productResponse.data.Price.toFixed(2))
-    }
+        const productId = location.pathname.split("/product/")[1];
+        const productResponse = await getProductById(productId);
+        const feedbackResponse = await getFeedbackByProductId(productId);
+        setFeedback(feedbackResponse.data);
+        setProduct(productResponse.data);
+        setOrderPrice(productResponse.data.Price.toFixed(2));
 
-    /**
-     * 
-     * @param {*} e 
-     */
-    const submitOrder = async () =>
-    {
-        const email = document.getElementById("p-page-email").value
-        const productId = location.pathname.split("/product/")[1]
+        // Calculate average rating
+        if (feedbackResponse.data.length > 0) {
+            const totalRating = feedbackResponse.data.reduce((acc, cur) => acc + cur.rating, 0);
+            const avgRating = totalRating / feedbackResponse.data.length;
+            setAverageRating(avgRating.toFixed(1));
+        }
+    };
+
+    const submitOrder = async () => {
+        const email = document.getElementById("p-page-email").value;
+        const productId = location.pathname.split("/product/")[1];
 
         const order = {
             ProductId: productId,
@@ -43,57 +39,61 @@ function ProductPage()
             CustomerEmail: email,
             IpAddress: "0.0.0.0",
             PaymentMethod: "Credit Card",
-        }
+        };
 
         const response = await createInvoice(order);
-        const status = response.status
-        if(status === 200)
-        {
-            alert("Successfully Created Order")
-        }else{
-            alert("Error with creating order")
+        const status = response.status;
+        if (status === 200) {
+            alert("Successfully Created Order");
+        } else {
+            alert("Error with creating order");
         }
-    }
+    };
 
-    /**
-     * Increment/Decrement quantity for the quantity input
-     * 
-     * @param {*} e The click event
-     */
-    const changeQuantity = (e) => 
-    {
-        // Change the value to an int or else it will concat the "1"
+    const changeQuantity = (e) => {
         let oAmount = parseInt(orderAmount);
 
         if (e.target.id === "i-quantity") {
-            oAmount += 1
-        }else {
-            oAmount -= 1
+            oAmount += 1;
+        } else {
+            oAmount -= 1;
         }
 
-        // Change the state of the order amount to the new quantity
-        setOrderAmount(oAmount)
-    }
+        setOrderAmount(oAmount);
+    };
 
     const onChange = (e) => {
-        setOrderAmount(e.target.value)
-    }
+        setOrderAmount(e.target.value);
+    };
 
     useEffect(() => {
-        onload()
-    }, [])
+        onload();
+    }, []);
 
     return (
         <div className="product-page-cont">
             <div className="p-page-main-info-cont">
                 <div className="p-page-main-image-cont">
-                    <img className="p-page-main-image" src={`https://imagedelivery.net/BMDilndsvZPipd90__49rQ/${product.ProductImage}/public`}/>
+                    <img className="p-page-main-image" src={`https://imagedelivery.net/BMDilndsvZPipd90__49rQ/${product.ProductImage}/public`} alt={product.Title}/>
                 </div>
                 <div className="p-page-main-info">
                     <div className="p-page-main-header">
                         <div>
                             <h2 className="p-page-title">{product.Title}</h2>
-                            <div className="p-page-reviews"><i className="fa fa-star"/><i className="fa fa-star"/><i className="fa fa-star"/><i className="fa fa-star"/><i className="fa fa-star"/> (39)</div>
+                            {/* Display average rating here */}
+                            <div className="p-page-reviews">
+                                {averageRating > 0 && (
+                                    <>
+                                        {Array.from({ length: Math.floor(averageRating) }, (_, index) => (
+                                            <i key={index} className="fas fa-star"></i>
+                                        ))}
+                                        {averageRating % 1 !== 0 && (
+                                            <i className="fas fa-star-half-alt"></i>
+                                        )}
+                                    </>
+                                )}
+                                <span>({averageRating})</span>
+                            </div>
                         </div>
                         <div className="p-page-stock">
                             {product.Stock} in stock
@@ -108,17 +108,33 @@ function ProductPage()
                             <input className="p-page-quantity-input" type="number" onChange={onChange} value={orderAmount} placeholder="0" min={0}/>
                             <div className="p-page-quantity-up" id="i-quantity" onClick={changeQuantity}>+</div>
                         </div>
-                        <button className="p-page-checkout" onClick={submitOrder}><i class="fa-solid fa-cart-shopping"/> Purchase - ${`${orderPrice}`}</button>
+                        <button className="p-page-checkout" onClick={submitOrder}><i className="fas fa-cart-shopping"/> Purchase - ${`${orderPrice}`}</button>
                     </div>
                     <input id="p-page-email" className="p-page-quantity-input" type="email" placeholder="Ex. example@gmail.com"/>
-                </div>
-                <div className="reviews-cont">
 
+                    {/* Reviews Section */}
+                    <div className="p-page-reviews-section">
+                        <h3 className="p-page-reviews-title">Customer Reviews</h3>
+                        <ul className="p-page-reviews-list">
+                            {feedback.map((review, index) => (
+                                <li key={index} className="p-page-review">
+                                    <div className="p-page-review-header">
+                                        <div className="p-page-review-rating">{review.rating}</div>
+                                        <div className="p-page-review-stars">
+                                            {[...Array(5)].map((_, i) => (
+                                                <i key={i} className={`fas fa-star${i < review.rating ? ' active' : ''}`}></i>
+                                            ))}
+                                        </div>
+                                    </div>
+                                    <p className="p-page-review-comment">{review.comment}</p>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <Checkout/>
         </div>
-    )
+    );
 }
 
-export default ProductPage
+export default ProductPage;

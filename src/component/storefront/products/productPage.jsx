@@ -13,6 +13,13 @@ function ProductPage() {
     const [orderAmount, setOrderAmount] = useState(1);
     const [orderPrice, setOrderPrice] = useState(0);
     const [averageRating, setAverageRating] = useState(0);
+    const [starRatings, setStarRatings] = useState({
+        1: 0,
+        2: 0,
+        3: 0,
+        4: 0,
+        5: 0
+    });
 
     const onload = async () => {
         const productId = location.pathname.split("/product/")[1];
@@ -24,9 +31,24 @@ function ProductPage() {
 
         // Calculate average rating
         if (feedbackResponse.data.length > 0) {
-            const totalRating = feedbackResponse.data.reduce((acc, cur) => acc + cur.rating, 0);
+            const totalRating = feedbackResponse.data.reduce((acc, cur) => acc + cur.Rating, 0);
             const avgRating = totalRating / feedbackResponse.data.length;
             setAverageRating(avgRating.toFixed(1));
+
+            // Calculate star ratings
+            const ratingsCount = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
+            feedbackResponse.data.forEach(feedback => {
+                ratingsCount[feedback.Rating]++;
+            });
+
+            // Calculate percentages for each rating
+            const totalReviews = feedbackResponse.data.length;
+            const ratingPercentages = {};
+            Object.keys(ratingsCount).forEach(key => {
+                ratingPercentages[key] = ((ratingsCount[key] / totalReviews) * 100).toFixed(2);
+            });
+
+            setStarRatings(ratingPercentages);
         }
     };
 
@@ -75,31 +97,29 @@ function ProductPage() {
     return (
         <div className="product-page-cont">
             <div className="p-page-main-info-cont">
-                <div className="p-page-main-image-cont">
-                    <img className="p-page-main-image" src={`https://imagedelivery.net/BMDilndsvZPipd90__49rQ/${product.ProductImage}/public`} alt={product.Title}/>
+                <div className="p-page-main-header">
+                    <div className="p-page-title-image-cont">
+                        <h2 className="p-page-title">{product.Title}</h2>
+                        <img className="p-page-main-image" src={`https://imagedelivery.net/BMDilndsvZPipd90__49rQ/${product.ProductImage}/public`} alt={product.Title}/>
+                    </div>
+                    {/* Display average rating here */}
+                    <div className="p-page-reviews">
+                        {averageRating > 0 && (
+                            <>
+                                {Array.from({ length: Math.floor(averageRating) }, (_, index) => (
+                                    <i key={index} className="fas fa-star"></i>
+                                ))}
+                                {averageRating % 1 !== 0 && (
+                                    <i className="fas fa-star-half-alt"></i>
+                                )}
+                            </>
+                        )}
+                        <span>({averageRating})</span>
+                    </div>
                 </div>
                 <div className="p-page-main-info">
-                    <div className="p-page-main-header">
-                        <div>
-                            <h2 className="p-page-title">{product.Title}</h2>
-                            {/* Display average rating here */}
-                            <div className="p-page-reviews">
-                                {averageRating > 0 && (
-                                    <>
-                                        {Array.from({ length: Math.floor(averageRating) }, (_, index) => (
-                                            <i key={index} className="fas fa-star"></i>
-                                        ))}
-                                        {averageRating % 1 !== 0 && (
-                                            <i className="fas fa-star-half-alt"></i>
-                                        )}
-                                    </>
-                                )}
-                                <span>({averageRating})</span>
-                            </div>
-                        </div>
-                        <div className="p-page-stock">
-                            {product.Stock} in stock
-                        </div>
+                    <div className="p-page-stock">
+                        {product.Stock} in stock
                     </div>
                     <div className="p-page-description">
                         {product.Description}
@@ -121,14 +141,27 @@ function ProductPage() {
                             {feedback.map((review, index) => (
                                 <li key={index} className="p-page-review">
                                     <div className="p-page-review-header">
-                                        <div className="p-page-review-rating">{review.rating}</div>
+                                        <div className="p-page-review-rating">{review.Rating}</div>
                                         <div className="p-page-review-stars">
                                             {[...Array(5)].map((_, i) => (
-                                                <i key={i} className={`fas fa-star${i < review.rating ? ' active' : ''}`}></i>
+                                                <i key={i} className={`fas fa-star${i < review.Rating ? ' active' : ''}`}></i>
                                             ))}
                                         </div>
                                     </div>
-                                    <p className="p-page-review-comment">{review.comment}</p>
+                                    <p className="p-page-review-comment">{review.Message}</p> {/* Display message from backend */}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    {/* Display review percentages */}
+                    <div className="p-page-review-percentages">
+                        <h3>Review Distribution</h3>
+                        <ul>
+                            {[5, 4, 3, 2, 1].map(star => (
+                                <li key={star}>
+                                    <span>{star} stars: </span>
+                                    <span>{starRatings[star]}%</span>
                                 </li>
                             ))}
                         </ul>
@@ -140,3 +173,4 @@ function ProductPage() {
 }
 
 export default ProductPage;
+

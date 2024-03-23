@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 import { getProductById } from "../../../services/product";
 import { createInvoice } from "../../../services/invoice";
 import { getFeedbackByProductId } from "../../../services/feedback";
 import "./productPage.css";
 
 function ProductPage() {
+    const navigate = useNavigate();
     const location = useLocation();
     const [product, setProduct] = useState({});
     const [feedback, setFeedback] = useState([]);
@@ -45,6 +46,7 @@ function ProductPage() {
         const status = response.status;
         if (status === 200) {
             alert("Successfully Created Order");
+            navigate("src/component/storefront/checkout/checkout.jsx"); // Redirect to checkout page
         } else {
             alert("Error with creating order");
         }

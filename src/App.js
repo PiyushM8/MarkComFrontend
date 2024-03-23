@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Dashboard from "./component/dashboard/dashboard";
 import Homepage from "./component/homepage/homepage";
 import CustomerPage from "./component/customer/customerPage";
+import ProductPage from "./component/storefront/products/productPage";
 import { useEffect, useState } from "react";
 import StoreFront from "./component/storefront/storefront";
 import CustomerInvoicePage from "./component/storefront/customerInvoicePage/customerInvoicePage";
@@ -27,6 +28,7 @@ function App() {
         <Route path={`/${storeName}/*`} element = {<StoreFront storeName={storeName}/>}/>
         <Route path="/dashboard/*" element={<Dashboard/>}/>
         <Route path="/customer/*" element={<CustomerPage/>}/>
+        <Route path="/product/*" element={<ProductPage/>}/>
       </Routes>
     </div>
   );

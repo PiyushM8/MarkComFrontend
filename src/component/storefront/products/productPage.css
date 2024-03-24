@@ -1,105 +1,105 @@
 .product-page-cont {
     width: 900px;
     margin: auto;
-  }
-  
-  .p-page-main-info-cont {
+}
+
+.p-page-main-info-cont {
     margin-top: 175px;
     display: flex;
-    grid-gap: 30px;
-  }
-  
-  .p-page-main-image-cont {
+    gap: 30px;
+}
+
+.p-page-main-image-cont {
     width: 50%;
     color: black;
     display: flex;
     justify-content: center;
-  }
-  
-  .p-page-main-image {
+}
+
+.p-page-main-image {
     width: 100%;
     max-width: 100%;
     max-height: 300px;
     margin: auto;
-  }
-  
-  .p-page-main-info {
+}
+
+.p-page-main-info {
     width: 50%;
     min-width: 500px;
-  }
-  
-  .p-page-main-header {
+}
+
+.p-page-main-header {
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid black;
     padding-bottom: 15px;
-  }
-  
-  .p-page-title {
+}
+
+.p-page-title {
     font-size: 35px;
     margin: 0;
-  }
-  
-  .p-page-reviews {
+}
+
+.p-page-reviews {
     display: flex;
     align-items: center;
-  }
-  
-  .p-page-stock {
+}
+
+.p-page-stock {
     margin: auto 0;
     padding: 8px 15px;
     border: 1px solid rgb(149, 172, 192);
     border-radius: 5px;
-  }
-  
-  .p-page-description {
+}
+
+.p-page-description {
     min-height: 400px;
     margin: 20px 0;
-  }
-  
-  .p-page-quantity-checkout {
+}
+
+.p-page-quantity-checkout {
     padding-top: 20px;
     border-top: 1px solid black;
     display: flex;
     justify-content: space-between;
-  }
-  
-  .p-page-checkout:hover {
+}
+
+.p-page-checkout:hover {
     cursor: pointer;
-  }
-  
-  .p-page-quantity-setter {
+}
+
+.p-page-quantity-setter {
     display: flex;
     width: 40%;
     margin: auto 0;
-  }
-  
-  .p-page-quantity-down,
-  .p-page-quantity-up {
+}
+
+.p-page-quantity-down,
+.p-page-quantity-up {
     margin: auto;
     background-color: rgb(200, 200, 200);
     color: white;
     border: 1px black solid;
     font-size: 24px;
     padding: 5px 12px;
-  }
-  
-  .p-page-quantity-down:hover,
-  .p-page-quantity-up:hover {
+}
+
+.p-page-quantity-down:hover,
+.p-page-quantity-up:hover {
     cursor: pointer;
-  }
-  
-  .p-page-quantity-down {
+}
+
+.p-page-quantity-down {
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
-  }
-  
-  .p-page-quantity-up {
+}
+
+.p-page-quantity-up {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-  }
-  
-  .p-page-quantity-input {
+}
+
+.p-page-quantity-input {
     outline: none;
     box-sizing: border-box;
     border: none;
@@ -107,15 +107,14 @@
     border-top: 1px rgb(165, 165, 165) solid;
     border-bottom: 1px rgb(165, 165, 165) solid;
     padding: 5px 5px;
-  }
-  
-  .p-page-quantity-input:hover {
+}
+
+.p-page-quantity-input:hover {
     cursor: auto;
-  }
-  
-  .p-page-checkout {
+}
+
+.p-page-checkout {
     width: 40%;
     font-size: 16px;
     padding: 5px;
-  }
-  
+}

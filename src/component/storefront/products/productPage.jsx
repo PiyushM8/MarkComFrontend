@@ -20,6 +20,7 @@ function ProductPage() {
         4: 0,
         5: 0
     });
+    const [selectedRatingFilter, setSelectedRatingFilter] = useState(null);
 
     const onload = async () => {
         const productId = location.pathname.split("/product/")[1];
@@ -90,6 +91,10 @@ function ProductPage() {
         setOrderAmount(e.target.value);
     };
 
+    const handleFilterChange = (rating) => {
+        setSelectedRatingFilter(rating);
+    };
+
     useEffect(() => {
         onload();
     }, []);
@@ -137,18 +142,35 @@ function ProductPage() {
                     {/* Reviews Section */}
                     <div className="p-page-reviews-section">
                         <h3 className="p-page-reviews-title">Customer Reviews</h3>
+                        {/* Filter */}
+                        <div className="p-page-review-filter">
+                            <span>Filter by rating:</span>
+                            {[5, 4, 3, 2, 1].map(star => (
+                                <button
+                                    key={star}
+                                    onClick={() => handleFilterChange(star)}
+                                    className={`p-page-filter-btn ${selectedRatingFilter === star ? 'active' : ''}`}
+                                >
+                                    {star} stars
+                                </button>
+                            ))}
+                            <button onClick={() => handleFilterChange(null)} className={`p-page-filter-btn ${!selectedRatingFilter ? 'active' : ''}`}>All</button>
+                        </div>
                         <ul className="p-page-reviews-list">
-                            {feedback.map((review, index) => (
-                                <li key={index} className="p-page-review">
-                                    <div className="p-page-review-header">
-                                        <div className="p-page-review-rating">{review.Rating}</div>
-                                        <div className="p-page-review-stars">
-                                            {[...Array(5)].map((_, i) => (
-                                                <i key={i} className={`fas fa-star${i < review.Rating ? ' active' : ''}`}></i>
-                                            ))}
-                                        </div>
+                            {feedback
+                                .filter(review => !selectedRatingFilter || review.Rating === selectedRatingFilter)
+                                .map((review, index) => (
+                                    <li key={index} className="p-page-review">
+                                        <div className="p-page-review-header">
+                                            <div className="p-page-review-rating">{review.Rating}</div>
+                                            <div className="p-page-review-stars">
+                                                {[...Array(5)].map((_, i) => (
+                                                    <i key={i} className={`fas fa-star${i < review.Rating ? ' active' : ''}`}></i>
+                                                ))}
+                                           
+                                           </div>
                                     </div>
-                                    <p className="p-page-review-comment">{review.Message}</p> {/* Display message from backend */}
+                                    <p className="p-page-review-comment">{review.Message}</p>
                                 </li>
                             ))}
                         </ul>
@@ -173,4 +195,3 @@ function ProductPage() {
 }
 
 export default ProductPage;
-

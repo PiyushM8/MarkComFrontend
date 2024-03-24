@@ -3,6 +3,11 @@ import "./dashboard.css";
 import ProductList from "./products/productList";
 import { useEffect } from "react";
 import Queries from "./queries/queries";
+import DashboardInvoicePage from "./invoices/dashboardInvoicePage";
+import DashboardFeedbackPage from "./Feedback/dashboardFeedbackPage";
+import DashboardCouponPage from "./Coupons/dashboardCouponPage";
+import DashboardPaymentMethod from "./payment/dashboardPaymentMethod";
+import DashboardCategoriesPage from "./categories/dashboardCatergoriesPage";
 
 function Dashboard() {
   let navigate = useNavigate();
@@ -57,12 +62,12 @@ function Dashboard() {
         <div className="column-two dashboard-page-cont">
           <Routes>
             <Route path="/products/*" element={<ProductList />} />
-            <Route path="/invoices" element={<ProductList />} />
+            <Route path="/invoices" element={<DashboardInvoicePage />} />
             <Route path="/queries/*" element={<Queries />} />
-            <Route path="/payments" element={<ProductList />} />
-            <Route path="/categories" element={<ProductList />} />
-            <Route path="/coupons" element={<ProductList />} />
-            <Route path="/feedback" element={<ProductList />} />
+            <Route path="/payments" element={<DashboardPaymentMethod />} />
+            <Route path="/categories" element={<DashboardCategoriesPage />} />
+            <Route path="/coupons" element={<DashboardCouponPage />} />
+            <Route path="/feedback" element={<DashboardFeedbackPage />} />
           </Routes>
         </div>
         <div className="column-three"></div>

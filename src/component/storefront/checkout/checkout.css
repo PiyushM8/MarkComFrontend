@@ -1,0 +1,97 @@
+.checkout-cont{
+    position: fixed; 
+    right: 0px;
+    top: 0px;
+    background-color: rgba(11, 11, 63, 0.4);
+    border: 3px solid rgba(99, 99, 197, 1.0);
+    padding: 40px;
+    height: 100%;
+    background-attachment: scroll;
+}
+.divTable{
+    border: 3px solid rgb(90, 35, 85);
+    border-radius: 8px;
+    padding: 2px;
+}
+.OrderConfirm{
+    width: 200px;
+    height: 50px;
+    margin: 0;
+    font-family:'Times New Roman', Times, serif;
+    font-size: 20px;
+    opacity: 1.0;
+    box-sizing: border-box;
+    
+}
+.OrderTable{
+    border: 3px solid rgba(88, 88, 236, 1.0);
+    padding: 2px;
+}
+.CustomerInput{
+    width: 200px;
+    height: 300px;
+    font-family:'Times New Roman', Times, serif;
+    font-size: 20px;
+    opacity: 1.0;
+}
+.CustTable{
+    border: 3px solid rgba(41, 9, 41, 1.0);
+    padding: 2px;
+}
+.enterEmail{
+    font-size: 25px;
+}
+.PaymentOptions{
+    width: 200px;
+    height: 200px;
+    font-family:'Times New Roman', Times, serif;
+    font-size: 20px;
+    opacity: 1.0;
+}
+.PayOption{
+    font-size: 25px;
+}
+.PayTable{
+    border: 3px solid rgba(53, 10, 10, 1.0);
+    padding: 4px 18px;
+}
+.creditOrDebit{
+    width: 200px;
+    border:6px solid rgba(6, 6, 99, 1.0);
+    border-radius: 8px;
+    transition-duration: 0.4s;
+}
+.creditOrDebit:hover{
+    width: 200px;
+    border: 6px solid rgba(56, 115, 163, 1.0);
+    border-radius: 8px;
+    
+}
+.paypal{
+    width: 200px;
+    border: 6px solid rgba(6, 6, 99, 1.0);
+    border-radius: 8px;
+    transition-duration: 0.4s;
+}
+.paypal:hover{
+    width: 200px;
+    border: 6px solid rgba(56, 115, 163, 1.0);
+    border-radius: 8px;
+}
+.submit{
+    width: 150px;
+    padding: 10px 24px;
+    border: 6px solid rgba(16, 117, 16, 1.0);
+    border-radius: 8px;
+    transform: translateX(39%);
+    transition-duration: 0.4s;
+
+}
+.submit:hover{
+    border: 6px solid rgba(75, 150, 85, 1.0);
+    transform: translateX(39%);
+    border-radius: 8px;
+    padding: 10px 24px;
+    width: 150px;
+}
+

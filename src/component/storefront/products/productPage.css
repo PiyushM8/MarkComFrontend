@@ -118,3 +118,46 @@
     font-size: 16px;
     padding: 5px;
 }
+
+.p-page-star-rating-bars {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  .p-page-star-rating-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  
+  .p-page-star-rating {
+    margin-right: 10px;
+  }
+  
+  .p-page-star-rating-bar-fill {
+    height: 20px;
+    border-radius: 10px;
+    background-color: #007bff; /* Adjust color as needed */
+  }
+  
+  .p-page-bar-percentage {
+    margin-left: 5px;
+  }
+  
+  .p-page-review-percentages {
+    margin-top: 20px;
+  }
+  
+  .p-page-review-percentages ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .p-page-review-percentages li {
+    margin-bottom: 5px;
+  }
+  
+  
+  
+  

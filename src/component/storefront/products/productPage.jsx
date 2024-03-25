@@ -156,6 +156,17 @@ function ProductPage() {
                             ))}
                             <button onClick={() => handleFilterChange(null)} className={`p-page-filter-btn ${!selectedRatingFilter ? 'active' : ''}`}>All</button>
                         </div>
+                        {/* Star Rating Distribution Bars */}
+                        <div className="p-page-star-rating-bars">
+                            {[5, 4, 3, 2, 1].map(star => (
+                                <div key={star} className="p-page-star-rating-bar">
+                                    <span className="p-page-star-rating">{star} stars: </span>
+                                    <div className="p-page-star-rating-bar-fill" style={{ width: `${starRatings[star]}%` }}></div>
+                                    <span className="p-page-bar-percentage">{starRatings[star]}%</span>
+                                </div>
+                            ))}
+                        </div>
+                        {/* Reviews List */}
                         <ul className="p-page-reviews-list">
                             {feedback
                                 .filter(review => !selectedRatingFilter || review.Rating === selectedRatingFilter)
@@ -167,25 +178,11 @@ function ProductPage() {
                                                 {[...Array(5)].map((_, i) => (
                                                     <i key={i} className={`fas fa-star${i < review.Rating ? ' active' : ''}`}></i>
                                                 ))}
-                                           
-                                           </div>
-                                    </div>
-                                    <p className="p-page-review-comment">{review.Message}</p>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    {/* Display review percentages */}
-                    <div className="p-page-review-percentages">
-                        <h3>Review Distribution</h3>
-                        <ul>
-                            {[5, 4, 3, 2, 1].map(star => (
-                                <li key={star}>
-                                    <span>{star} stars: </span>
-                                    <span>{starRatings[star]}%</span>
-                                </li>
-                            ))}
+                                            </div>
+                                        </div>
+                                        <p className="p-page-review-comment">{review.Message}</p>
+                                    </li>
+                                ))}
                         </ul>
                     </div>
                 </div>
@@ -195,3 +192,4 @@ function ProductPage() {
 }
 
 export default ProductPage;
+

@@ -1,0 +1,57 @@
+.feedback-table-cont{
+    display: flex;
+    flex-direction: column;
+    grid-gap: 15px;
+    color: whites;
+
+
+}
+
+.feedback-item-cont{
+    display: flex;
+    justify-content: space-between;
+}
+
+.feedback-table-head{
+    box-sizing: border-box;
+}
+
+.db-page-title-header{
+    box-sizing: border-box;
+}
+
+.feedback-item-rating{
+    width: 5%;
+}
+
+.feedback-item-created{
+    width: 20%;
+}
+
+.feedback-item-message{
+    width: 20%;
+}
+
+
+
+.db-page-item{
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px 1px rgb(202, 202, 202);
+    width: 80%;
+    box-sizing: border-box;
+    padding: 10px 20px;
+    background-color: rgb(11, 11, 11);
+}
+
+.feedback-table-cont{
+    display: flex;
+    flex-direction: column;
+    grid-gap: 15px;
+    color: whites;
+}
+
+.feedback-table-head{
+    box-sizing: border-box;
+}
+

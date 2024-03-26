@@ -11,8 +11,20 @@ function DashboardCouponPage() {
             <div className="db-page-item">
                 <div className="coupon-table-cont">
                     <div className="coupon-item-cont coupon-item-head">
-                            <div className="coupon-item-rating">
-                                Placeholder
+                            <div className="coupon-item-code">
+                                Code
+                            </div>
+                            <div className="coupon-item-type">
+                                Type
+                            </div>
+                            <div className="coupon-item-discount">
+                                Discount
+                            </div>
+                            <div className="coupon-item-use">
+                                Use
+                            </div>
+                            <div className="coupon-item-max">
+                                Max usage
                             </div>
 
                     </div>

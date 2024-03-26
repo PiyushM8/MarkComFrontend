@@ -13,6 +13,8 @@ function QueryMessage()
 
     const [ messages, setMessages ] = useState([])
     const [ query, setQuery ] = useState({})
+    const [ msgResponse, setMsgResponse] = useState('');
+    const [ successfulUpload, setSuccessfulUpload] = useState(false);
 
     const loadMessage = async () => {
         const messagesResponse = await getMessagesByQueryId(queryId)
@@ -21,6 +23,10 @@ function QueryMessage()
         setMessages(messagesResponse.data)
         setQuery(queryResponse.data)
     }
+
+    const handleInputChange = (event) => {
+        setMsgResponse(event.target.value);
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -32,6 +38,7 @@ function QueryMessage()
         if(responseStatus === 200)
         {
             alert("Created Message")
+            setSuccessfulUpload(!successfulUpload)
         }else{
             alert("Failed to create Message")
         }
@@ -39,21 +46,21 @@ function QueryMessage()
 
     useEffect(() => {
         loadMessage()
-    }, [])
+    }, [successfulUpload])
 
     return (
         <div className="db-query-messenger-container">
             <div className="db-query-messenger-header">
                 Messages with {query.Email}
             </div>
-            <div>
+            <div className="query-messages-cont">
                 {messages.map((message) => {
                     return <Message message={message}/>
                 })}
             </div>
             <form className="db-query-respond-cont" onSubmit={handleSubmit}>
-                <input id="owner-response"className="db-query-response-input" placeholder="Enter your response..."/>
-                <input className="db-query-response-btn" type="submit" value="Reply"/>
+                <input id="owner-response"className="db-query-response-input" placeholder="Enter your response..." onChange={handleInputChange}/>
+                <input className="db-query-response-btn" type="submit" value="Reply" disabled={!msgResponse.trim()}/>
             </form>
         </div>
     )

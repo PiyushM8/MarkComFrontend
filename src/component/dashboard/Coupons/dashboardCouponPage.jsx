@@ -14,7 +14,6 @@ function DashboardCouponPage() {
                             <div className="coupon-item-rating">
                                 Placeholder
                             </div>
-
                     </div>
                 </div>
              </div>

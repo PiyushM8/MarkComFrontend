@@ -1,7 +1,15 @@
 .db-query-messenger-container
 {
     display: flex;
+    max-height: 600px;
+    overflow: auto;
     flex-direction: column;
+}
+
+.query-messages-cont{
+    max-height: 500px;
+    padding-right: 10px;
+    overflow: auto;
 }
 
 .db-query-messenger-header
@@ -46,6 +54,12 @@
     background-color: rgb(105, 140, 176);
 }
 
+.db-query-response-btn:disabled{
+    cursor: not-allowed;
+    color: #c9c9c9;
+    background-color: #8d8989;
+}
+
 .db-query-response-btn:hover{
     cursor: pointer;
 }
@@ -62,7 +76,7 @@
 /* CSS for separate messages when opening messenger*/
 .query-msg{
     border-radius: 5px;
-    padding: 5px 8px;
+    padding: 6px 9px;
 }
 
 .query-sender-msg{

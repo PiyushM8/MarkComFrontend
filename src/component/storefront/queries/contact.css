@@ -1,4 +1,11 @@
 /* contact.css */
+.store-query-messenger-container{
+  width: 600px;
+  margin: 150px auto;
+  background-color: black;
+  padding: 20px;
+  border-radius: 10px;
+}
 
 /* Main container */
 .store-contact-page-container {

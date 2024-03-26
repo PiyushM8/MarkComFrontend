@@ -4,6 +4,7 @@ import { getProductById } from "../../../services/product";
 import { createInvoice } from "../../../services/invoice";
 import { getFeedbackByProductId } from "../../../services/feedback";
 import "./productPage.css";
+import Checkout from "../checkout/checkout";
 
 function ProductPage() {
     const navigate = useNavigate();
@@ -95,12 +96,18 @@ function ProductPage() {
         setSelectedRatingFilter(rating);
     };
 
+    const openCheckout = (e) =>
+    {
+        document.getElementById("product-checkout").style.display = "block"
+    }
+
     useEffect(() => {
         onload();
     }, []);
 
     return (
         <div className="product-page-cont">
+            <Checkout/>
             <div className="p-page-main-info-cont">
                 <div className="p-page-main-header">
                     <div className="p-page-title-image-cont">
@@ -135,7 +142,7 @@ function ProductPage() {
                             <input className="p-page-quantity-input" type="number" onChange={onChange} value={orderAmount} placeholder="0" min={0}/>
                             <div className="p-page-quantity-up" id="i-quantity" onClick={changeQuantity}>+</div>
                         </div>
-                        <button className="p-page-checkout" onClick={submitOrder}><i className="fas fa-cart-shopping"/> Purchase - ${`${orderPrice}`}</button>
+                        <button className="p-page-checkout" onClick={openCheckout}><i className="fas fa-cart-shopping"/> Purchase - ${`${orderPrice}`}</button>
                     </div>
                     <input id="p-page-email" className="p-page-quantity-input" type="email" placeholder="Ex. example@gmail.com"/>
 

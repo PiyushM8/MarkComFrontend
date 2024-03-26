@@ -18,7 +18,6 @@ export const getQueryById = async (queryId) =>
         const response = await api.get(`${RouteConstants.QUERY}/${queryId}`)
         return response;
     }catch(err){
-        console.log(err)
         return err.response;
     }
 }

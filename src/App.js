@@ -5,7 +5,8 @@ import CustomerPage from "./component/customer/customerPage";
 import ProductPage from "./component/storefront/products/productPage";
 import { useEffect, useState } from "react";
 import StoreFront from "./component/storefront/storefront";
-import CustomerInvoicePage from "./component/storefront/customerInvoicePage/customerInvoicePage";
+import NotFound from "./component/errors/404";
+import InternalServerError from "./component/errors/500";
 
 
 function App() {
@@ -13,9 +14,14 @@ function App() {
 
   useEffect(() => {
     let path = window.location.pathname.split("/")[1]
-    console.log(path)
-    if(!path.includes('dashboard') && !path.includes("customer") && !path.includes("query") &&
-       path !== "login" && path !== "register")
+
+    if(!path.includes('dashboard') && 
+       !path.includes("customer") && 
+       !path.includes("query") &&
+       path !== "login" && 
+       path !== "register" &&
+       path !== '404' &&
+       path !== '500')
     {
       setStoreName(path)
     }
@@ -29,6 +35,8 @@ function App() {
         <Route path="/dashboard/*" element={<Dashboard/>}/>
         <Route path="/customer/*" element={<CustomerPage/>}/>
         <Route path="/product/*" element={<ProductPage/>}/>
+        <Route path="/404" element={<NotFound/>}/>
+        <Route path="/500" element={<InternalServerError/>}/>
       </Routes>
     </div>
   );

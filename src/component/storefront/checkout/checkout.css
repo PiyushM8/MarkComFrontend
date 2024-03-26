@@ -1,3 +1,7 @@
+#product-checkout{
+    display: none;
+}
+
 .checkout-cont{
     position: fixed; 
     right: 0px;

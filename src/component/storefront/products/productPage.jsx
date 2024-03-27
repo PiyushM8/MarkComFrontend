@@ -96,17 +96,13 @@ function ProductPage() {
         setSelectedRatingFilter(rating);
     };
 
-    const openCheckout = (e) => {
-        document.getElementById("product-checkout").style.display = "block"
-    }
-
     useEffect(() => {
         onload();
     }, []);
 
     return (
         <div className="product-page-cont">
-            <Checkout />
+            {/* <Checkout /> */}
             <div className="p-page-main-info-cont">
                 <div className="p-page-main-image-cont">
                     <img className="p-page-main-image" src={`https://imagedelivery.net/BMDilndsvZPipd90__49rQ/${product.ProductImage}/public`} alt={product.Title} />
@@ -142,12 +138,14 @@ function ProductPage() {
                             <input className="p-page-quantity-input" type="number" onChange={onChange} value={orderAmount} placeholder="0" min={0} />
                             <div className="p-page-quantity-up" id="i-quantity" onClick={changeQuantity}>+</div>
                         </div>
-                        <button className="p-page-checkout" onClick={openCheckout}><i className="fas fa-cart-shopping" /> Purchase - ${`${orderPrice}`}</button>
+                        <button className="p-page-checkout" onClick={submitOrder}><i className="fas fa-cart-shopping" /> Purchase - ${`${orderPrice}`}</button>
                     </div>
+                    <input placeholder="Email" id="p-page-email"/>
                 </div>
             </div>
             {/* Reviews Section */}
             <div className="p-page-reviews-section">
+                <div>
                     <h3 className="p-page-reviews-title">Customer Reviews</h3>
                     {/* Filter */}
                     <div className="p-page-review-filter">
@@ -168,31 +166,35 @@ function ProductPage() {
                         {[5, 4, 3, 2, 1].map(star => (
                             <div key={star} className="p-page-star-rating-bar">
                                 <span className="p-page-star-rating">{star} stars: </span>
-                                <div className="p-page-star-rating-bar-fill" style={{ width: `${starRatings[star]}%` }}></div>
-                                <span className="p-page-bar-percentage">{starRatings[star]}%</span>
+                                <div className="p-page-rating-bar-cont">
+                                    <div className="p-page-star-rating-bar-fill" style={{ width: `${starRatings[star]}%` }}>
+
+                                    </div>
+                                </div>
+                                <div className="p-page-bar-percentage">{starRatings[star]}%</div>
                             </div>
                         ))}
                     </div>
-
-                    {/* Reviews List */}
-                    <ul className="p-page-reviews-list">
-                        {feedback
-                            .filter(review => !selectedRatingFilter || review.Rating === selectedRatingFilter)
-                            .map((review, index) => (
-                                <li key={index} className="p-page-review">
-                                    <div className="p-page-review-header">
-                                        <div className="p-page-review-rating">{review.Rating}</div>
-                                        <div className="p-page-review-stars">
-                                            {[...Array(5)].map((_, i) => (
-                                                <i key={i} className={`fas fa-star${i < review.Rating ? ' active' : ''}`}></i>
-                                            ))}
-                                        </div>
-                                    </div>
-                                    <p className="p-page-review-comment">{review.Message}</p>
-                                </li>
-                            ))}
-                    </ul>
                 </div>
+                {/* Reviews List */}
+                <ul className="p-page-reviews-list">
+                    {feedback
+                        .filter(review => !selectedRatingFilter || review.Rating === selectedRatingFilter)
+                        .map((review, index) => (
+                            <li key={index} className="p-page-review">
+                                <div className="p-page-review-header">
+                                    <div className="p-page-review-stars">
+                                        {[...Array(5)].map((_, i) => (
+                                            <i key={i} className={`fas fa-star${i < review.Rating ? ' active' : ''}`}></i>
+                                        ))}
+                                    </div>
+                                    <div className="p-page-review-rating">({review.Rating})</div>
+                                </div>
+                                <p className="p-page-review-comment">{review.Message}</p>
+                            </li>
+                        ))}
+                </ul>
+            </div>
         </div>
     );
 }

@@ -181,12 +181,12 @@ function ProductPage() {
                     {feedback
                         .filter(review => !selectedRatingFilter || review.Rating === selectedRatingFilter)
                         .map((review, index) => (
-                            <li key={index} className="p-page-review">
-                                <div className="p-page-review-header">
-                                    <div className="p-page-review-stars">
-                                        {[...Array(5)].map((_, i) => (
-                                            <i key={i} className={`fas fa-star${i < review.Rating ? ' active' : ''}`}></i>
-                                        ))}
+                             <li key={index} className="p-page-review">
+                                 <div className="p-page-review-header">
+                                     <div className="p-page-review-stars">
+                                        {[...Array(review.Rating)].map((_, i) => (
+                                            <i key={i} className="fas fa-star active"></i>
+                                         ))}
                                     </div>
                                     <div className="p-page-review-rating">({review.Rating})</div>
                                 </div>

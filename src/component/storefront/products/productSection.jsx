@@ -30,15 +30,12 @@ function ProductSection({ storeName }) {
             {
                 if (isDoing === false) {
                     if (!isDeleting && charIndex < phrase.length) {
-                        console.log(isDeleting)
-                        console.log(charIndex)
                         setCharIndex(prevCharIndex => prevCharIndex + 1);
                         setTimeout(typeWriter, 200); // Typing speed
                     } else if (isDeleting && charIndex > 0) {
                         setCharIndex(prevCharIndex => prevCharIndex - 1);
                         setTimeout(typeWriter, 200); // Backspacing speed
                     } else {
-                        console.log(isDeleting)
                         setIsDeleting(!isDeleting);
                         setTimeout(typeWriter, 1000);
                     }

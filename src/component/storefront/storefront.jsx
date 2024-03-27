@@ -3,7 +3,7 @@ import "./storefront.css"
 import { useState } from "react"
 import { Link, Route, Routes } from "react-router-dom"
 import ProductSection from "./products/productSection"
-import Contact from "./queries/contact"
+import ContactForm from "./queries/contactForm"
 import Reviews from "./reviews/reviews"
 import TOS from "./tos/tos"
 import ProductPage from "./products/productPage"
@@ -36,7 +36,7 @@ function StoreFront({ storeName }) {
           <Route path="/" element={<ProductSection storeName={storeName}/>} />
           <Route path="/product/*" element={<ProductPage />} />
           <Route path="/invoice/*" element={<CustomerInvoicePage/>} />
-          <Route path="/contact/*" element={<Contact />} />
+          <Route path="/contact/*" element={<ContactForm />} />
           <Route path="/reviews" element={<Reviews reviews={reviews} />} />
           <Route path="/tos" element={<TOS />} />
         </Routes>

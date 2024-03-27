@@ -4,7 +4,7 @@ import { createQuery } from "../../../services/query"
 import { Route, Routes, useLocation } from "react-router-dom"
 import ContactPage from "./contactPage"
 
-function Contact()
+function ContactForm()
 {
     const location = useLocation()
 
@@ -14,7 +14,18 @@ function Contact()
     {
         e.preventDefault()
         queryData.StoreName = location.pathname.split("/")[1]
-        await createQuery(queryData)
+        const queryResponse = await createQuery(queryData)
+
+        const queryCreationStatus = queryResponse.status;
+
+        if(queryCreationStatus === 200)
+        {
+            alert("Successfully Created Query")
+        }else if(queryCreationStatus === 400){
+            alert("Bad request. Maybe missing email or reason")
+        }else if(queryCreationStatus === 500){
+            alert("Internal Server Error")
+        }
     }
 
     const handleChange = (e) => {
@@ -48,4 +59,4 @@ function Contact()
     )
 }
 
-export default Contact
+export default ContactForm

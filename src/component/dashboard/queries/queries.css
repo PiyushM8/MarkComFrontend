@@ -75,6 +75,7 @@
 
 /* CSS for separate messages when opening messenger*/
 .query-msg{
+    max-width: 340px;
     border-radius: 5px;
     padding: 6px 9px;
 }

@@ -37,7 +37,6 @@ function QueryMessage()
 
         if(responseStatus === 200)
         {
-            alert("Created Message")
             setSuccessfulUpload(!successfulUpload)
         }else{
             alert("Failed to create Message")

@@ -7,9 +7,15 @@ function CustomerPage()
 
     useEffect(() => {
         const jwtToken = window.sessionStorage.getItem("Authorization")
-        if(!jwtToken)
-        {
-            navigate("/login")
+        const user = JSON.parse(window.sessionStorage.getItem("UserDetails"));
+
+        if (!jwtToken) {
+            navigate("/login");
+        }else{
+            if(user.AccountType === "Merchant")
+            {
+                navigate("/dashboard");
+            }
         }
     }, [])
 

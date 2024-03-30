@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Dashboard from "./component/dashboard/dashboard";
 import Homepage from "./component/homepage/homepage";
-import CustomerPage from "./component/customer/customerPage";
+import CustomerPage from "./component/customerDashboard/customerDashboard";
 import ProductPage from "./component/storefront/products/productPage";
 import { useEffect, useState } from "react";
 import StoreFront from "./component/storefront/storefront";

@@ -14,8 +14,15 @@ function Dashboard() {
 
   useEffect(() => {
     const jwtToken = window.sessionStorage.getItem("Authorization");
+    const user = JSON.parse(window.sessionStorage.getItem("UserDetails"));
+
     if (!jwtToken) {
       navigate("/login");
+    }else{
+      if(user.AccountType === "Customer")
+      {
+        navigate("/customer");
+      }
     }
   }, []);
 

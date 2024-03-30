@@ -23,9 +23,17 @@ function Login()
 
             if(responseStatus === 200)
             {
-                window.sessionStorage.setItem("UserDetails", JSON.stringify(responseData.user));
+                const user = responseData.user
+
+                window.sessionStorage.setItem("UserDetails", JSON.stringify(user));
                 window.sessionStorage.setItem("Authorization", responseData.jwtToken);
-                navigate("/dashboard")
+
+                if(user.AccountType === "Customer")
+                {
+                    navigate("/customer")
+                }else if(user.AccountType === "Merchant"){
+                    navigate("/dashboard")
+                }
             }else if(responseStatus === 401){
                 alert("Incorrect Credentials")
             }else{

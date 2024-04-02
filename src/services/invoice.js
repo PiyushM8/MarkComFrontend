@@ -1,6 +1,16 @@
 import { RouteConstants } from "../constants/AppConstants"
 import api from "./apiConfig"
 
+export const getInvoices = async () => {
+    try{
+        const response = await api.get(`${RouteConstants.INVOICE}`)
+        console.log(response)
+        return response
+    }catch(err){
+        console.log(err)
+    }
+}
+
 export const getInvoiceById = async (invoiceId) =>
 {
     try{

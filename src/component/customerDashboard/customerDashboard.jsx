@@ -1,5 +1,6 @@
 import { Link, Route, Routes, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import CustomerInvoices from "./invoices/customerInvoices";
 
 function CustomerPage()
 {
@@ -42,12 +43,11 @@ function CustomerPage()
                     </Link>
                 </div>
                 <div className="column-two dashboard-page-cont">
-                    {/* <Routes>
-                        <Route path='/invoices' element={<ProductList/>}/>
-                        <Route path='/queries' element={<ProductList/>}/>
-                    </Routes> */}
+                    <Routes>
+                        <Route path='/invoices' element={<CustomerInvoices/>}/>
+                        <Route path='/queries' element={<CustomerInvoices/>}/>
+                    </Routes>
                 </div>
-                <div className="column-three">b</div>
             </div>
             <div className="dashboard-bottom-cont">
                 <div className="column-one">

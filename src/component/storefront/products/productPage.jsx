@@ -70,7 +70,6 @@ function ProductPage() {
         const status = response.status;
         if (status === 200) {
             alert("Successfully Created Order");
-            navigate("src/component/storefront/checkout/checkout.jsx"); // Redirect to checkout page
         } else {
             alert("Error with creating order");
         }

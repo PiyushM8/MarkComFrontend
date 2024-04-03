@@ -79,11 +79,6 @@ function Dashboard() {
         </div>
         <div className="column-three"></div>
       </div>
-      <div className="dashboard-bottom-cont">
-        <div className="column-one">
-          {}
-        </div>
-      </div>
     </div>
   );
 }

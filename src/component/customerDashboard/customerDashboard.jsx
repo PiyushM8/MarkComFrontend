@@ -49,11 +49,6 @@ function CustomerPage()
                     </Routes>
                 </div>
             </div>
-            <div className="dashboard-bottom-cont">
-                <div className="column-one">
-                    <button onClick={signout}>Sign Out</button>
-                </div>
-            </div>
         </div>
     )
 }

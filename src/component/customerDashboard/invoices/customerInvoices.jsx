@@ -4,46 +4,66 @@ import './customerInvoices.css'
 
 import CustomerInvoicePage from './customerInvoicePage'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { getInvoices } from '../../../services/invoice'
 
-function CustomerInvoices()
-{
+function CustomerInvoices() {
+    const [invoices, setInvoices] = useState([])
+
     const onload = async () => {
         const invoiceResponse = await getInvoices()
-        console.log(invoiceResponse.data)
+        setInvoices(invoiceResponse.data)
     }
 
     useEffect(() => {
         onload()
-    })
+    }, [])
 
     return (
         <div className="db-page-containter">
             <Routes>
-                <Route path='/*' element={CustomerInvoicePage}/>
+                <Route path='/' element={
+                    <div className='db-page-containter'>
+                        <div className="db-page-title db-page-item">
+                            <h2 className="db-page-title-header">Invoices</h2>
+                        </div>
+                        <div className="cd-invoices-cont">
+                            <div className="invoice-table-cont">
+                                {invoices.map((invoice) => {
+                                    return <div className='cd-invoice-preview'>
+                                        <div className='cd-invoice-preview-header'>
+                                            <div className='cd-invoice-p-title-and-id'>
+                                                <div className='cd-invoice-p-title'>
+                                                    {invoice.Quantity}x - {invoice.Title}
+                                                </div>
+                                                <div className='cd-invoice-p-id'>
+                                                    Invoice #: {invoice.InvoiceId}
+                                                </div>
+                                            </div>
+                                            <div className='cd-invoice-p-total'>
+                                                <div className='cd-invoice-p-total-header'>
+                                                    Total
+                                                </div>
+                                                <div className='cd-invoice-p-total-price'>
+                                                    ${invoice.InvoicePrice}
+                                                </div>
+                                            </div>
+                                            <div className='cd-invoice-p-status'>
+                                                Paid
+                                            </div>
+                                        </div>
+                                        <div className='cd-invoice-preview-main'>
+                                            <div>
+                                                <img className='cd-invoice-p-main-img' src={`https://imagedelivery.net/BMDilndsvZPipd90__49rQ/${invoice.ProductImage}/public`} />
+                                            </div>
+                                        </div>
+                                    </div>
+                                })}
+                            </div>
+                        </div>
+                    </div>} />
+                <Route path='/*' element={CustomerInvoicePage} />
             </Routes>
-            <div className="db-page-title db-page-item">
-                <h2 className="db-page-title-header">Invoices</h2>
-            </div>
-            <div className="db-page-item">
-                <div className="invoice-table-cont">
-                    <div className="invoice-item-cont invoice-item-head">
-                        <div className="invoice-item-email">
-                            Product
-                        </div>
-                        <div className="invoice-item-name">
-                            Quantity
-                        </div>
-                        <div className="invoice-item-quanity">
-                            Amount
-                        </div>
-                        <div className="invoice-item-price">
-                            Actions
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     )
 }

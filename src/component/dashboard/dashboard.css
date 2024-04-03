@@ -42,11 +42,10 @@
 /* Navigation */
 .dashboard-nav {
   background-color: #343a40;
+  position: sticky;
   color: white;
   padding: 20px;
   width: 200px;
-  height: calc(100vh - 40px); /* Adjust based on top and bottom padding */
-  overflow-y: auto;
 }
 
 .db-n-item {

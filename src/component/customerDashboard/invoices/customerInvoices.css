@@ -1,0 +1,72 @@
+.cd-invoices-cont{
+    width: 80%;
+    margin: 0 auto;
+    color: black;
+    border: 1px solid rgb(179, 179, 179);
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.cd-invoice-preview
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.cd-invoice-preview-header{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: rgb(223, 223, 223);
+    border-bottom: 1px solid rgb(179, 179, 179);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.cd-invoice-p-total{
+    display: flex;
+    flex-direction: column;
+}
+
+.cd-invoice-p-total-header{
+    font-weight: bold;
+    text-align: right;
+}
+
+.cd-invoice-p-total-price{
+    text-align: right;
+}
+
+.cd-invoice-p-status{
+    margin: auto 0;
+    padding: 5px 10px;
+    background-color: rgb(83, 197, 83);
+    color: white;
+    border-radius: 5px;
+}
+
+.cd-invoice-p-title-and-id{
+    display: flex;
+    flex-direction: column;
+    margin: auto 0;
+}
+
+.cd-invoice-p-title{
+
+}
+
+.cd-invoice-p-id{
+    font-size: 12px;
+}
+
+.cd-invoice-preview-main{
+    padding: 10px;
+}
+
+.cd-invoice-p-main-img{
+    min-width: 150px;
+    max-width: 150px;
+    min-height: 150px;
+    max-height: 150px;
+}

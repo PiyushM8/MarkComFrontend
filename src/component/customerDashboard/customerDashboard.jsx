@@ -41,6 +41,7 @@ function CustomerPage()
                     <Link to={"/customer/queries"} className="db-n-item">
                         Queries
                     </Link>
+                    <button onClick={signout}>Sign Out</button>
                 </div>
                 <div className="column-two dashboard-page-cont">
                     <Routes>

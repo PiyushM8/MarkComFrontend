@@ -8,7 +8,7 @@ function DashboardInvoicePage() {
         <div>
             <div className="db-page-containter">
                 <div className="db-page-title db-page-item">
-                    <h2 className="db-page-title-header">Invoices</h2>
+                    <h2 className="db-page-title-header">Orders</h2>
 
                 </div>
 

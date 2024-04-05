@@ -35,8 +35,8 @@ function CustomerPage()
             </div>
             <div className="dashboard-main-cont">
                 <div className="column-one dashboard-nav">
-                    <Link to={"/customer/invoices"} className="db-n-item">
-                        Invoices
+                    <Link to={"/customer/orders"} className="db-n-item">
+                        Orders
                     </Link>
                     <Link to={"/customer/queries"} className="db-n-item">
                         Queries
@@ -44,7 +44,7 @@ function CustomerPage()
                 </div>
                 <div className="column-two dashboard-page-cont">
                     <Routes>
-                        <Route path='/invoices' element={<CustomerInvoices/>}/>
+                        <Route path='/orders' element={<CustomerInvoices/>}/>
                         <Route path='/queries' element={<CustomerInvoices/>}/>
                     </Routes>
                 </div>

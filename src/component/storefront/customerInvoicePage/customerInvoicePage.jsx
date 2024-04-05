@@ -69,11 +69,11 @@ function CustomerInvoicePage()
     return (
         <div className="customer-invoice-page-cont">
             Customer Email: {invoice.CustomerEmail}<br/>
-            Invoice Price: {invoice.InvoicePrice}<br/>
+            Order Price: {invoice.InvoicePrice}<br/>
             Payment Method: {invoice.PaymentMethod}<br/>
             Quantity: {invoice.Quantity}<br/>
-            Invoice Status: {invoice.InvoiceStatus}<br/>
-            InvoiceId: {invoice.InvoiceId}
+            Order Status: {invoice.InvoiceStatus}<br/>
+            OrderId: {invoice.InvoiceId}
 
             <form onSubmit={onSubmit}>
                 <div class="rating">

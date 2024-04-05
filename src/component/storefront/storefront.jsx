@@ -35,7 +35,7 @@ function StoreFront({ storeName }) {
         <Routes>
           <Route path="/" element={<ProductSection storeName={storeName}/>} />
           <Route path="/product/*" element={<ProductPage />} />
-          <Route path="/invoice/*" element={<CustomerInvoicePage/>} />
+          <Route path="/order/*" element={<CustomerInvoicePage/>} />
           <Route path="/contact/*" element={<ContactForm />} />
           <Route path="/reviews" element={<Reviews reviews={reviews} />} />
           <Route path="/tos" element={<TOS />} />

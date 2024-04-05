@@ -28,7 +28,6 @@ function CustomerInvoices() {
                             <h2 className="db-page-title-header">Orders</h2>
                         </div>
                         <div className="cd-invoices-cont">
-                            <div className="invoice-table-cont">
                                 {invoices.map((invoice) => {
                                     return <div className='cd-invoice-preview'>
                                         <div className='cd-invoice-preview-header'>
@@ -37,7 +36,7 @@ function CustomerInvoices() {
                                                     {invoice.Quantity}x - {invoice.Title}
                                                 </div>
                                                 <div className='cd-invoice-p-id'>
-                                                    Invoice #: {invoice.InvoiceId}
+                                                    Order #: {invoice.InvoiceId}
                                                 </div>
                                             </div>
                                             <div className='cd-invoice-p-total'>
@@ -52,14 +51,8 @@ function CustomerInvoices() {
                                                 Paid
                                             </div>
                                         </div>
-                                        <div className='cd-invoice-preview-main'>
-                                            <div>
-                                                <img className='cd-invoice-p-main-img' src={`https://imagedelivery.net/BMDilndsvZPipd90__49rQ/${invoice.ProductImage}/public`} />
-                                            </div>
-                                        </div>
                                     </div>
                                 })}
-                            </div>
                         </div>
                     </div>} />
                 <Route path='/*' element={CustomerInvoicePage} />

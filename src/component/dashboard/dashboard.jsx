@@ -77,7 +77,6 @@ function Dashboard() {
             <Route path="/feedback" element={<DashboardFeedbackPage />} />
           </Routes>
         </div>
-        <div className="column-three"></div>
       </div>
     </div>
   );

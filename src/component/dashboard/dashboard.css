@@ -81,7 +81,8 @@
     height: auto;
   }
 
-  .dashboard-main-cont {
-    flex-direction: column;
+  .db-page-containter{
+    width: 100%;
+    padding: 0;
   }
 }

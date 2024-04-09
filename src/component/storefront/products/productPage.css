@@ -116,6 +116,21 @@
     width: 40%;
     font-size: 16px;
     padding: 5px;
+    text-align: center;
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+    border: 1px solid rgb(255, 255, 255);
+    background-color: rgb(105, 120, 206);
+}
+
+.p-page-email-input{
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid gray;
+  margin-top: 10px;
+  padding: 10px;
 }
 
 .p-page-star-rating-bars {

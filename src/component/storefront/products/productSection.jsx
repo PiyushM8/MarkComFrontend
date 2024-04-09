@@ -67,7 +67,7 @@ function ProductSection({ storeName }) {
                         </div>
                         <div>
                             <h3 className="st-i-o-header">Products</h3>
-                            <p className="st-i-o-data"><i class="fa fa-shop" /> 41</p>
+                            <p className="st-i-o-data"><i class="fa fa-shop" /> {products.length}</p>
                         </div>
                         <div>
                             <h3 className="st-i-o-header">Sales</h3>

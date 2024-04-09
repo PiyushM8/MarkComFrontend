@@ -54,7 +54,9 @@ function ProductPage() {
         }
     };
 
-    const submitOrder = async () => {
+    const submitOrder = async (e) => 
+    {
+        e.preventDefault();
         const email = document.getElementById("p-page-email").value;
         const productId = location.pathname.split("/product/")[1];
 
@@ -131,15 +133,17 @@ function ProductPage() {
                     <div className="p-page-description">
                         {product.Description}
                     </div>
-                    <div className="p-page-quantity-checkout">
-                        <div className="p-page-quantity-setter">
-                            <div className="p-page-quantity-down" id="d-quantity" onClick={changeQuantity}>-</div>
-                            <input className="p-page-quantity-input" type="number" onChange={onChange} value={orderAmount} placeholder="0" min={0} />
-                            <div className="p-page-quantity-up" id="i-quantity" onClick={changeQuantity}>+</div>
+                    <form onSubmit={submitOrder}>
+                        <div className="p-page-quantity-checkout">
+                            <div className="p-page-quantity-setter">
+                                <div className="p-page-quantity-down" id="d-quantity" onClick={changeQuantity}>-</div>
+                                <input className="p-page-quantity-input" type="number" onChange={onChange} value={orderAmount} placeholder="0" min={0} />
+                                <div className="p-page-quantity-up" id="i-quantity" onClick={changeQuantity}>+</div>
+                            </div>
+                            <input className="p-page-checkout" value={`Purchase - $${orderPrice}`} type="submit"/>
                         </div>
-                        <button className="p-page-checkout" onClick={submitOrder}><i className="fas fa-cart-shopping" /> Purchase - ${`${orderPrice}`}</button>
-                    </div>
-                    <input placeholder="Email" id="p-page-email"/>
+                        <input className="p-page-email-input" placeholder="Email" id="p-page-email" required="true"/>
+                    </form>
                 </div>
             </div>
             {/* Reviews Section */}

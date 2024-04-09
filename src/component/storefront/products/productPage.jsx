@@ -5,6 +5,7 @@ import { createInvoice } from "../../../services/invoice";
 import { getFeedbackByProductId } from "../../../services/feedback";
 import "./productPage.css";
 import Checkout from "../checkout/checkout";
+import { showLogin } from "../../../utils/loginregister";
 
 function ProductPage() {
     const navigate = useNavigate();
@@ -54,30 +55,33 @@ function ProductPage() {
         }
     };
 
-    const submitOrder = async (e) => 
-    {
+    const submitOrder = async (e) => {
         e.preventDefault();
-        const email = document.getElementById("p-page-email").value;
         const productId = location.pathname.split("/product/")[1];
 
         const order = {
             ProductId: productId,
             Quantity: orderAmount,
-            CustomerEmail: email,
             IpAddress: "0.0.0.0",
             PaymentMethod: "Credit Card",
         };
 
         const response = await createInvoice(order);
         const status = response.status;
-        if (status === 200) {
+        if (status === 302) 
+        {
             alert("Successfully Created Order");
-        } else {
-            alert("Error with creating order");
+            window.location.href = response.data.link
+        } else if(status === 401 || status === 403){
+            alert("Musted be logged into customer's account");
+            showLogin()
+        } else{
+            alert("Err with invoice");
         }
     };
 
-    const changeQuantity = (e) => {
+    const changeQuantity = (e) => 
+    {
         let oAmount = parseInt(orderAmount);
 
         if (e.target.id === "i-quantity") {
@@ -140,9 +144,8 @@ function ProductPage() {
                                 <input className="p-page-quantity-input" type="number" onChange={onChange} value={orderAmount} placeholder="0" min={0} />
                                 <div className="p-page-quantity-up" id="i-quantity" onClick={changeQuantity}>+</div>
                             </div>
-                            <input className="p-page-checkout" value={`Purchase - $${orderPrice}`} type="submit"/>
+                            <input className="p-page-checkout" value={`Purchase - $${orderPrice}`} type="submit" />
                         </div>
-                        <input className="p-page-email-input" placeholder="Email" id="p-page-email" required="true"/>
                     </form>
                 </div>
             </div>
@@ -184,12 +187,12 @@ function ProductPage() {
                     {feedback
                         .filter(review => !selectedRatingFilter || review.Rating === selectedRatingFilter)
                         .map((review, index) => (
-                             <li key={index} className="p-page-review">
-                                 <div className="p-page-review-header">
-                                     <div className="p-page-review-stars">
+                            <li key={index} className="p-page-review">
+                                <div className="p-page-review-header">
+                                    <div className="p-page-review-stars">
                                         {[...Array(review.Rating)].map((_, i) => (
                                             <i key={i} className="fas fa-star active"></i>
-                                         ))}
+                                        ))}
                                     </div>
                                     <div className="p-page-review-rating">({review.Rating})</div>
                                 </div>

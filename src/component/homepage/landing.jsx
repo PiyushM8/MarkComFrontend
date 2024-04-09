@@ -3,6 +3,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./landing.css";
+import { showRegistration } from "../../utils/loginregister";
 
 function Landing() {
   const features = [
@@ -54,9 +55,9 @@ function Landing() {
       </section>
 
       <section className="cta-section">
-        <Link to="/register" className="cta-button">
+        <div onClick={showRegistration} className="cta-button">
           Ready to get started? Join MarCom today!
-        </Link>
+        </div>
       </section>
     </div>
   );

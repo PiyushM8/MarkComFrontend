@@ -4,6 +4,7 @@ import "./register.css"
 
 import { requestRegistration } from "../../services/auth";
 import { useState } from "react";
+import { hideRegistration, showLogin } from "../../utils/loginregister";
 
 function Register()
 {
@@ -86,8 +87,11 @@ function Register()
     }
 
     return (
-        <div className="signin-register-main">
-            <h1>Register</h1>
+        <div id="registration-form" className="signin-register-main">
+            <div className="signin-register-header">
+                <h1>Register</h1>
+                <div onClick={hideRegistration}>X</div>
+            </div>
             <div id="account-type-selector" className="signin-register-div account-type-choices fade-in">
                 <h2>Choose your type of account</h2>
                 <div className="register-acc-types" id="Merchant" onClick={e => pickAccountType(e)}>
@@ -97,7 +101,7 @@ function Register()
                     <i className="fa-solid fa-cart-shopping"/> Customer
                 </div>
                 <div className="signin-register-options">
-                    Have an account? <Link to={"/login"}>Sign in</Link>
+                    Have an account? <span onClick={showLogin}>Sign in</span>
                 </div>
             </div>
             <form id="register-form" className="signin-register-div fade-in" onSubmit={e => register(e)}>

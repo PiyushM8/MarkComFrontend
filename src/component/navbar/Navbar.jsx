@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import "./navbar.css";
+import { showLogin, showRegistration } from "../../utils/loginregister";
 
 function Navbar() {
+
   return (
     <div className="navbar-cont">
       <div className="navbar-items-cont">
@@ -12,21 +14,21 @@ function Navbar() {
           </div>
         </div>
         <div className="navbar-extra-cont">
-          <Link to={"/"}>
+          <Link className="nav-item" to={"/"}>
             <div>Home</div>
           </Link>
-          <Link to={"/register"}>
+          <div className="nav-item" onClick={showRegistration}>
             <div>Register</div>
-          </Link>
-          <Link to={"/login"}>
+          </div>
+          <div className="nav-item" onClick={showLogin}>
             <div>Login</div>
-          </Link>
+          </div>
           {/* Add Feedback link */}
-          <Link to={"/feedback"}>
+          <Link className="nav-item" to={"/feedback"}>
             <div>Feedback</div>
           </Link>
           {/* Add Contact link */}
-          <Link to={"/contact"}>
+          <Link className="nav-item" to={"/contact"}>
             <div>Contact</div>
           </Link>
         </div>

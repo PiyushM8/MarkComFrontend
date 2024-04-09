@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom"
 import { requestLogin } from "../../services/auth"
+import { hideLogin, showLogin, showRegistration } from "../../utils/loginregister"
 
 function Login()
 {
@@ -45,8 +46,11 @@ function Login()
     }
 
     return (
-        <div className="signin-register-main">
-            <h1>Login</h1>
+        <div id="login-form" className="signin-register-main">
+            <div className="signin-register-header">
+                <h1>Login</h1>
+                <div onClick={hideLogin}>X</div>
+            </div>
             <form className="signin-register-div" onSubmit={e => login(e)}>
                 <h2>Login to Sell Your Products With MarCom</h2>
 
@@ -57,7 +61,7 @@ function Login()
                 <input placeholder="Enter your password" id="password" type="password" required/>
 
                 <div className="signin-register-options">
-                    Need an account <Link to={"/register"}>Register</Link>
+                    Need an account <span onClick={showRegistration}>Register</span>
                 </div>
 
                 <input className="signin-register-btn" type="submit" value={"Login"}  onClick={login}/>

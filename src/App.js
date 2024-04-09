@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import StoreFront from "./component/storefront/storefront";
 import NotFound from "./component/errors/404";
 import InternalServerError from "./component/errors/500";
+import Login from "./component/auth/Login";
+import Register from "./component/auth/Register";
 
 
 function App() {
@@ -38,6 +40,8 @@ function App() {
         <Route path="/404" element={<NotFound/>}/>
         <Route path="/500" element={<InternalServerError/>}/>
       </Routes>
+      <Register/>
+      <Login/>
     </div>
   );
 }

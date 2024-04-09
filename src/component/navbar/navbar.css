@@ -41,16 +41,16 @@
     color: rgb(0, 0, 0);
 }
 
-.navbar-extra-cont>a
-{
+.nav-item{
+    padding: 20px 10px;
     text-decoration: none;
 }
 
-.navbar-extra-cont>a:visited{
+.nav-item:hover{
+    cursor: pointer;
+}
+
+.nav-item:visited{
     text-decoration: none;
     color: white;
-}
-
-.navbar-extra-cont>a>div{
-    padding: 20px 10px;
 }

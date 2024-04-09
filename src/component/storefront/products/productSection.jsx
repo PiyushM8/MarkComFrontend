@@ -78,7 +78,7 @@ function ProductSection({ storeName }) {
             </div>
         </div>
         <div className="product-section-background-cont">
-            <div  className="product-section-cont">
+            <div id="products" className="product-section-cont">
                 <h2 className="products-header">Products</h2>
                 <div className="products-cont">
                     {

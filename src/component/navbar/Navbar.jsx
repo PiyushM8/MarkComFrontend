@@ -6,14 +6,9 @@ function Navbar() {
     <div className="navbar-cont">
       <div className="navbar-items-cont">
         <div className="navbar-comp-info">
-          <img
-            className="nav-comp-logo"
-            src=""
-            alt="Company Logo"
-          />
           <div className="navbar-name-">
             <h3 className="navbar-comp-name">Markcom</h3>
-            <span className="navbar-moto">OUR SLOGAN</span>
+            <span className="navbar-moto">Buy</span>
           </div>
         </div>
         <div className="navbar-extra-cont">

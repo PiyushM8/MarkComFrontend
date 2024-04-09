@@ -19,10 +19,10 @@ function Register()
         e.preventDefault()
 
         // Get all the values from the dom
-        const email = document.getElementById("email").value
-        const username = document.getElementById("username").value
-        const password = document.getElementById("password").value
-        const confirmPassword = document.getElementById("confirm-password").value
+        const email = document.getElementById("registration-email").value
+        const username = document.getElementById("registration-username").value
+        const password = document.getElementById("registration-password").value
+        const confirmPassword = document.getElementById("registration-confirm-password").value
 
         // Run input checks
         // Check if all inputs have been entered
@@ -60,6 +60,7 @@ function Register()
             if(responseStatus === 200)
             {
                 alert("Registration Successful")
+                showLogin()
             }else if(responseStatus === 409){
                 const resData = response.data;
                 if(resData === "Email already exist")
@@ -108,16 +109,16 @@ function Register()
                 <h2>Register to display your products to the world</h2>
 
                 <p>Email</p>
-                <input placeholder="Enter your email" id="email"/>
+                <input placeholder="Enter your email" id="registration-email"/>
 
                 <p>Username</p>
-                <input placeholder="Enter your username" id="username" maxLength="20"/>
+                <input placeholder="Enter your username" id="registration-username" maxLength="20"/>
 
                 <p>Password</p>
-                <input placeholder="Enter your password" id="password" type="password"/>
+                <input placeholder="Enter your password" id="registration-password" type="password"/>
 
                 <p>Confirm Password</p>
-                <input placeholder="Confirm your password" id="confirm-password" type="password"/>
+                <input placeholder="Confirm your password" id="registration-confirm-password" type="password"/>
 
                 <div className="signin-register-options">
                     Have an account? <Link to={"/login"}>Sign in</Link>

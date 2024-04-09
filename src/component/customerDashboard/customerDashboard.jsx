@@ -39,7 +39,7 @@ function CustomerPage()
                         Orders
                     </Link>
                     <Link to={"/customer/queries"} className="db-n-item">
-                        Queries
+                        Messages
                     </Link>
                     <button onClick={signout}>Sign Out</button>
                 </div>

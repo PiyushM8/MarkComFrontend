@@ -8,6 +8,7 @@ function Login()
 
     const login = async (e) => {
         e.preventDefault()
+    
         // Retrieve email and password from the dom
         const email = document.getElementById("email").value
         const password = document.getElementById("password").value
@@ -24,6 +25,7 @@ function Login()
 
             if(responseStatus === 200)
             {
+                hideLogin()
                 const user = responseData.user
 
                 window.sessionStorage.setItem("UserDetails", JSON.stringify(user));

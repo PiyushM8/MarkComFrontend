@@ -1,0 +1,26 @@
+.user-navbar-cont{
+    width: 70%;
+    margin: 0 auto;
+    display: none;
+    justify-content: right;
+    padding: 0 10px;
+    gap: 10px
+}
+
+.user-navbar-dashboard{
+    background-color: rgb(124, 160, 222);
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.user-navbar-logout{
+    background-color: rgb(159, 49, 43);
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.user-navbar-logout:hover{
+    cursor: pointer;
+}

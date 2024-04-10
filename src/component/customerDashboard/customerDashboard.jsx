@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import CustomerInvoices from "./invoices/customerInvoices";
 import { showLogin } from "../../utils/loginregister";
 import Queries from "../dashboard/queries/queries";
+import { signout } from "../../utils/signout";
 
 function CustomerPage()
 {
@@ -22,12 +23,6 @@ function CustomerPage()
             }
         }
     }, [])
-
-    const signout = () => {
-        window.sessionStorage.removeItem("Authorization")
-        window.sessionStorage.removeItem("UserDetails")
-        navigate("/")
-    }
 
     return (
         <div className="dashboard-cont">

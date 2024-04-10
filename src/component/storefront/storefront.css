@@ -111,14 +111,20 @@
     padding: 7px 10px;
 }
 
-.storefront-header-cont{
+.storefront-navbar-background
+{
+    width: 100%;
+    padding: 20px 0 20px;
+    top: 0;
     background: linear-gradient(180deg, rgb(166, 166, 166) 0%, transparent 90%);
+}
+
+.storefront-header-cont{
     position: fixed;
     top: 0;
     margin: auto;
     width: 100%;
     letter-spacing: 0.5px;
-    padding: 20px 0 30px;
 }
 
 .storefront-navbar-cont{

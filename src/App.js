@@ -9,6 +9,7 @@ import NotFound from "./component/errors/404";
 import InternalServerError from "./component/errors/500";
 import Login from "./component/auth/Login";
 import Register from "./component/auth/Register";
+import UserNavbar from "./component/userNavbar/usernavbar";
 
 
 function App() {

@@ -20,15 +20,9 @@ function QueryItem({ query })
                 </div>
             </div>
             <div className="query-item-actions">
-                <div className="query-action-item">
-                    <div><i className="fas fa-reply"/></div>
-                </div>
                 <Link to={`/${location.pathname.split("/")[1]}/messages/${query.QueryId}`} className="query-action-item">
-                    <i className="fas fa-edit"/>
+                    <i className="fas fa-reply"/>
                 </Link>
-                <div className="query-action-item">
-                    <div><i className="fas fa-trash"/></div>
-                </div>
             </div>
         </div>
     )

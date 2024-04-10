@@ -17,6 +17,7 @@
 }
 
 .cd-invoice-preview-header{
+    color: black;
     display: flex;
     justify-content: space-between;
     padding: 10px;
@@ -54,8 +55,8 @@
     margin: auto 0;
     text-align: center;
     padding: 5px 10px;
-    width: 5%;
-    background-color: rgb(83, 197, 83);
+    width: 7%;
+    background-color: rgb(180, 180, 180);
     color: white;
     border-radius: 5px;
 }
@@ -65,6 +66,10 @@
     width: 35%;
     flex-direction: column;
     margin: auto 0;
+}
+
+.cd-invoice-p-title{
+    font-weight: bold;
 }
 
 .cd-invoice-p-id{

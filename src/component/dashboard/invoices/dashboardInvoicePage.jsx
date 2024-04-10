@@ -5,7 +5,7 @@ import { getInvoices } from "../../../services/invoice";
 
 function DashboardInvoicePage() {
 
-    const [ invoices, setInvoices ] = useState([])
+    const [ invoices, setInvoices ] = useState([{InvoicePrice: 0}])
 
     const onload = async () => {
         const invoicesResponse = await getInvoices()
@@ -37,12 +37,20 @@ function DashboardInvoicePage() {
                                                         Order #: {invoice.InvoiceId}
                                                     </div>
                                                 </div>
+                                                <div className='cd-invoice-p-email'>
+                                                    <div className='cd-invoice-p-email-header'>
+                                                        Email
+                                                    </div>
+                                                    <div className='cd-invoice-p-email-price'>
+                                                        {invoice.CustomerEmail}
+                                                    </div>
+                                                </div>
                                                 <div className='cd-invoice-p-total'>
                                                     <div className='cd-invoice-p-total-header'>
                                                         Total
                                                     </div>
                                                     <div className='cd-invoice-p-total-price'>
-                                                        ${invoice.InvoicePrice}
+                                                        ${invoice.InvoicePrice.toFixed(2)}
                                                     </div>
                                                 </div>
                                                 <div className='cd-invoice-p-status'>

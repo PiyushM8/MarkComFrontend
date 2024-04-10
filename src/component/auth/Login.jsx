@@ -1,10 +1,11 @@
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import { requestLogin } from "../../services/auth"
 import { hideLogin, showLogin, showRegistration } from "../../utils/loginregister"
 
 function Login()
 {
     let navigate = useNavigate()
+    let location = useLocation()
 
     const login = async (e) => {
         e.preventDefault()
@@ -31,11 +32,17 @@ function Login()
                 window.sessionStorage.setItem("UserDetails", JSON.stringify(user));
                 window.sessionStorage.setItem("Authorization", responseData.jwtToken);
 
-                if(user.AccountType === "Customer")
+                const pathname = location.pathname
+                if(pathname === "/")
                 {
-                    navigate("/customer")
-                }else if(user.AccountType === "Merchant"){
-                    navigate("/dashboard")
+                    if(user.AccountType === "Customer")
+                    {
+                        navigate("/customer")
+                    }else if(user.AccountType === "Merchant"){
+                        navigate("/dashboard")
+                    }
+                }else{
+                    window.location.reload()
                 }
             }else if(responseStatus === 401){
                 alert("Incorrect Credentials")

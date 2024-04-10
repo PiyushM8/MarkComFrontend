@@ -8,6 +8,7 @@ import DashboardFeedbackPage from "./Feedback/dashboardFeedbackPage";
 import DashboardCouponPage from "./coupons/dashboardCouponPage";
 import DashboardPaymentMethod from "./payment/dashboardPaymentMethod";
 import DashboardCategoriesPage from "./categories/dashboardCatergoriesPage";
+import { showLogin } from "../../utils/loginregister";
 
 function Dashboard() {
   let navigate = useNavigate();
@@ -17,7 +18,8 @@ function Dashboard() {
     const user = JSON.parse(window.sessionStorage.getItem("UserDetails"));
 
     if (!jwtToken) {
-      navigate("/login");
+      navigate("/")
+      showLogin();
     }else{
       if(user.AccountType === "Customer")
       {
@@ -35,9 +37,9 @@ function Dashboard() {
   return (
     <div className="dashboard-cont">
       <div className="dashboard-top-cont">
-        <div className="column-one">f</div>
-        <div className="column-two">f</div>
-        <div className="column-three">f</div>
+        <div className="column-one"></div>
+        <div className="column-two"></div>
+        <div className="column-three"></div>
         <button className="signout-btn" onClick={signout}>
           Sign Out
         </button>
@@ -50,8 +52,8 @@ function Dashboard() {
           <Link to={"/dashboard/orders"} className="db-n-item">
             Orders
           </Link>
-          <Link to={"/dashboard/queries"} className="db-n-item">
-            Queries
+          <Link to={"/dashboard/messages"} className="db-n-item">
+            Messages
           </Link>
           <Link to={"/dashboard/payments"} className="db-n-item">
             Payment Methods
@@ -70,7 +72,7 @@ function Dashboard() {
           <Routes>
             <Route path="/products/*" element={<ProductList />} />
             <Route path="/orders" element={<DashboardInvoicePage />} />
-            <Route path="/queries/*" element={<Queries />} />
+            <Route path="/messages/*" element={<Queries />} />
             <Route path="/payments" element={<DashboardPaymentMethod />} />
             <Route path="/categories" element={<DashboardCategoriesPage />} />
             <Route path="/coupons" element={<DashboardCouponPage />} />

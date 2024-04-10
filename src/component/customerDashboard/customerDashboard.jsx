@@ -1,6 +1,8 @@
 import { Link, Route, Routes, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import CustomerInvoices from "./invoices/customerInvoices";
+import { showLogin } from "../../utils/loginregister";
+import Queries from "../dashboard/queries/queries";
 
 function CustomerPage()
 {
@@ -11,7 +13,8 @@ function CustomerPage()
         const user = JSON.parse(window.sessionStorage.getItem("UserDetails"));
 
         if (!jwtToken) {
-            navigate("/login");
+            navigate("/")
+            showLogin();
         }else{
             if(user.AccountType === "Merchant")
             {
@@ -29,16 +32,16 @@ function CustomerPage()
     return (
         <div className="dashboard-cont">
             <div className="dashboard-top-cont">
-                <div className="column-one">f</div>
-                <div className="column-two">f</div>
-                <div className="column-three">f</div>
+                <div className="column-one"></div>
+                <div className="column-two"></div>
+                <div className="column-three"></div>
             </div>
             <div className="dashboard-main-cont">
                 <div className="column-one dashboard-nav">
                     <Link to={"/customer/orders"} className="db-n-item">
                         Orders
                     </Link>
-                    <Link to={"/customer/queries"} className="db-n-item">
+                    <Link to={"/customer/messages"} className="db-n-item">
                         Messages
                     </Link>
                     <button onClick={signout}>Sign Out</button>
@@ -46,7 +49,7 @@ function CustomerPage()
                 <div className="column-two dashboard-page-cont">
                     <Routes>
                         <Route path='/orders' element={<CustomerInvoices/>}/>
-                        <Route path='/queries' element={<CustomerInvoices/>}/>
+                        <Route path='/messages/*' element={<Queries/>}/>
                     </Routes>
                 </div>
             </div>

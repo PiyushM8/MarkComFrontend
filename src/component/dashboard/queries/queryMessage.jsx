@@ -38,6 +38,7 @@ function QueryMessage()
         if(responseStatus === 200)
         {
             setSuccessfulUpload(!successfulUpload)
+            e.target.reset()
         }else{
             alert("Failed to create Message")
         }

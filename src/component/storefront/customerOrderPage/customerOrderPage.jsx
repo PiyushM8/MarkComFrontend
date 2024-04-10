@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-import "./customerInvoicePage.css"
+import "./customerOrderPage.css"
 import { useLocation } from "react-router";
 import { getInvoiceById } from "../../../services/invoice";
 import { createFeedback } from "../../../services/feedback";
+import { showLogin } from "../../../utils/loginregister";
+import { createQuery } from "../../../services/query";
 
 function CustomerInvoicePage()
 {
@@ -12,12 +14,20 @@ function CustomerInvoicePage()
     const [ rating, setRating ] = useState(0)
     const [ ratingReason, setRatingReason ] = useState("")
     const [ invoice, setInvoice] = useState({})
+    const [ queryData, setQueryData ] = useState({})
 
     const onload = async () => 
     {
         const response = await getInvoiceById(invoiceId)
-        console.log(response.data)
-        setInvoice(response.data)
+        
+        if(response.status === 401)
+        {
+            showLogin()
+        }else if(response.status === 403){
+            alert(response.data.message)
+        }else{
+            setInvoice(response.data)
+        }
     }
 
     const displayRating = (e, rating) => 
@@ -62,6 +72,34 @@ function CustomerInvoicePage()
         }
     }
 
+    const handleSubmit = async (e) => 
+    {
+        e.preventDefault()
+        queryData.Email = invoice.CustomerEmail;
+        queryData.StoreName = location.pathname.split("/")[1]
+        const queryResponse = await createQuery(queryData)
+
+        const queryCreationStatus = queryResponse.status;
+
+        if(queryCreationStatus === 200)
+        {
+            alert("Successfully Contacted Seller")
+            window.location.href = queryResponse.data.link
+        }else if(queryCreationStatus === 400){
+            alert("Bad request. Maybe missing email or reason")
+        }else if(queryCreationStatus === 500){
+            alert("Internal Server Error")
+        }
+    }
+
+    const handleChange = (e) => {
+        let { name, value } = e.target;
+        setQueryData({
+            ...queryData,
+            [name]: value
+        })
+    };
+
     useEffect(() => {
         onload()
     }, [])
@@ -86,6 +124,15 @@ function CustomerInvoicePage()
                 </div>
                 <textarea placeholder="Reason for your rating..." onChange={onChange}/>
                 <input type="submit" value="Submit"/>
+            </form>
+
+            <h1>Contact</h1>
+            <form className="store-contact-form" onSubmit={handleSubmit}>
+                <h3>Reason</h3>
+                <input name="Reason" onChange={handleChange}/>
+                <h3>Message</h3>
+                <textarea name="Content" onChange={handleChange} placeholder="Type your message here..."/>
+                <input className="store-contact-form-submit" type="submit"/> 
             </form>
         </div>
     )

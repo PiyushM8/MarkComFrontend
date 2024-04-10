@@ -7,7 +7,7 @@ import ContactForm from "./queries/contactForm"
 import Reviews from "./reviews/reviews"
 import TOS from "./tos/tos"
 import ProductPage from "./products/productPage"
-import CustomerInvoicePage from "./customerInvoicePage/customerInvoicePage"
+import CustomerInvoicePage from "./customerOrderPage/customerOrderPage"
 
 function StoreFront({ storeName }) {
   const [reviews, setReviews] = useState([

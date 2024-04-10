@@ -121,7 +121,7 @@ function Register()
                 <input placeholder="Confirm your password" id="registration-confirm-password" type="password"/>
 
                 <div className="signin-register-options">
-                    Have an account? <Link to={"/login"}>Sign in</Link>
+                    Have an account? <span onClick={showLogin}>Sign in</span>
                 </div>
 
                 <input className="signin-register-btn" value="Register" type="submit"/>

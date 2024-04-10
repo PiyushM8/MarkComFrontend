@@ -1,9 +1,11 @@
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 
 import "./queryItem.css"
 
 function QueryItem({ query })
 {
+    const location = useLocation()
+
     return (
         <div className="query-item-cont">
             <div className="query-item-sender">
@@ -21,7 +23,7 @@ function QueryItem({ query })
                 <div className="query-action-item">
                     <div><i className="fas fa-reply"/></div>
                 </div>
-                <Link to={`/dashboard/queries/${query.QueryId}`} className="query-action-item">
+                <Link to={`/${location.pathname.split("/")[1]}/messages/${query.QueryId}`} className="query-action-item">
                     <i className="fas fa-edit"/>
                 </Link>
                 <div className="query-action-item">

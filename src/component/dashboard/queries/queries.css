@@ -6,7 +6,8 @@
     flex-direction: column;
 }
 
-.query-messages-cont{
+.query-messages-cont
+{
     max-height: 500px;
     padding-right: 10px;
     overflow: auto;

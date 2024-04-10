@@ -25,8 +25,19 @@
     border-radius: 10px;
 }
 
+.cd-invoice-p-email{
+    width: 25%;
+    text-align: left;
+}
+
+.cd-invoice-p-email-header{
+    font-weight: bold;
+    text-align: left;
+}
+
 .cd-invoice-p-total{
     display: flex;
+    width: 25%;
     flex-direction: column;
 }
 
@@ -41,7 +52,9 @@
 
 .cd-invoice-p-status{
     margin: auto 0;
+    text-align: center;
     padding: 5px 10px;
+    width: 5%;
     background-color: rgb(83, 197, 83);
     color: white;
     border-radius: 5px;
@@ -49,12 +62,9 @@
 
 .cd-invoice-p-title-and-id{
     display: flex;
+    width: 35%;
     flex-direction: column;
     margin: auto 0;
-}
-
-.cd-invoice-p-title{
-
 }
 
 .cd-invoice-p-id{

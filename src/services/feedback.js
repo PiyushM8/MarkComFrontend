@@ -12,6 +12,17 @@ export const createFeedback = async (feedback) =>
     }
 }
 
+export const getFeedbackByStoreName = async (storeName) =>
+{
+    try{
+        const response = await api.get(`${RouteConstants.FEEDBACK}/store/${storeName}`)
+        return response;
+    }catch(err){
+        console.log(err)
+        return err.response;
+    }
+}
+
 export const getFeedbackByProductId = async (productId) =>
 {
     try{

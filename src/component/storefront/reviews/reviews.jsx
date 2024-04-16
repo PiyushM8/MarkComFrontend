@@ -1,8 +1,24 @@
 // reviews.jsx
-import React from "react";
+import React, { useEffect } from "react";
 import "./reviews.css";
+import { getFeedbackByStoreName } from "../../../services/feedback";
+import { useLocation } from "react-router";
 
 function Reviews({ reviews }) {
+
+  const location = useLocation()
+
+  const storeName = location.pathname.split("/")[1];
+
+  const onload = async () => {
+    console.log(storeName)
+    await getFeedbackByStoreName(storeName)
+  }
+
+  useEffect(() => {
+    onload()
+  })
+
   return (
     <div className="reviews-container">
       <h2 className="reviews-header">Customer Reviews</h2>

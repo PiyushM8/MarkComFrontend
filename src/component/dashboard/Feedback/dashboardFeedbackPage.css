@@ -1,57 +1,68 @@
-.feedback-table-cont{
+/* Dashboard Feedback Page Styles */
+
+.dashboard-feedback-container {
+    background-color: #343a40;
+    color: rgb(8, 8, 8);
+    padding: 20px;
+  }
+  
+  .dashboard-feedback-header {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color:rgb(8, 8, 8)
+  }
+  
+  .product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .product-feedback-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  
+  .product-item {
+    background-color: #0a0a0a;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .product-link {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .product-info {
     display: flex;
     flex-direction: column;
-    grid-gap: 15px;
-    color: whites;
-
-
-}
-
-.feedback-item-cont{
-    display: flex;
-    justify-content: space-between;
-}
-
-.feedback-table-head{
-    box-sizing: border-box;
-}
-
-.db-page-title-header{
-    box-sizing: border-box;
-}
-
-.feedback-item-rating{
-    width: 5%;
-}
-
-.feedback-item-created{
-    width: 20%;
-}
-
-.feedback-item-message{
-    width: 20%;
-}
-
-
-
-.db-page-item{
-    margin: auto;
-    border-radius: 10px;
-    box-shadow: 0px 0px 5px 1px rgb(202, 202, 202);
-    width: 80%;
-    box-sizing: border-box;
-    padding: 10px 20px;
-    background-color: rgb(11, 11, 11);
-}
-
-.feedback-table-cont{
+  }
+  
+  .product-text-cont {
+    margin-bottom: 10px;
+  }
+  
+  .feedback-list {
     display: flex;
     flex-direction: column;
-    grid-gap: 15px;
-    color: whites;
-}
-
-.feedback-table-head{
-    box-sizing: border-box;
-}
-
+    gap: 10px;
+  }
+  
+  .review-item {
+    background-color: #1c1c1c;
+    color: rgba(0, 0, 0, 0);
+    padding: 10px;
+    border-radius: 8px;
+  }
+  
+  .review-rating {
+    display: flex;
+    gap: 4px;
+  }
+  
+  .star {
+    color: gold;
+  }
+  

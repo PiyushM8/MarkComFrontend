@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "./reviews.css";
-import { getFeedbackByStoreName } from "../../../services/feedback";
+import { getFeedbackByStoreName, createFeedback } from "../../../services/feedback";
 import { useLocation } from "react-router";
 
 function Reviews() {
   const [reviews, setReviews] = useState([]);
   const [filteredReviews, setFilteredReviews] = useState([]);
   const [selectedRating, setSelectedRating] = useState("all");
+  const [userRating, setUserRating] = useState(0); // New state to hold user's rating
+  const [userMessage, setUserMessage] = useState(""); // New state to hold user's message
   const location = useLocation();
   const storeName = location.pathname.split("/")[1];
 
@@ -14,7 +16,7 @@ function Reviews() {
     const fetchFeedback = async () => {
       try {
         const response = await getFeedbackByStoreName(storeName);
-        setReviews(response.data); // Assuming the response contains an array of feedback objects
+        setReviews(response.data); 
         setFilteredReviews(response.data); // Initially set filteredReviews to all reviews
       } catch (error) {
         console.error("Error fetching feedback:", error);
@@ -31,6 +33,29 @@ function Reviews() {
     } else {
       const filtered = reviews.filter((review) => review.Rating === parseInt(starRating));
       setFilteredReviews(filtered);
+    }
+  };
+
+  const handleRatingChange = (e) => {
+    setUserRating(parseInt(e.target.value));
+  };
+
+  const handleReviewMessageChange = (e) => {
+    setUserMessage(e.target.value);
+  };
+
+  const handleSubmitReview = async () => {
+    try {
+      await createFeedback({ Rating: userRating, Message: userMessage, StoreName: storeName });
+      // Refresh reviews after adding a new one
+      const response = await getFeedbackByStoreName(storeName);
+      setReviews(response.data);
+      setFilteredReviews(response.data);
+      // Clear user input fields
+      setUserRating(0);
+      setUserMessage("");
+    } catch (error) {
+      console.error("Error adding feedback:", error);
     }
   };
 
@@ -61,7 +86,26 @@ function Reviews() {
           </div>
         ))}
       </div>
-      <button className="add-review-button">Add Your Review</button>
+      <div className="add-review-container">
+        <div className="add-review">
+          <label htmlFor="rating">Your Rating:</label>
+          <select id="rating" value={userRating} onChange={handleRatingChange}>
+            <option value="0">Select</option>
+            {[1, 2, 3, 4, 5].map((rating) => (
+              <option key={rating} value={rating}>
+                {rating}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="add-review">
+          <label htmlFor="message">Your Message:</label>
+          <textarea id="message" value={userMessage} onChange={handleReviewMessageChange}></textarea>
+        </div>
+        <button className="add-review-button" onClick={handleSubmitReview}>
+          Add Your Review
+        </button>
+      </div>
     </div>
   );
 }

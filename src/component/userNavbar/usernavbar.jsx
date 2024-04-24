@@ -10,6 +10,9 @@ function UserNavbar()
             <div className="user-navbar-logout" onClick={signout}>
                 Sign out
             </div>
+            <Link to="/shoppingcart" className="user-navbar-cart">
+                Cart <i class="fas fa-cart-shopping"></i>      
+            </Link>
         </div>)
 }
 

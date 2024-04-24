@@ -38,10 +38,21 @@
     margin: 0;
 }
 
+.p-page-reviews-price {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 0px;
+}
+
 .p-page-reviews {
     padding: 10px 0;
     display: flex;
     align-items: center;
+}
+
+.p-page-price{
+  margin: auto 0;
+  font-size: 18px;
 }
 
 .p-page-stock {
@@ -63,7 +74,7 @@
     justify-content: space-between;
 }
 
-.p-page-checkout:hover {
+.p-page-add-to-cart:hover {
     cursor: pointer;
 }
 
@@ -112,7 +123,7 @@
     cursor: auto;
 }
 
-.p-page-checkout {
+.p-page-add-to-cart {
     width: 40%;
     font-size: 16px;
     padding: 5px;
@@ -120,7 +131,7 @@
     border-radius: 5px;
     color: rgb(255, 255, 255);
     border: 1px solid rgb(255, 255, 255);
-    background-color: rgb(105, 120, 206);
+    background-color: rgb(105, 124, 206);
 }
 
 .p-page-email-input{

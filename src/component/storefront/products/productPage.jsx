@@ -6,11 +6,12 @@ import { getFeedbackByProductId } from "../../../services/feedback";
 import "./productPage.css";
 import Checkout from "../checkout/checkout";
 import { showLogin } from "../../../utils/loginregister";
+import { updateShoppingCart } from "../../../services/shoppingCart";
 
 function ProductPage() {
     const navigate = useNavigate();
     const location = useLocation();
-    const [product, setProduct] = useState({});
+    const [product, setProduct] = useState({Price: 0});
     const [feedback, setFeedback] = useState([]);
     const [orderAmount, setOrderAmount] = useState(1);
     const [orderPrice, setOrderPrice] = useState(0);
@@ -55,23 +56,20 @@ function ProductPage() {
         }
     };
 
-    const submitOrder = async (e) => {
+    const addToCart = async (e) => {
         e.preventDefault();
         const productId = location.pathname.split("/product/")[1];
 
-        const order = {
+        const shoppingCartItem = {
             ProductId: productId,
             Quantity: orderAmount,
-            IpAddress: "0.0.0.0",
-            PaymentMethod: "Credit Card",
         };
 
-        const response = await createInvoice(order);
+        const response = await updateShoppingCart(shoppingCartItem);
         const status = response.status;
-        if (status === 302) 
+        if (status === 200) 
         {
-            alert("Successfully Created Order");
-            window.location.href = response.data.link
+            alert("Added item to shopping cart");
         } else if(status === 401 || status === 403){
             alert("Musted be logged into customer's account");
             showLogin()
@@ -116,35 +114,40 @@ function ProductPage() {
                 <div className="p-page-main-info">
                     <div className="p-page-main-header">
                         <h2 className="p-page-title">{product.Title}</h2>
+                        <div className="p-page-price">
+                            ${product.Price.toFixed(2)}
+                        </div>
+                    </div>
+                    {/* Display average rating here */}
+                    <div className="p-page-reviews-price">
+                        <div className="p-page-reviews">
+                            {averageRating > 0 && (
+                                <>
+                                    {Array.from({ length: Math.floor(averageRating) }, (_, index) => (
+                                        <i key={index} className="fas fa-star"></i>
+                                    ))}
+                                    {averageRating % 1 !== 0 && (
+                                        <i className="fas fa-star-half-alt"></i>
+                                    )}
+                                </>
+                            )}
+                            <span>({averageRating})</span>
+                        </div>
                         <div className="p-page-stock">
                             {product.Stock} in stock
                         </div>
                     </div>
-                    {/* Display average rating here */}
-                    <div className="p-page-reviews">
-                        {averageRating > 0 && (
-                            <>
-                                {Array.from({ length: Math.floor(averageRating) }, (_, index) => (
-                                    <i key={index} className="fas fa-star"></i>
-                                ))}
-                                {averageRating % 1 !== 0 && (
-                                    <i className="fas fa-star-half-alt"></i>
-                                )}
-                            </>
-                        )}
-                        <span>({averageRating})</span>
-                    </div>
                     <div className="p-page-description">
                         {product.Description}
                     </div>
-                    <form onSubmit={submitOrder}>
+                    <form onSubmit={addToCart}>
                         <div className="p-page-quantity-checkout">
                             <div className="p-page-quantity-setter">
                                 <div className="p-page-quantity-down" id="d-quantity" onClick={changeQuantity}>-</div>
                                 <input className="p-page-quantity-input" type="number" onChange={onChange} value={orderAmount} placeholder="0" min={0} />
                                 <div className="p-page-quantity-up" id="i-quantity" onClick={changeQuantity}>+</div>
                             </div>
-                            <input className="p-page-checkout" value={`Purchase - $${orderPrice}`} type="submit" />
+                            <input className="p-page-add-to-cart" value="Add To Cart" type="submit" />
                         </div>
                     </form>
                 </div>

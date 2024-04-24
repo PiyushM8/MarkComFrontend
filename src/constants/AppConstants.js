@@ -10,5 +10,6 @@ export const RouteConstants = {
     QUERY: "/queries",
     MESSAGE: "/messages",
     INVOICE: "/invoices",
-    FEEDBACK: "/feedback"
+    FEEDBACK: "/feedback",
+    SHOPPINGCART: "/shoppingcart"
 }

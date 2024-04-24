@@ -21,6 +21,13 @@
     padding: 10px;
 }
 
+.user-navbar-cart{
+    background-color: rgb(197, 128, 50);
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+}
+
 .user-navbar-logout:hover{
     cursor: pointer;
 }

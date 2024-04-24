@@ -23,7 +23,7 @@ function ProductItem({ product })
                 {product.Stock}
             </div>
             <div className="product-item-price">
-                {product.Price}
+                ${product.Price}
             </div>
             <div className="product-item-actions">
                 <div className="product-action-item">

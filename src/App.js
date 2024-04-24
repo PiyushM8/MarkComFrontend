@@ -23,6 +23,7 @@ function App() {
        !path.includes("query") &&
        path !== "login" && 
        path !== "register" &&
+       path !== "shoppingcart" &&
        path !== '404' &&
        path !== '500')
     {

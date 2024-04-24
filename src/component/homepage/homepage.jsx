@@ -1,9 +1,8 @@
 import { Route, Routes } from "react-router-dom";
-import Login from "../auth/Login";
-import Register from "../auth/Register";
-import Feedback from "../feedback/feedback";
+
 import Navbar from "../navbar/Navbar";
 import Landing from "./landing";
+import ShoppingCart from "../shoppingCart/ShoppingCart";
 
 function Homepage()
 {
@@ -12,7 +11,7 @@ function Homepage()
             <Navbar/>
             <Routes>
                 <Route path="/" element={<Landing/>}/>
-                <Route path="/feedback" element={<Feedback/>}/>
+                <Route path="/shoppingcart" element={<ShoppingCart/>}/>
             </Routes>
         </div>
     )

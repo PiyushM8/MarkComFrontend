@@ -17,7 +17,7 @@ function Product({ storeName, product }) {
           </div>
           <div className="p-item-extra-info">
             <div className="product-text-cont">$ {product.Price}</div>
-            <div className="p-item-stock">3 in stock</div>
+            <div className="p-item-stock">{product.Stock} in stock</div>
           </div>
         </div>
       </Link>

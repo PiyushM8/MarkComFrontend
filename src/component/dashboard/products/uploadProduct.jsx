@@ -104,6 +104,10 @@ function UploadProduct()
                     <h3 className="input-item-header">Title</h3>
                     <input className="upload-input" placeholder="Enter Title" name="Title" value={productData.Title} onChange={handleChange}/>
                 </div>
+                <div className="input-item stock-input-item">
+                    <h3 className="input-item-header">Stock</h3>
+                    <input className="upload-input" placeholder="Enter Stock" name="Stock" value={productData.Stock} onChange={handleChange} type="number"/>
+                </div>
                 <div className="input-item">
                     <h3 className="input-item-header">Price</h3>
                     <input className="upload-input" placeholder="Enter Price" name="Price" value={productData.Price} onChange={handleChange} type="number"/>

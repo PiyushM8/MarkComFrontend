@@ -20,7 +20,11 @@
 }
 
 .title-input-item{
-    width: 60%;
+    width: 50%;
+}
+
+.stock-input-item{
+    width: 10%;
 }
 
 .upload-input{

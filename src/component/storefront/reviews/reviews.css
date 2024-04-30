@@ -1,73 +1,75 @@
-/* Main container */
+/* reviews.css */
 .reviews-container {
-  max-width: 800px;
-  margin: 120px auto;
-  padding: 30px; /* Increased padding */
-  background-color: #f5f5f5; /* Light gray background */
-  border-radius: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  background: linear-gradient(to bottom, #f5f5f5 0%, #e0e0e0 100%); /* Gradient background */
-}
-
-/* Header */
-.reviews-header {
-  margin-bottom: 20px;
-  font-size: 32px;
-  color: #333; /* Dark text color */
-  text-align: center;
-}
-
-/* Reviews list */
-.reviews-list {
-  display: grid;
-  gap: 20px; /* review spacing */
-}
-
-/* Individual review item */
-.review-item {
+  max-width: 600px;
+  margin: 0 auto;
   padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 10px;
-  background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  transition: transform 0.3s ease-in-out;
 }
 
-.review-item:hover {
-  transform: translateY(-5px); /* hover effect */
-}
-
-/* Rating stars */
-.review-rating {
+.reviews-header {
   font-size: 24px;
-  color: #f4c542; /* Gold color for ratings */
+  margin-bottom: 20px;
+}
+
+.filter-dropdown {
+  margin-bottom: 20px;
+}
+
+.review-item {
+  margin-bottom: 15px;
+}
+
+.review-rating {
   margin-bottom: 10px;
+}
+
+.star {
+  color: orange; 
+}
+
+.star.active {
+  color: orange; 
 }
 
 .review-rating .star {
   color: orange; /* Fill stars with orange color */
 }
 
-/* Review message */
-.review-message {
-  font-size: 18px;
-  color: #444; /* Slightly darker text color */
+.add-review-container {
+  border-top: 1px solid #ccc;
+  padding-top: 20px;
 }
 
-/* Add review button */
-.add-review-button {
+.add-review {
+  margin-bottom: 10px;
+}
+
+.add-review label {
   display: block;
-  margin: 20px auto;
-  padding: 15px 30px;
-  background-color: #ff4081; /* Pink button */
-  color: #fff; /* White text color */
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.add-review select,
+.add-review textarea {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: vertical;
+}
+
+.add-review-button {
+  background-color: #4caf50;
+  color: white;
   border: none;
-  border-radius: 30px;
-  font-size: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  border-radius: 5px;
+  transition: background-color 0.3s;
 }
 
 .add-review-button:hover {
-  background-color: #d81b60; /* Darker shade of pink on hover */
+  background-color: #45a049;
 }

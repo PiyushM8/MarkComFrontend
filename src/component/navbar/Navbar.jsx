@@ -23,14 +23,6 @@ function Navbar() {
           <div className="nav-item" onClick={showLogin}>
             <div>Login</div>
           </div>
-          {/* Add Feedback link */}
-          <Link className="nav-item" to={"/feedback"}>
-            <div>Feedback</div>
-          </Link>
-          {/* Add Contact link */}
-          <Link className="nav-item" to={"/contact"}>
-            <div>Contact</div>
-          </Link>
         </div>
       </div>
     </div>

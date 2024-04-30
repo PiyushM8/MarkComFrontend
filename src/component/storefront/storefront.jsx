@@ -35,7 +35,6 @@ function StoreFront({ storeName }) {
             <div className="storefront-extra-cont">
               <Link to={`/${storeName}/contact`} className="storefront-nav-link">Contact</Link>
               <Link to={`/${storeName}/reviews`} className="storefront-nav-link">Reviews</Link>
-              <Link to={`/${storeName}/tos`} className="storefront-nav-link">TOS</Link>
               <Link to={`/${storeName}`} className="storefront-nav-link product-nav">Products</Link>
             </div>
           </div>

@@ -4,7 +4,6 @@ import { getProductById } from "../../../services/product";
 import { createInvoice } from "../../../services/invoice";
 import { getFeedbackByProductId } from "../../../services/feedback";
 import "./productPage.css";
-import Checkout from "../checkout/checkout";
 import { showLogin } from "../../../utils/loginregister";
 import { updateShoppingCart } from "../../../services/shoppingCart";
 

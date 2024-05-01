@@ -45,3 +45,9 @@
 .shopping-cart-item-remove-btn:hover{
     cursor: pointer;
 }
+
+#order-success{
+    display: none;
+    margin: auto;
+    width: 75%;
+}

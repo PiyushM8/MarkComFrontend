@@ -3,12 +3,15 @@ import { Link } from "react-router-dom"
 function CustomerInvoicePreview({ invoice }) {
     return (<div className='cd-invoice-preview'>
         <Link to={`/${invoice.Username}/order/${invoice.InvoiceId}`} className='cd-invoice-preview-header'>
-            <div className='cd-invoice-p-title-and-id'>
-                <div className='cd-invoice-p-title'>
-                    {invoice.Quantity}x - {invoice.Title}
-                </div>
-                <div className='cd-invoice-p-id'>
-                    Order #: {invoice.InvoiceId}
+            <div className="cd-invoice-info-cont">
+                <img className="cd-invoice-img-preview" src={`https://imagedelivery.net/BMDilndsvZPipd90__49rQ/${invoice.ProductImage}/public`}/>
+                <div className='cd-invoice-p-title-and-id'>
+                    <div className='cd-invoice-p-title'>
+                        {invoice.Quantity}x - {invoice.Title}
+                    </div>
+                    <div className='cd-invoice-p-id'>
+                        Order #: {invoice.InvoiceId}
+                    </div>
                 </div>
             </div>
             <div className='cd-invoice-p-total'>

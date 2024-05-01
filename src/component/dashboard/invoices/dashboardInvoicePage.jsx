@@ -29,6 +29,8 @@ function DashboardInvoicePage() {
                                     {invoices.map((invoice) => {
                                         return <div className='cd-invoice-preview'>
                                             <div className='cd-invoice-preview-header'>
+                                            <div className="cd-invoice-info-cont">
+                <img className="cd-invoice-img-preview" src={`https://imagedelivery.net/BMDilndsvZPipd90__49rQ/${invoice.ProductImage}/public`}/>
                                                 <div className='cd-invoice-p-title-and-id'>
                                                     <div className='cd-invoice-p-title'>
                                                         {invoice.Quantity}x - {invoice.Title}
@@ -37,6 +39,8 @@ function DashboardInvoicePage() {
                                                         Order #: {invoice.InvoiceId}
                                                     </div>
                                                 </div>
+                                                </div>
+
                                                 <div className='cd-invoice-p-email'>
                                                     <div className='cd-invoice-p-email-header'>
                                                         Email

@@ -87,6 +87,8 @@ function CustomerInvoicePage()
             window.location.href = queryResponse.data.link
         }else if(queryCreationStatus === 400){
             alert("Bad request. Maybe missing email or reason")
+        }else if(queryCreationStatus === 401){
+            alert("Not authorized. Pleaese log into your customer account")
         }else if(queryCreationStatus === 500){
             alert("Internal Server Error")
         }

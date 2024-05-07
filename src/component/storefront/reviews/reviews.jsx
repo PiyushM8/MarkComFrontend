@@ -76,18 +76,20 @@ function Reviews() {
         </select>
       </div>
       <div className="reviews-list">
-        {filteredReviews.map((review, index) => (
-          <div key={index} className="review-item">
-            <div className="review-rating">
-              {Array.from({ length: review.Rating }, (_, i) => (
-                <span key={i} className="star">
-                  &#9733;
-                </span>
-              ))}
-            </div>
-            <div className="review-message">{review.Message}</div>
-          </div>
+  {filteredReviews.map((review, index) => (
+    <div key={index} className="review-item">
+      <div className="review-rating">
+        {Array.from({ length: review.Rating }, (_, i) => (
+          <span key={i} className="star">
+            &#9733;
+          </span>
         ))}
+      </div>
+      <div className="review-title">Product: {review.Title}</div> {/* Display product title */}
+      <br /> {/* Add a line break */}
+      <div className="review-message">{review.Message}</div>
+    </div>
+  ))}
       </div>
       <div className="add-review-container">
         <div className="add-review">

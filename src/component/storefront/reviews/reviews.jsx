@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./reviews.css";
 import { getFeedbackByStoreName, createFeedback } from "../../../services/feedback";
 import { useLocation } from "react-router";
+import { showLogin } from "../../../utils/loginregister"; // Assuming you have a function to show login modal/dialog
 
 function Reviews() {
   const [reviews, setReviews] = useState([]);
@@ -10,6 +11,7 @@ function Reviews() {
   const [userRating, setUserRating] = useState(0);
   const [userMessage, setUserMessage] = useState("");
   const [productName, setProductName] = useState(""); // State to hold the product name
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
   const location = useLocation();
   const storeName = location.pathname.split("/")[1];
 
@@ -18,11 +20,15 @@ function Reviews() {
       try {
         // Fetch reviews
         const feedbackResponse = await getFeedbackByStoreName(storeName);
-        setReviews(feedbackResponse.data); 
-        setFilteredReviews(feedbackResponse.data); 
+        setReviews(feedbackResponse.data);
+        setFilteredReviews(feedbackResponse.data);
 
         // Set product name for the store
         setProductName(feedbackResponse.productName); // Assuming productName is returned from the API
+
+        // Check if user is logged in
+        const userLoggedIn = localStorage.getItem("isLoggedIn"); // Assuming you set this flag when user logs in
+        setIsLoggedIn(userLoggedIn === "true"); // Convert string to boolean
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -64,7 +70,7 @@ function Reviews() {
 
   return (
     <div className="reviews-container">
-      <h2 className="reviews-header">Customer Reviews for {storeName}</h2> {/* Display store name */}
+      <h2 className="reviews-header">Customer Reviews for {storeName}</h2>
       <div className="filter-dropdown">
         <select value={selectedRating} onChange={(e) => filterReviews(e.target.value)}>
           <option value="all">All Ratings</option>
@@ -76,41 +82,48 @@ function Reviews() {
         </select>
       </div>
       <div className="reviews-list">
-  {filteredReviews.map((review, index) => (
-    <div key={index} className="review-item">
-      <div className="review-rating">
-        {Array.from({ length: review.Rating }, (_, i) => (
-          <span key={i} className="star">
-            &#9733;
-          </span>
+        {filteredReviews.map((review, index) => (
+          <div key={index} className="review-item">
+            <div className="review-rating">
+              {Array.from({ length: review.Rating }, (_, i) => (
+                <span key={i} className="star">
+                  &#9733;
+                </span>
+              ))}
+            </div>
+            <div className="review-title">Product: {review.Title}</div>
+            <br />
+            <div className="review-message">{review.Message}</div>
+          </div>
         ))}
       </div>
-      <div className="review-title">Product: {review.Title}</div> {/* Display product title */}
-      <br /> {/* Add a line break */}
-      <div className="review-message">{review.Message}</div>
-    </div>
-  ))}
-      </div>
-      <div className="add-review-container">
-        <div className="add-review">
-          <label htmlFor="rating">Your Rating:</label>
-          <select id="rating" value={userRating} onChange={handleRatingChange}>
-            <option value="0">Select</option>
-            {[1, 2, 3, 4, 5].map((rating) => (
-              <option key={rating} value={rating}>
-                {rating}
-              </option>
-            ))}
-          </select>
+      {isLoggedIn && (
+        <div className="add-review-container">
+          <div className="add-review">
+            <label htmlFor="rating">Your Rating:</label>
+            <select id="rating" value={userRating} onChange={handleRatingChange}>
+              <option value="0">Select</option>
+              {[1, 2, 3, 4, 5].map((rating) => (
+                <option key={rating} value={rating}>
+                  {rating}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="add-review">
+            <label htmlFor="message">Your Message:</label>
+            <textarea id="message" value={userMessage} onChange={handleReviewMessageChange}></textarea>
+          </div>
+          <button className="add-review-button" onClick={handleSubmitReview}>
+            Add Your Review
+          </button>
         </div>
-        <div className="add-review">
-          <label htmlFor="message">Your Message:</label>
-          <textarea id="message" value={userMessage} onChange={handleReviewMessageChange}></textarea>
+      )}
+      {!isLoggedIn && (
+        <div className="login-required-message">
+          Please <button onClick={showLogin}>login</button> to add a review.
         </div>
-        <button className="add-review-button" onClick={handleSubmitReview}>
-          Add Your Review
-        </button>
-      </div>
+      )}
     </div>
   );
 }

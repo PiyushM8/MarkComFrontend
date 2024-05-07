@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
 import "./reviews.css";
 import { getFeedbackByStoreName, createFeedback } from "../../../services/feedback";
-import { getProducts } from "../../../services/product";
 import { useLocation } from "react-router";
 
 function Reviews() {
   const [reviews, setReviews] = useState([]);
   const [filteredReviews, setFilteredReviews] = useState([]);
   const [selectedRating, setSelectedRating] = useState("all");
-  const [userRating, setUserRating] = useState(0); 
-  const [userMessage, setUserMessage] = useState(""); 
-  const [productName, setProductName] = useState(""); // New state to hold the product name
+  const [userRating, setUserRating] = useState(0);
+  const [userMessage, setUserMessage] = useState("");
+  const [productName, setProductName] = useState(""); // State to hold the product name
   const location = useLocation();
   const storeName = location.pathname.split("/")[1];
 
@@ -22,9 +21,8 @@ function Reviews() {
         setReviews(feedbackResponse.data); 
         setFilteredReviews(feedbackResponse.data); 
 
-        // Fetch product information
-        const productResponse = await getProducts(storeName); // Pass storeName as the argument
-        setProductName(productResponse.data.ProductName);
+        // Set product name for the store
+        setProductName(feedbackResponse.productName); // Assuming productName is returned from the API
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -66,7 +64,7 @@ function Reviews() {
 
   return (
     <div className="reviews-container">
-      <h2 className="reviews-header">Customer Reviews for {productName}</h2> {/* Display product name */}
+      <h2 className="reviews-header">Customer Reviews for {storeName}</h2> {/* Display store name */}
       <div className="filter-dropdown">
         <select value={selectedRating} onChange={(e) => filterReviews(e.target.value)}>
           <option value="all">All Ratings</option>

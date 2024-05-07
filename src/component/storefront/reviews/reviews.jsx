@@ -1,29 +1,36 @@
 import React, { useState, useEffect } from "react";
 import "./reviews.css";
 import { getFeedbackByStoreName, createFeedback } from "../../../services/feedback";
+import { getProducts } from "../../../services/product";
 import { useLocation } from "react-router";
 
 function Reviews() {
   const [reviews, setReviews] = useState([]);
   const [filteredReviews, setFilteredReviews] = useState([]);
   const [selectedRating, setSelectedRating] = useState("all");
-  const [userRating, setUserRating] = useState(0); // New state to hold user's rating
-  const [userMessage, setUserMessage] = useState(""); // New state to hold user's message
+  const [userRating, setUserRating] = useState(0); 
+  const [userMessage, setUserMessage] = useState(""); 
+  const [productName, setProductName] = useState(""); // New state to hold the product name
   const location = useLocation();
   const storeName = location.pathname.split("/")[1];
 
   useEffect(() => {
-    const fetchFeedback = async () => {
+    const fetchData = async () => {
       try {
-        const response = await getFeedbackByStoreName(storeName);
-        setReviews(response.data); 
-        setFilteredReviews(response.data); // Initially set filteredReviews to all reviews
+        // Fetch reviews
+        const feedbackResponse = await getFeedbackByStoreName(storeName);
+        setReviews(feedbackResponse.data); 
+        setFilteredReviews(feedbackResponse.data); 
+
+        // Fetch product information
+        const productResponse = await getProducts(storeName); // Pass storeName as the argument
+        setProductName(productResponse.data.ProductName);
       } catch (error) {
-        console.error("Error fetching feedback:", error);
+        console.error("Error fetching data:", error);
       }
     };
 
-    fetchFeedback();
+    fetchData();
   }, [storeName]);
 
   const filterReviews = (starRating) => {
@@ -47,11 +54,9 @@ function Reviews() {
   const handleSubmitReview = async () => {
     try {
       await createFeedback({ Rating: userRating, Message: userMessage, StoreName: storeName });
-      // Refresh reviews after adding a new one
       const response = await getFeedbackByStoreName(storeName);
       setReviews(response.data);
       setFilteredReviews(response.data);
-      // Clear user input fields
       setUserRating(0);
       setUserMessage("");
     } catch (error) {
@@ -61,7 +66,7 @@ function Reviews() {
 
   return (
     <div className="reviews-container">
-      <h2 className="reviews-header">Customer Reviews</h2>
+      <h2 className="reviews-header">Customer Reviews for {productName}</h2> {/* Display product name */}
       <div className="filter-dropdown">
         <select value={selectedRating} onChange={(e) => filterReviews(e.target.value)}>
           <option value="all">All Ratings</option>

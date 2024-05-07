@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import Queries from "./queries/queries";
 import DashboardInvoicePage from "./invoices/dashboardInvoicePage";
 import DashboardFeedbackPage from "./Feedback/dashboardFeedbackPage";
-import DashboardCouponPage from "./coupons/dashboardCouponPage";
+import DashboardCouponPage from "./Coupons/dashboardCouponPage";
 import DashboardPaymentMethod from "./payment/dashboardPaymentMethod";
 import DashboardCategoriesPage from "./categories/dashboardCatergoriesPage";
 import { showLogin } from "../../utils/loginregister";

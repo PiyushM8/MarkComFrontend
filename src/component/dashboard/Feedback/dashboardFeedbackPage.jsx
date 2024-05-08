@@ -140,7 +140,9 @@ function DashboardFeedbackPage() {
           <div key={product.ProductId}>
             <Product product={product} />
             <div style={feedbackListStyles}>
-              <p>Seller: {product.SellerUsername}</p>
+          <p>
+            <span style={{ fontWeight: 'bold', color: 'black' }}>Reviews:</span> {product.SellerUsername}
+           </p>
               {product.feedback &&
                 product.feedback.map((review, index) => (
                   <div key={index} style={reviewItemStyles}>

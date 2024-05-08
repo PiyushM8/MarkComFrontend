@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { getProducts } from "../../../services/product";
 import { getFeedbackByProductId } from "../../../services/feedback";
+import { getSellerByProductId } from "../../../services/feedback"; // Import the getSellerByProductId function
+
+// Helper function to get the storeName from the URL path
+const GetStoreNameFromURL = () => {
+  const location = useLocation();
+  const urlParts = location.pathname.split("/");
+  return urlParts.length > 1 ? urlParts[2] : ""; // Return the second part of the URL path if it exists, otherwise return an empty string
+};
 
 // Product component styling
 const productItemStyles = {
@@ -61,18 +69,28 @@ const reviewMessageStyles = {
   color: "#333", // Darker color for review message text
 };
 
-function Product({ storeName, product }) {
+function Product({ product }) {
+  const storeName = GetStoreNameFromURL();
+
+  const productLink = `/${storeName}/product/${product.ProductId}`;
+
   return (
-    <div style={productItemStyles}>
-      <Link to={`/${storeName}/product/${product.ProductId}`}>
+    <div className="store-product-item-cont">
+      <Link to={productLink}>
         <img
-          style={productImageStyles}
+          className="p-item-image"
           src={`https://imagedelivery.net/BMDilndsvZPipd90__49rQ/${product.ProductImage}/public`}
           alt={product.Title}
         />
-        <div style={productTitleStyles}>{product.Title}</div>
-        <div style={productPriceStyles}>$ {product.Price}</div>
-        <div style={productStockStyles}>{product.Stock} in stock</div>
+        <div className="p-item-info">
+          <div>
+            <div className="product-text-cont p-item-title">{product.Title}</div>
+          </div>
+          <div className="p-item-extra-info">
+            <div className="product-text-cont">${product.Price}</div>
+            <div className="p-item-stock">{product.Stock} in stock</div>
+          </div>
+        </div>
       </Link>
     </div>
   );
@@ -90,7 +108,12 @@ function DashboardFeedbackPage() {
             const feedbackResponse = await getFeedbackByProductId(
               product.ProductId
             );
-            return { ...product, feedback: feedbackResponse.data };
+            const sellerResponse = await getSellerByProductId(product.ProductId);
+            return {
+              ...product,
+              feedback: feedbackResponse.data,
+              SellerUsername: sellerResponse.SellerUsername,
+            };
           })
         );
         setProducts(productsWithData);
@@ -103,7 +126,7 @@ function DashboardFeedbackPage() {
 
   return (
     <div>
-      <h2 style={{ textAlign: "center", marginBottom: "2rem", color: "black"}}>
+      <h2 style={{ textAlign: "center", marginBottom: "2rem", color: "black" }}>
         Products and Reviews
       </h2>
       <div
@@ -115,8 +138,9 @@ function DashboardFeedbackPage() {
       >
         {products.map((product) => (
           <div key={product.ProductId}>
-            <Product storeName="yourStoreName" product={product} />
+            <Product product={product} />
             <div style={feedbackListStyles}>
+              <p>Seller: {product.SellerUsername}</p>
               {product.feedback &&
                 product.feedback.map((review, index) => (
                   <div key={index} style={reviewItemStyles}>
@@ -137,4 +161,3 @@ function DashboardFeedbackPage() {
 }
 
 export default DashboardFeedbackPage;
-

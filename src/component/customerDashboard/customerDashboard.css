@@ -1,0 +1,87 @@
+/* General */
+.dashboard-cont {
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
+  }
+  
+  .dashboard-top-cont {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .dashboard-page-cont {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #f0f0f0;
+    color: #ffffff; /* Ensuring text is light enough to be visible */
+  }
+  
+  /* Navigation */
+  .dashboard-nav {
+    background-color: #343a40;
+    position: sticky;
+    color: white;
+    min-height: 100%;
+    padding: 20px;
+    width: 200px;
+  }
+  
+  .db-n-item {
+    color: white;
+    text-decoration: none;
+    margin: 10px 0;
+    display: block;
+    transition: color 0.3s ease;
+  }
+  
+  .db-n-item:hover {
+    color: #1abc9c;
+  }
+  
+  /* Buttons */
+  .signout-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .signout-btn:hover {
+    background-color: #c82333;
+  }
+  
+  @media (max-width: 768px) {
+    .dashboard-nav {
+      width: 100%;
+      height: auto;
+    }
+  }
+  
+/* signout button */
+.signout-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .signout-btn:hover {
+    background-color: #c82333;
+  }
+  

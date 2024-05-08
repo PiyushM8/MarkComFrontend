@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./reviews.css";
 import { getFeedbackByStoreName, createFeedback } from "../../../services/feedback";
 import { useLocation } from "react-router";
-import { showLogin } from "../../../utils/loginregister"; // Assuming you have a function to show login modal/dialog
+import { showLogin } from "../../../utils/loginregister"; 
 
 function Reviews() {
   const [reviews, setReviews] = useState([]);
@@ -12,6 +12,7 @@ function Reviews() {
   const [userMessage, setUserMessage] = useState("");
   const [productName, setProductName] = useState(""); // State to hold the product name
   const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
+  const [showReviewDialog, setShowReviewDialog] = useState(false); // State to control review dialog visibility
   const location = useLocation();
   const storeName = location.pathname.split("/")[1];
 
@@ -57,12 +58,18 @@ function Reviews() {
 
   const handleSubmitReview = async () => {
     try {
+      if (!isLoggedIn) {
+        showLogin(); // Show login dialog if user is not logged in
+        return;
+      }
+
       await createFeedback({ Rating: userRating, Message: userMessage, StoreName: storeName });
       const response = await getFeedbackByStoreName(storeName);
       setReviews(response.data);
       setFilteredReviews(response.data);
       setUserRating(0);
       setUserMessage("");
+      setShowReviewDialog(false); // Hide review dialog after submission
     } catch (error) {
       console.error("Error adding feedback:", error);
     }
@@ -97,31 +104,44 @@ function Reviews() {
           </div>
         ))}
       </div>
+      {!isLoggedIn && (
+        <div className="login-required-message">
+          Please <button onClick={showLogin}>login</button> to add a review.
+        </div>
+      )}
       {isLoggedIn && (
         <div className="add-review-container">
-          <div className="add-review">
-            <label htmlFor="rating">Your Rating:</label>
-            <select id="rating" value={userRating} onChange={handleRatingChange}>
-              <option value="0">Select</option>
-              {[1, 2, 3, 4, 5].map((rating) => (
-                <option key={rating} value={rating}>
-                  {rating}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="add-review">
-            <label htmlFor="message">Your Message:</label>
-            <textarea id="message" value={userMessage} onChange={handleReviewMessageChange}></textarea>
-          </div>
-          <button className="add-review-button" onClick={handleSubmitReview}>
+          <button className="add-review-button" onClick={() => setShowReviewDialog(true)}>
             Add Your Review
           </button>
         </div>
       )}
-      {!isLoggedIn && (
-        <div className="login-required-message">
-          Please <button onClick={showLogin}>login</button> to add a review.
+      {showReviewDialog && (
+        <div className="review-dialog">
+          <div className="review-dialog-content">
+            <h3>Add Your Review</h3>
+            <div className="add-review">
+              <label htmlFor="rating">Your Rating:</label>
+              <select id="rating" value={userRating} onChange={handleRatingChange}>
+                <option value="0">Select</option>
+                {[1, 2, 3, 4, 5].map((rating) => (
+                  <option key={rating} value={rating}>
+                    {rating}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="add-review">
+              <label htmlFor="message">Your Message:</label>
+              <textarea id="message" value={userMessage} onChange={handleReviewMessageChange}></textarea>
+            </div>
+            <button className="submit-review-button" onClick={handleSubmitReview}>
+              Submit Review
+            </button>
+          </div>
+          <button className="close-review-dialog" onClick={() => setShowReviewDialog(false)}>
+            Close
+          </button>
         </div>
       )}
     </div>

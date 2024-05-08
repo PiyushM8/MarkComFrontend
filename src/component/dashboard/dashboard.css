@@ -14,11 +14,11 @@
   align-items: center;
 }
 
-.db-page-containter{
+.db-page-containter {
   padding: 40px;
   display: flex;
   flex-direction: column;
-  grid-gap: 30px
+  grid-gap: 30px;
 }
 
 .marcom-slogan {
@@ -30,9 +30,12 @@
   background-color: #dc3545;
   color: white;
   border: none;
-  padding: 10px 15px;
+  padding: 10px 20px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .signout-btn:hover {
@@ -81,7 +84,7 @@
     height: auto;
   }
 
-  .db-page-containter{
+  .db-page-containter {
     width: 100%;
     padding: 0;
   }

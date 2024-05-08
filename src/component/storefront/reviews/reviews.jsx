@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./reviews.css";
 import { getFeedbackByStoreName, createFeedback } from "../../../services/feedback";
 import { useLocation } from "react-router";
-import { showLogin } from "../../../utils/loginregister"; 
+import { showLogin } from "../../../utils/loginregister";
+import ReviewDialog from "./ReviewDialog";
 
 function Reviews() {
   const [reviews, setReviews] = useState([]);
@@ -10,35 +11,30 @@ function Reviews() {
   const [selectedRating, setSelectedRating] = useState("all");
   const [userRating, setUserRating] = useState(0);
   const [userMessage, setUserMessage] = useState("");
-  const [productName, setProductName] = useState(""); // State to hold the product name
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
-  const [showReviewDialog, setShowReviewDialog] = useState(false); // State to control review dialog visibility
+  const [storeName, setStoreName] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showReviewDialog, setShowReviewDialog] = useState(false);
   const location = useLocation();
-  const storeName = location.pathname.split("/")[1];
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch reviews
+        const storeName = location.pathname.split("/")[1];
+        setStoreName(storeName);
         const feedbackResponse = await getFeedbackByStoreName(storeName);
         setReviews(feedbackResponse.data);
         setFilteredReviews(feedbackResponse.data);
-
-        // Set product name for the store
-        setProductName(feedbackResponse.productName); // Assuming productName is returned from the API
-
-        // Check if user is logged in
-        const userLoggedIn = localStorage.getItem("isLoggedIn"); // Assuming you set this flag when user logs in
-        setIsLoggedIn(userLoggedIn === "true"); // Convert string to boolean
+        const userLoggedIn = localStorage.getItem("isLoggedIn");
+        setIsLoggedIn(userLoggedIn === "true");
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
 
     fetchData();
-  }, [storeName]);
+  }, [location]);
 
-  const filterReviews = (starRating) => {
+  const filterReviews = React.useCallback((starRating) => {
     setSelectedRating(starRating);
     if (starRating === "all") {
       setFilteredReviews(reviews);
@@ -46,7 +42,7 @@ function Reviews() {
       const filtered = reviews.filter((review) => review.Rating === parseInt(starRating));
       setFilteredReviews(filtered);
     }
-  };
+  }, [reviews]);
 
   const handleRatingChange = (e) => {
     setUserRating(parseInt(e.target.value));
@@ -58,20 +54,23 @@ function Reviews() {
 
   const handleSubmitReview = async () => {
     try {
-      if (!isLoggedIn) {
-        showLogin(); // Show login dialog if user is not logged in
-        return;
-      }
-
       await createFeedback({ Rating: userRating, Message: userMessage, StoreName: storeName });
       const response = await getFeedbackByStoreName(storeName);
       setReviews(response.data);
       setFilteredReviews(response.data);
       setUserRating(0);
       setUserMessage("");
-      setShowReviewDialog(false); // Hide review dialog after submission
+      setShowReviewDialog(false);
     } catch (error) {
       console.error("Error adding feedback:", error);
+    }
+  };
+
+  const handleAddReviewClick = (onLogin) => {
+    if (isLoggedIn) {
+      setShowReviewDialog(true);
+    } else {
+      onLogin(() => setShowReviewDialog(true));
     }
   };
 
@@ -96,53 +95,35 @@ function Reviews() {
                 <span key={i} className="star">
                   &#9733;
                 </span>
+             ))}
+              {Array.from({ length: 5 - review.Rating }, (_, i) => (
+                <span key={i + review.Rating} className="star empty">
+                  &#9733;
+                </span>
               ))}
             </div>
-            <div className="review-title">Product: {review.Title}</div>
-            <br />
             <div className="review-message">{review.Message}</div>
           </div>
         ))}
       </div>
       {!isLoggedIn && (
         <div className="login-required-message">
-          Please <button onClick={showLogin}>login</button> to add a review.
+          Please <button onClick={() => handleAddReviewClick(setShowReviewDialog)}>login</button> to add a review.
         </div>
       )}
       {isLoggedIn && (
         <div className="add-review-container">
-          <button className="add-review-button" onClick={() => setShowReviewDialog(true)}>
+          <button className="add-review-button" onClick={() => handleAddReviewClick(setShowReviewDialog)}>
             Add Your Review
           </button>
         </div>
       )}
       {showReviewDialog && (
-        <div className="review-dialog">
-          <div className="review-dialog-content">
-            <h3>Add Your Review</h3>
-            <div className="add-review">
-              <label htmlFor="rating">Your Rating:</label>
-              <select id="rating" value={userRating} onChange={handleRatingChange}>
-                <option value="0">Select</option>
-                {[1, 2, 3, 4, 5].map((rating) => (
-                  <option key={rating} value={rating}>
-                    {rating}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="add-review">
-              <label htmlFor="message">Your Message:</label>
-              <textarea id="message" value={userMessage} onChange={handleReviewMessageChange}></textarea>
-            </div>
-            <button className="submit-review-button" onClick={handleSubmitReview}>
-              Submit Review
-            </button>
-          </div>
-          <button className="close-review-dialog" onClick={() => setShowReviewDialog(false)}>
-            Close
-          </button>
-        </div>
+        <ReviewDialog
+          isOpen={showReviewDialog}
+          onClose={() => setShowReviewDialog(false)}
+          onSubmit={handleSubmitReview}
+        />
       )}
     </div>
   );

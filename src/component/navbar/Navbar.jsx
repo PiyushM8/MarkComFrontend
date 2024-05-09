@@ -1,11 +1,24 @@
 // ./src/components/navbar/navbar.jsx
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./navbar.css";
 import { showLogin, showRegistration } from "../../utils/loginregister";
 
 function Navbar() {
+
+  useEffect(() => {
+    const userDetails = window.sessionStorage.getItem("UserDetails")
+    if(userDetails)
+    {
+      document.getElementById("login-register-home").style.display = "none"
+      document.getElementById("nav-dashboard-btn").style.display = "block"
+    }else{
+      document.getElementById("login-register-home").style.display = "flex"
+      document.getElementById("nav-dashboard-btn").style.display = "none"
+    }
+  })
+
   return (
     <div className="navbar-cont">
       <div className="navbar-items-cont">
@@ -19,15 +32,18 @@ function Navbar() {
           <Link className="nav-item" to={"/"}>
             <div>Home</div>
           </Link>
-          <div className="nav-item" onClick={showRegistration}>
-            <div>Register</div>
-          </div>
-          <div className="nav-item" onClick={showLogin}>
-            <div>Login</div>
+          <div id="login-register-home">
+            <div className="nav-item" onClick={showRegistration}>
+              <div>Register</div>
+            </div>
+            <div className="nav-item" onClick={showLogin}>
+              <div>Login</div>
+            </div>
           </div>
           <Link className="nav-item" to={"/all-sellers"}>
             <div>Explore Sellers</div>
           </Link>
+          <Link to="/customer" id="nav-dashboard-btn">Go to Dashboard</Link>
         </div>
       </div>
     </div>

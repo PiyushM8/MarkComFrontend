@@ -1,9 +1,11 @@
+// ./src/components/navbar/navbar.jsx
+
+import React from "react";
 import { Link } from "react-router-dom";
 import "./navbar.css";
 import { showLogin, showRegistration } from "../../utils/loginregister";
 
 function Navbar() {
-
   return (
     <div className="navbar-cont">
       <div className="navbar-items-cont">
@@ -23,6 +25,9 @@ function Navbar() {
           <div className="nav-item" onClick={showLogin}>
             <div>Login</div>
           </div>
+          <Link className="nav-item" to={"/all-sellers"}>
+            <div>Explore Sellers</div>
+          </Link>
         </div>
       </div>
     </div>

@@ -10,7 +10,8 @@
     color: white;
     padding: 10px 20px;
     display: flex;
-    justify-content: space-between;
+    justify-content: right;
+    gap: 10px;
     align-items: center;
   }
   
@@ -44,19 +45,6 @@
     color: #1abc9c;
   }
   
-  /* Buttons */
-  .signout-btn {
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: bold;
-  }
-  
   .signout-btn:hover {
     background-color: #c82333;
   }
@@ -70,7 +58,23 @@
   
 /* signout button */
 .signout-btn {
-    background-color: #dc3545;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+}
+  
+  .signout-btn:hover {
+    background-color: #c82333;
+  }
+
+  .view-storefront-btn{
+    background-color: gray;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -79,9 +83,5 @@
     border-radius: 5px;
     font-size: 16px;
     font-weight: bold;
-  }
-  
-  .signout-btn:hover {
-    background-color: #c82333;
   }
   

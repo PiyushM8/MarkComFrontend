@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import Queries from "./queries/queries";
 import DashboardInvoicePage from "./invoices/dashboardInvoicePage";
 import DashboardFeedbackPage from "./Feedback/dashboardFeedbackPage";
-import DashboardCouponPage from "./Coupons/dashboardCouponPage";
+import DashboardCouponPage from "./coupons/dashboardCouponPage";
 import DashboardPaymentMethod from "./payment/dashboardPaymentMethod";
 import DashboardCategoriesPage from "./categories/dashboardCatergoriesPage";
 import { showLogin } from "../../utils/loginregister";
@@ -34,6 +34,13 @@ function Dashboard() {
     navigate("/");
   };
 
+  const viewStorefront = () => {
+    const user = JSON.parse(window.sessionStorage.getItem("UserDetails"));
+    console.log(user)
+    navigate(`/${user.Username}`);
+    window.location.reload()
+  }
+
   return (
     <div className="dashboard-cont">
       <div className="dashboard-top-cont">
@@ -42,6 +49,9 @@ function Dashboard() {
         <div className="column-three"></div>
         <button className="signout-btn" onClick={signout}>
           Sign Out
+        </button>
+        <button className="view-storefront-btn" onClick={viewStorefront}>
+          View Storefront
         </button>
       </div>
       <div className="dashboard-main-cont">

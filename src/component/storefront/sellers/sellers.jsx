@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { getAllMerchants } from "../../../services/user";
 import "./sellers.css"; 
 
@@ -7,6 +7,7 @@ function Sellers() {
   const [merchants, setMerchants] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortAsc, setSortAsc] = useState(true);
+  const location = useLocation();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,6 +46,10 @@ function Sellers() {
     setSortAsc(!sortAsc);
   };
 
+  const isCurrentMerchant = (username) => {
+    return location.pathname === `/${username}/sellers`;
+  };
+
   const viewStorefront = (username, event) => {
     event.preventDefault(); 
     console.log(username);
@@ -73,12 +78,16 @@ function Sellers() {
           <div key={index} className="merchant-card">
             <h2>{merchant.Username}</h2>
             <p>Account Type: {merchant.AccountType}</p>
-            <button
-              className="view-storefront-link"
-              onClick={(event) => viewStorefront(merchant.Username, event)}
-            >
-              View Storefront
-            </button>
+            {isCurrentMerchant(merchant.Username) ? (
+              <strong>Hey, that's me!</strong>
+            ) : (
+              <button
+                className="view-storefront-link"
+                onClick={(event) => viewStorefront(merchant.Username, event)}
+              >
+                View Storefront
+              </button>
+            )}
           </div>
         ))}
       </div>

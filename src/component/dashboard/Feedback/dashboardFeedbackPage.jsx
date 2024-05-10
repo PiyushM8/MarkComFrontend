@@ -2,92 +2,55 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getProducts } from "../../../services/product";
 import { getFeedbackByProductId, getSellerByProductId } from "../../../services/feedback";
-
-// Product component styling
-const productItemStyles = {
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  padding: "1rem",
-  border: "1px solid #ccc",
-  borderRadius: "4px",
-  boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-  transition: "box-shadow 0.3s ease",
-};
-
-const productImageStyles = {
-  width: "200px",
-  height: "200px",
-  objectFit: "cover",
-};
-
-const productTitleStyles = {
-  fontSize: "1.2rem",
-  fontWeight: "bold",
-  marginTop: "0.5rem",
-};
-
-const productPriceStyles = {
-  fontSize: "1rem",
-  fontWeight: "bold",
-  color: "green",
-};
-
-const productStockStyles = {
-  fontSize: "0.9rem",
-  color: "gray",
-};
-
-// Feedback component styling
-const feedbackListStyles = {
-  marginTop: "1rem",
-};
-
-const reviewItemStyles = {
-  padding: "0.5rem",
-  border: "1px solid #ccc",
-  borderRadius: "4px",
-  marginBottom: "0.5rem",
-  backgroundColor: "#f8f8f8",
-};
-
-const reviewRatingStyles = {
-  color: "goldenrod",
-  marginBottom: "0.5rem",
-};
-
-const reviewMessageStyles = {
-  fontSize: "0.9rem",
-  color: "#333", 
-};
-
+import "./dashboardFeedbackPage.css"; // CSS styling created
 
 const Product = ({ product }) => {
-  const productLink = `/${product.SellerUsername}/${product.ProductId}`;
+  const productLink = `/${product.SellerUsername}/product/${product.ProductId}`;
+
+  const goToProductPage = () => {
+    window.location.href = productLink;
+  };
 
   return (
-    <div className="store-product-item-cont">
+    <div className="product-item">
       <Link to={productLink}>
         <img
-          className="p-item-image"
+          className="product-image"
           src={`https://imagedelivery.net/BMDilndsvZPipd90__49rQ/${product.ProductImage}/public`}
           alt={product.Title}
         />
-        <div className="p-item-info">
-          <div>
-            <div className="product-text-cont p-item-title">{product.Title}</div>
-          </div>
-          <div className="p-item-extra-info">
-            <div className="product-text-cont">${product.Price}</div>
-            <div className="p-item-stock">
-              {product.Stock > 1 ? `${product.Stock} in stock` : "Out of Stock"}
-            </div>
-          </div>
-        </div>
       </Link>
+      <div className="product-info">
+        <div className="product-title">{product.Title}</div>
+        <div className="product-price">${product.Price}</div>
+        <div className="product-stock">
+          {product.Stock > 1 ? `${product.Stock} in stock` : "Out of Stock"}
+        </div>
+        {/* Button to go to product page */}
+        <button className="view-product-button" onClick={goToProductPage}>View Product</button>
+      </div>
+      <div className="feedback-list">
+        <p className="reviews-title">Reviews:</p>
+        {product.feedback &&
+          product.feedback.map((review, index) => (
+            <div key={index} className="review-item">
+              <div className="review-rating">
+                {Array.from({ length: review.Rating }, (_, i) => (
+                  <span key={i}>★</span>
+                ))}
+                <span className="rating-value">Rating: {review.Rating}</span>
+              </div>
+              <div className="review-message">
+                <div>Seller: {product.SellerUsername}</div>
+                {review.Message}
+              </div>
+            </div>
+          ))}
+      </div>
     </div>
   );
 };
+
 
 const DashboardFeedbackPage = () => {
   const [products, setProducts] = useState([]);
@@ -113,42 +76,11 @@ const DashboardFeedbackPage = () => {
   }, []);
 
   return (
-    <div>
-      <h2 style={{ textAlign: "center", marginBottom: "2rem", color: "black" }}>
-        Products and Reviews
-      </h2>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
-          gap: "2rem",
-        }}
-      >
+    <div className="dashboard-feedback-page">
+      <h2 className="page-title">Products and Reviews</h2>
+      <div className="product-list">
         {products.map((product) => (
-          <div key={product.ProductId}>
-            <Product product={product} />
-            <div style={feedbackListStyles}>
-              <p>
-                <span style={{ fontWeight: 'bold', color: 'black' }}>Reviews:</span>
-              </p>
-              {product.feedback &&
-                product.feedback.map((review, index) => (
-                  <div key={index} style={reviewItemStyles}>
-                    <div style={reviewRatingStyles}>
-                      {Array.from({ length: review.Rating }, (_, i) => (
-                        <span key={i}>★</span>
-                      ))}
-                      <span style={{ marginLeft: '5px' }}>Rating: {review.Rating}</span>
-                    </div>
-                    <div style={reviewMessageStyles}>
-                      {/* Display SellerUsername next to the review message */}
-                      <div>Seller: {product.SellerUsername}</div>
-                      {review.Message}
-                    </div>
-                  </div>
-                ))}
-            </div>
-          </div>
+          <Product key={product.ProductId} product={product} />
         ))}
       </div>
     </div>
@@ -156,4 +88,3 @@ const DashboardFeedbackPage = () => {
 };
 
 export default DashboardFeedbackPage;
-

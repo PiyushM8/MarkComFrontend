@@ -52,6 +52,12 @@ function UploadProduct()
                 navigate("/dashboard/products")
                 window.location.reload()
                 break;
+            case 400:
+                if(response.data.message === "INVALID_STOCK")
+                {
+                    alert("Invalid Stock")
+                }
+                break;
             case 422:
                 alert("Failed to Create: Invalid Input")
                 break;
@@ -70,10 +76,19 @@ function UploadProduct()
         if(pathName.includes("/dashboard/products/edit"))
         {
             const productId = pathName.split("/edit/")[1]
-            await updateProduct(productId, productData)
+            const response = await updateProduct(productId, productData)
 
-            navigate("/dashboard/products")
-            window.location.reload()
+            if(response.status === 400)
+            {
+                console.log("ff")
+                if(response.data.message === "INVALID_STOCK")
+                {
+                    alert("Invalid Stock")
+                }
+            }else{
+                navigate("/dashboard/products")
+                window.location.reload()
+            }
         }else{
             const formData = new FormData();
             formData.append('image', selectedFile);

@@ -30,6 +30,7 @@
     border-radius: 10px;
     box-shadow: 0px 0px 5px 1px rgb(202, 202, 202);
     width: 80%;
+    min-width: 900px;
     box-sizing: border-box;
     padding: 10px 20px;
     background-color: rgb(11, 11, 11);
@@ -44,4 +45,11 @@
 
 .cat-table-head{
     box-sizing: border-box;
+}
+
+@media (max-width: 1200px) {
+    .db-page-item{
+        width: 80%;
+        min-width: 80%;
+    }
 }

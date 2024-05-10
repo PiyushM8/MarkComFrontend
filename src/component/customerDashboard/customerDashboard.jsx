@@ -5,6 +5,7 @@ import { showLogin } from "../../utils/loginregister";
 import Queries from "../dashboard/queries/queries";
 import { signout } from "../../utils/signout";
 import "./customerDashboard.css"; 
+import Sellers from "./sellers";
 
 function CustomerPage() {
   let navigate = useNavigate();
@@ -42,11 +43,15 @@ function CustomerPage() {
           <Link to={"/customer/messages"} className="db-n-item">
             Messages
           </Link>
+          <Link to={"/customer/sellers"} className="db-n-item">
+            Explore Sellers
+          </Link>
         </div>
         <div className="column-two dashboard-page-cont">
           <Routes>
             <Route path="/orders" element={<CustomerInvoices />} />
             <Route path="/messages/*" element={<Queries />} />
+            <Route path="/sellers" element={<Sellers />} />
           </Routes>
         </div>
       </div>

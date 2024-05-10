@@ -1,4 +1,4 @@
-/* Styles for Sellers Component */
+/* sellers.css */
 
 .all-sellers-container {
     max-width: 800px;
@@ -51,5 +51,15 @@
   
   .view-storefront-link:hover {
     color: #0056b3;
+  }
+  
+  .search-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    box-sizing: border-box;
   }
   

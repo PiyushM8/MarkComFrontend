@@ -26,9 +26,11 @@ function ProductItem({ product })
                 ${product.Price}
             </div>
             <div className="product-item-actions">
-                <div className="product-action-item">
-                    <div><i className="fas fa-eye"/></div>
-                </div>
+            <div className="product-action-item">
+                <Link to={`/${product.SellerUsername}/product/${product.ProductId}`} className="<product-action-item">
+                    <i className="fas fa-eye"/>
+                </Link>
+            </div>
                 <Link to={`/dashboard/products/edit/${product.ProductId}`} className="product-action-item">
                     <i className="fas fa-edit"/>
                 </Link>

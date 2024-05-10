@@ -88,7 +88,7 @@ function Product({ product }) {
           </div>
           <div className="p-item-extra-info">
             <div className="product-text-cont">${product.Price}</div>
-            <div className="p-item-stock">{product.Stock} in stock</div>
+            <div className="p-item-stock">{product.Stock > 1 ? `${product.Stock} in stock` : "Out of Stock"}</div>
           </div>
         </div>
       </Link>

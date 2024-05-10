@@ -43,7 +43,7 @@ function DashboardInvoicePage() {
 
                                                 <div className='cd-invoice-p-email'>
                                                     <div className='cd-invoice-p-email-header'>
-                                                        Email
+                                                        Customer Email
                                                     </div>
                                                     <div className='cd-invoice-p-email-price'>
                                                         {invoice.CustomerEmail}

@@ -1,5 +1,6 @@
 export const AppConstants = {
-    BASE_URL: "http://localhost:5050"
+    BASE_URL: "http://localhost:5050",
+    FRONTEND_URL: "http://localhost:3000"
 }
 
 export const RouteConstants = {

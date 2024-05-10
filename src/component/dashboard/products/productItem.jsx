@@ -20,7 +20,7 @@ function ProductItem({ product })
                 {product.Title}
             </div>
             <div className="product-item-stock">
-                {product.Stock}
+                {product.Stock > 0 ? `${product.Stock} in stock` : "Out of Stock"}
             </div>
             <div className="product-item-price">
                 ${product.Price}

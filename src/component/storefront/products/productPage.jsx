@@ -57,23 +57,28 @@ function ProductPage() {
 
     const addToCart = async (e) => {
         e.preventDefault();
-        const productId = location.pathname.split("/product/")[1];
-
-        const shoppingCartItem = {
-            ProductId: productId,
-            Quantity: orderAmount,
-        };
-
-        const response = await updateShoppingCart(shoppingCartItem);
-        const status = response.status;
-        if (status === 200) 
+        if(product.Stock > 0)
         {
-            alert("Added item to shopping cart");
-        } else if(status === 401 || status === 403){
-            alert("Musted be logged into customer's account");
-            showLogin()
-        } else{
-            alert("Err with invoice");
+            const productId = location.pathname.split("/product/")[1];
+
+            const shoppingCartItem = {
+                ProductId: productId,
+                Quantity: orderAmount,
+            };
+
+            const response = await updateShoppingCart(shoppingCartItem);
+            const status = response.status;
+            if (status === 200) 
+            {
+                alert("Added item to shopping cart");
+            } else if(status === 401 || status === 403){
+                alert("Musted be logged into customer's account");
+                showLogin()
+            } else{
+                alert("Err with invoice");
+            }
+        }else{
+            alert("Out of Stock :C")
         }
     };
 
@@ -133,7 +138,7 @@ function ProductPage() {
                             <span>({averageRating})</span>
                         </div>
                         <div className="p-page-stock">
-                            {product.Stock} in stock
+                            {product.Stock > 0 ? `${product.Stock} in stock` : "Out of Stock"}
                         </div>
                     </div>
                     <div className="p-page-description">

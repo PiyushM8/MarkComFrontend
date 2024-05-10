@@ -9,6 +9,8 @@ import TOS from "./tos/tos"
 import ProductPage from "./products/productPage"
 import CustomerInvoicePage from "./customerOrderPage/customerOrderPage"
 import UserNavbar from "../userNavbar/usernavbar"
+import Sellers from "./sellers/sellers"
+
 
 function StoreFront({ storeName }) {
   const [reviews, setReviews] = useState([
@@ -36,6 +38,7 @@ function StoreFront({ storeName }) {
               <Link to={`/${storeName}/contact`} className="storefront-nav-link">Contact</Link>
               <Link to={`/${storeName}/reviews`} className="storefront-nav-link">Reviews</Link>
               <Link to={`/${storeName}#products`} className="storefront-nav-link product-nav">Products</Link>
+              <Link to={`/${storeName}/sellers`} className="storefront-nav-link explore-sellers-button"> Explore Sellers </Link>
             </div>
           </div>
         </div>
@@ -49,6 +52,7 @@ function StoreFront({ storeName }) {
           <Route path="/contact" element={<ContactForm />} />
           <Route path="/reviews" element={<Reviews reviews={reviews} />} />
           <Route path="/tos" element={<TOS />} />
+          <Route path="/sellers" element={<Sellers />} />
         </Routes>
       </div>
     </div>)

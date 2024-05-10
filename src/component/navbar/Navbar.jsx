@@ -24,8 +24,8 @@ function Navbar() {
       <div className="navbar-items-cont">
         <div className="navbar-comp-info">
           <div className="navbar-name-">
-            <h3 className="navbar-comp-name">Markcom</h3>
-            <span className="navbar-moto">Buy</span>
+            <h3 className="navbar-comp-name">MarCom</h3>
+            <span className="navbar-moto">Buy, Sell, Empower</span>
           </div>
         </div>
         <div className="navbar-extra-cont">

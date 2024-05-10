@@ -22,7 +22,7 @@ function App() {
        !path.includes("customer") && 
        !path.includes("query") &&
        path !== "login" && 
-       path !== "all-sellers" &&
+       path !== "sellers" &&
        path !== "register" &&
        path !== "shoppingcart" &&
        path !== '404' &&

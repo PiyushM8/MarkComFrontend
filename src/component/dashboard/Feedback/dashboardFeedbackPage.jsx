@@ -1,14 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getProducts } from "../../../services/product";
-import { getFeedbackByProductId, getSellerByProductId } from "../../../services/feedback"; // Import getSellerByProductId function
-
-// Helper function to get the storeName from the URL path
-const GetStoreNameFromURL = () => {
-  const location = useLocation();
-  const urlParts = location.pathname.split("/");
-  return urlParts.length > 1 ? urlParts[2] : ""; // Return the second part of the URL path if it exists, otherwise return an empty string
-};
+import { getFeedbackByProductId, getSellerByProductId } from "../../../services/feedback";
 
 // Product component styling
 const productItemStyles = {
@@ -65,13 +58,12 @@ const reviewRatingStyles = {
 
 const reviewMessageStyles = {
   fontSize: "0.9rem",
-  color: "#333", // Darker color for review message text
+  color: "#333", 
 };
 
-function Product({ product }) {
-  const storeName = GetStoreNameFromURL();
 
-  const productLink = `/${storeName}/product/${product.ProductId}`;
+const Product = ({ product }) => {
+  const productLink = `/${product.SellerUsername}/${product.ProductId}`;
 
   return (
     <div className="store-product-item-cont">
@@ -87,15 +79,17 @@ function Product({ product }) {
           </div>
           <div className="p-item-extra-info">
             <div className="product-text-cont">${product.Price}</div>
-            <div className="p-item-stock">{product.Stock > 1 ? `${product.Stock} in stock` : "Out of Stock"}</div>
+            <div className="p-item-stock">
+              {product.Stock > 1 ? `${product.Stock} in stock` : "Out of Stock"}
+            </div>
           </div>
         </div>
       </Link>
     </div>
   );
-}
+};
 
-function DashboardFeedbackPage() {
+const DashboardFeedbackPage = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -106,12 +100,8 @@ function DashboardFeedbackPage() {
           productsResponse.data.map(async (product) => {
             const feedbackResponse = await getFeedbackByProductId(product.ProductId);
             const sellerResponse = await getSellerByProductId(product.ProductId);
-            const sellerUsername = sellerResponse.data.SellerUsername; // Extract SellerUsername from the response
-            return {
-              ...product,
-              feedback: feedbackResponse.data,
-              SellerUsername: sellerUsername, // Assign SellerUsername to the product object
-            };
+            const sellerUsername = feedbackResponse.data.SellerUsername;
+            return { ...product, feedback: feedbackResponse.data, sellerUsername };
           })
         );
         setProducts(productsWithData);
@@ -139,28 +129,31 @@ function DashboardFeedbackPage() {
             <Product product={product} />
             <div style={feedbackListStyles}>
               <p>
-                <span style={{ fontWeight: 'bold', color: 'black' }}>Reviews:</span> {product.SellerUsername}
+                <span style={{ fontWeight: 'bold', color: 'black' }}>Reviews:</span>
               </p>
-              {product.feedback && product.feedback.map((review, index) => (
-                <div key={index} style={reviewItemStyles}>
-                <div style={reviewRatingStyles}>
-                {/* Displaying rating stars */}
-                  {Array.from({ length: review.Rating }, (_, i) => (
-                  <span key={i}>&#9733;</span>
-          ))}
-            {/* Displaying feedback rating */}
-              <span style={{ marginLeft: '5px' }}>Rating: {review.Rating}</span>
-          </div>
-          <div style={reviewMessageStyles}>{review.Message}</div>
-          </div>
-        ))}
-
+              {product.feedback &&
+                product.feedback.map((review, index) => (
+                  <div key={index} style={reviewItemStyles}>
+                    <div style={reviewRatingStyles}>
+                      {Array.from({ length: review.Rating }, (_, i) => (
+                        <span key={i}>★</span>
+                      ))}
+                      <span style={{ marginLeft: '5px' }}>Rating: {review.Rating}</span>
+                    </div>
+                    <div style={reviewMessageStyles}>
+                      {/* Display SellerUsername next to the review message */}
+                      <div>Seller: {product.SellerUsername}</div>
+                      {review.Message}
+                    </div>
+                  </div>
+                ))}
             </div>
           </div>
         ))}
       </div>
     </div>
   );
-}
+};
 
 export default DashboardFeedbackPage;
+

@@ -30,7 +30,7 @@ function StoreFront({ storeName }) {
         <div className="storefront-navbar-background">
           <div className="storefront-navbar-cont column-two">
             <div className="storefront-info-cont">
-              <div className="storefront-info-item">{storeName.charAt(0).toUpperCase() + storeName.slice(1) + "'s Store"}</div>
+              <Link to={`/${storeName}#products`} className="storefront-info-item">{storeName.charAt(0).toUpperCase() + storeName.slice(1) + "'s Store"}</Link>
             </div>
             <div className="storefront-extra-cont">
               <Link to={`/${storeName}/contact`} className="storefront-nav-link">Contact</Link>

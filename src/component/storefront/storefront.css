@@ -87,13 +87,17 @@
 }
 
 .column-three{
-    
+
 }
 
 .storefront-info-item{
     font-weight: bold;
     font-size: 18px;
     margin: auto;
+}
+
+.storefront-info-item:visited{
+    color: black;
 }
 
 .storefront-nav-link{

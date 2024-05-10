@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { getProducts } from "../../../services/product";
-import { getFeedbackByProductId } from "../../../services/feedback";
-import { getSellerByProductId } from "../../../services/feedback"; // Import the getSellerByProductId function
+import { getFeedbackByProductId, getSellerByProductId } from "../../../services/feedback"; // Import getSellerByProductId function
 
 // Helper function to get the storeName from the URL path
 const GetStoreNameFromURL = () => {
@@ -105,14 +104,13 @@ function DashboardFeedbackPage() {
         const productsResponse = await getProducts();
         const productsWithData = await Promise.all(
           productsResponse.data.map(async (product) => {
-            const feedbackResponse = await getFeedbackByProductId(
-              product.ProductId
-            );
+            const feedbackResponse = await getFeedbackByProductId(product.ProductId);
             const sellerResponse = await getSellerByProductId(product.ProductId);
+            const sellerUsername = sellerResponse.data.SellerUsername; // Extract SellerUsername from the response
             return {
               ...product,
               feedback: feedbackResponse.data,
-              SellerUsername: sellerResponse.SellerUsername,
+              SellerUsername: sellerUsername, // Assign SellerUsername to the product object
             };
           })
         );
@@ -140,20 +138,23 @@ function DashboardFeedbackPage() {
           <div key={product.ProductId}>
             <Product product={product} />
             <div style={feedbackListStyles}>
-          <p>
-            <span style={{ fontWeight: 'bold', color: 'black' }}>Reviews:</span> {product.SellerUsername}
-           </p>
-              {product.feedback &&
-                product.feedback.map((review, index) => (
-                  <div key={index} style={reviewItemStyles}>
-                    <div style={reviewRatingStyles}>
-                      {Array.from({ length: review.rating }, (_, i) => (
-                        <span key={i}>&#9733;</span>
-                      ))}
-                    </div>
-                    <div style={reviewMessageStyles}>{review.Message}</div>
-                  </div>
-                ))}
+              <p>
+                <span style={{ fontWeight: 'bold', color: 'black' }}>Reviews:</span> {product.SellerUsername}
+              </p>
+              {product.feedback && product.feedback.map((review, index) => (
+                <div key={index} style={reviewItemStyles}>
+                <div style={reviewRatingStyles}>
+                {/* Displaying rating stars */}
+                  {Array.from({ length: review.Rating }, (_, i) => (
+                  <span key={i}>&#9733;</span>
+          ))}
+            {/* Displaying feedback rating */}
+              <span style={{ marginLeft: '5px' }}>Rating: {review.Rating}</span>
+          </div>
+          <div style={reviewMessageStyles}>{review.Message}</div>
+          </div>
+        ))}
+
             </div>
           </div>
         ))}

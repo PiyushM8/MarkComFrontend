@@ -70,7 +70,7 @@ function Login()
                 <input placeholder="Enter your password" id="password" type="password" required/>
 
                 <div className="signin-register-options">
-                    Need an account <span onClick={showRegistration}>Register</span>
+                    Need an account? <span onClick={showRegistration}>Register</span>
                 </div>
 
                 <input className="signin-register-btn" type="submit" value={"Login"}  onClick={login}/>

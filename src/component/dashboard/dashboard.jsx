@@ -1,7 +1,7 @@
 import { Link, Route, Routes, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import "./dashboard.css";
 import ProductList from "./products/productList";
-import { useEffect } from "react";
 import Queries from "./queries/queries";
 import DashboardInvoicePage from "./invoices/dashboardInvoicePage";
 import DashboardFeedbackPage from "./Feedback/dashboardFeedbackPage";
@@ -18,11 +18,10 @@ function Dashboard() {
     const user = JSON.parse(window.sessionStorage.getItem("UserDetails"));
 
     if (!jwtToken) {
-      navigate("/")
+      navigate("/");
       showLogin();
-    }else{
-      if(user.AccountType === "Customer")
-      {
+    } else {
+      if (user.AccountType === "Customer") {
         navigate("/customer");
       }
     }
@@ -36,23 +35,24 @@ function Dashboard() {
 
   const viewStorefront = () => {
     const user = JSON.parse(window.sessionStorage.getItem("UserDetails"));
-    console.log(user)
+    console.log(user);
     navigate(`/${user.Username}`);
-    window.location.reload()
-  }
+    window.location.reload();
+  };
 
   return (
     <div className="dashboard-cont">
       <div className="dashboard-top-cont">
         <div className="column-one"></div>
         <div className="column-two"></div>
-        <div className="column-three"></div>
-        <button className="signout-btn" onClick={signout}>
-          Sign Out
-        </button>
-        <button className="view-storefront-btn" onClick={viewStorefront}>
-          View Storefront
-        </button>
+        <div className="column-three">
+          <button className="signout-btn" onClick={signout}>
+            Sign Out
+          </button>
+          <button className="view-storefront-btn" onClick={viewStorefront}>
+            View Storefront
+          </button>
+        </div>
       </div>
       <div className="dashboard-main-cont">
         <div className="column-one dashboard-nav">
@@ -84,7 +84,10 @@ function Dashboard() {
             <Route path="/orders" element={<DashboardInvoicePage />} />
             <Route path="/messages/*" element={<Queries />} />
             <Route path="/payments" element={<DashboardPaymentMethod />} />
-            <Route path="/categories" element={<DashboardCategoriesPage />} />
+            <Route
+              path="/categories"
+              element={<DashboardCategoriesPage />}
+            />
             <Route path="/coupons" element={<DashboardCouponPage />} />
             <Route path="/feedback" element={<DashboardFeedbackPage />} />
           </Routes>

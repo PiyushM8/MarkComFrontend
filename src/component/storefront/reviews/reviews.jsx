@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./reviews.css";
 import { getFeedbackByStoreName, createFeedback } from "../../../services/feedback";
+import { getProductById } from "../../../services/product";
 import { useLocation } from "react-router";
 import { showLogin } from "../../../utils/loginregister";
 import ReviewDialog from "./ReviewDialog";
@@ -14,6 +15,7 @@ function Reviews() {
   const [storeName, setStoreName] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showReviewDialog, setShowReviewDialog] = useState(false);
+  const [products, setProducts] = useState([]);
   const location = useLocation();
 
   useEffect(() => {
@@ -26,6 +28,10 @@ function Reviews() {
         setFilteredReviews(feedbackResponse.data);
         const userLoggedIn = localStorage.getItem("isLoggedIn");
         setIsLoggedIn(userLoggedIn === "true");
+
+        const productIds = feedbackResponse.data.map((review) => review.productId);
+        const productDetails = await Promise.all(productIds.map((id) => getProductById(id)));
+        setProducts(productDetails);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -103,6 +109,8 @@ function Reviews() {
               ))}
             </div>
             <div className="review-message">{review.Message}</div>
+            <div className="review-product">{products[index]?.name}</div>
+            <div className="review-title"><strong>Product:</strong> {review.Title}</div>
           </div>
         ))}
       </div>

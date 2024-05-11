@@ -4,7 +4,7 @@ import CustomerInvoices from "./invoices/customerInvoices";
 import { showLogin } from "../../utils/loginregister";
 import Queries from "../dashboard/queries/queries";
 import { signout } from "../../utils/signout";
-import "./customerDashboard.css"; 
+import "./customerDashboard.css";
 import Sellers from "./sellers";
 
 function CustomerPage() {

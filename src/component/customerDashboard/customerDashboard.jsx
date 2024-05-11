@@ -6,6 +6,7 @@ import Queries from "../dashboard/queries/queries";
 import { signout } from "../../utils/signout";
 import "./customerDashboard.css";
 import Sellers from "./sellers";
+import Landing from "../homepage/landing";
 
 function CustomerPage() {
   let navigate = useNavigate();
@@ -27,7 +28,9 @@ function CustomerPage() {
   return (
     <div className="dashboard-cont">
       <div className="dashboard-top-cont">
-      <div className="column-one"><strong>MarCom</strong></div>
+        <div className="column-one">
+          <Link to="../homepage/landing"><strong>MarCom</strong></Link>
+        </div>
         <div className="column-two"></div>
         <div className="column-three"></div>
         {/* Apply the signout button with the signout-btn class */}

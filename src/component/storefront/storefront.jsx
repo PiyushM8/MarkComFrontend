@@ -10,6 +10,7 @@ import CustomerInvoicePage from "./customerOrderPage/customerOrderPage"
 import UserNavbar from "../userNavbar/usernavbar"
 import Sellers from "./sellers/sellers"
 import { showLogin } from "../../utils/loginregister" // Importing showLogin function
+import Home from "../homepage/landing" // Import
 
 function StoreFront({ storeName }) {
   const [reviews, setReviews] = useState([
@@ -34,6 +35,7 @@ function StoreFront({ storeName }) {
               <Link to={`/${storeName}#products`} className="storefront-info-item">{storeName.charAt(0).toUpperCase() + storeName.slice(1) + "'s Store"}</Link>
             </div>
             <div className="storefront-extra-cont">
+              <Link to={`/`} className="storefront-nav-link">Home</Link>
               <button onClick={showLogin} className= "storefront-nav-link">Login</button> {/* Using the showLogin function */}
               <Link to={`/${storeName}/contact`} className="storefront-nav-link">Contact</Link>
               <Link to={`/${storeName}/reviews`} className="storefront-nav-link">Reviews</Link>
@@ -54,6 +56,7 @@ function StoreFront({ storeName }) {
           <Route path="/tos" element={<TOS />} />
           <Route path="/sellers" element={<Sellers />} />
           <Route path="/showLogin" element={<showLogin/>} />
+          <Route path="/home" element={<Home />} />
         </Routes>
       </div>
     </div>

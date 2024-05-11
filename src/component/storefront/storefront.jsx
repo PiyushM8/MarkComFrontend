@@ -1,5 +1,4 @@
 import "./storefront.css"
-
 import { useEffect, useState } from "react"
 import { Link, Route, Routes } from "react-router-dom"
 import ProductSection from "./products/productSection"
@@ -10,7 +9,7 @@ import ProductPage from "./products/productPage"
 import CustomerInvoicePage from "./customerOrderPage/customerOrderPage"
 import UserNavbar from "../userNavbar/usernavbar"
 import Sellers from "./sellers/sellers"
-
+import { showLogin } from "../../utils/loginregister" // Importing showLogin function
 
 function StoreFront({ storeName }) {
   const [reviews, setReviews] = useState([
@@ -20,7 +19,7 @@ function StoreFront({ storeName }) {
   ]);
 
   useEffect(() => {
-    if(window.sessionStorage.getItem("UserDetails"))
+    if (window.sessionStorage.getItem("UserDetails"))
       document.getElementById("user-navbar-cont").style.display = "flex"
     else
       document.getElementById("user-navbar-cont").style.display = "none"
@@ -35,6 +34,7 @@ function StoreFront({ storeName }) {
               <Link to={`/${storeName}#products`} className="storefront-info-item">{storeName.charAt(0).toUpperCase() + storeName.slice(1) + "'s Store"}</Link>
             </div>
             <div className="storefront-extra-cont">
+              <button onClick={showLogin} className= "storefront-nav-link">Login</button> {/* Using the showLogin function */}
               <Link to={`/${storeName}/contact`} className="storefront-nav-link">Contact</Link>
               <Link to={`/${storeName}/reviews`} className="storefront-nav-link">Reviews</Link>
               <Link to={`/${storeName}#products`} className="storefront-nav-link product-nav">Products</Link>
@@ -53,9 +53,11 @@ function StoreFront({ storeName }) {
           <Route path="/reviews" element={<Reviews reviews={reviews} />} />
           <Route path="/tos" element={<TOS />} />
           <Route path="/sellers" element={<Sellers />} />
+          <Route path="/showLogin" element={<showLogin/>} />
         </Routes>
       </div>
-    </div>)
+    </div>
+  )
 }
 
 export default StoreFront;

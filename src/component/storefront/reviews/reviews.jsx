@@ -3,7 +3,6 @@ import "./reviews.css";
 import { getFeedbackByStoreName, createFeedback } from "../../../services/feedback";
 import { getProductById } from "../../../services/product";
 import { useLocation } from "react-router";
-import { showLogin } from "../../../utils/loginregister";
 import ReviewDialog from "./ReviewDialog";
 
 function Reviews() {
@@ -13,7 +12,6 @@ function Reviews() {
   const [userRating, setUserRating] = useState(0);
   const [userMessage, setUserMessage] = useState("");
   const [storeName, setStoreName] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showReviewDialog, setShowReviewDialog] = useState(false);
   const [products, setProducts] = useState([]);
   const location = useLocation();
@@ -26,8 +24,6 @@ function Reviews() {
         const feedbackResponse = await getFeedbackByStoreName(storeName);
         setReviews(feedbackResponse.data);
         setFilteredReviews(feedbackResponse.data);
-        const userLoggedIn = localStorage.getItem("isLoggedIn");
-        setIsLoggedIn(userLoggedIn === "true");
 
         const productIds = feedbackResponse.data.map((review) => review.productId);
         const productDetails = await Promise.all(productIds.map((id) => getProductById(id)));
@@ -72,16 +68,8 @@ function Reviews() {
     }
   };
 
-  const handleAddReviewClick = (onLogin) => {
-    if (isLoggedIn) {
-      setShowReviewDialog(true);
-    } else {
-      onLogin(() => setShowReviewDialog(true));
-    }
-  };
-
   return (
-    <div className="reviews-container">
+    <div className="reviews-container" style={{ marginTop: "50px" }}>
       <h2 className="reviews-header">Customer Reviews for {storeName}</h2>
       <div className="filter-dropdown">
         <select value={selectedRating} onChange={(e) => filterReviews(e.target.value)}>
@@ -114,18 +102,11 @@ function Reviews() {
           </div>
         ))}
       </div>
-      {!isLoggedIn && (
-        <div className="login-required-message">
-          Please <button onClick={() => handleAddReviewClick(setShowReviewDialog)}>login</button> to add a review.
-        </div>
-      )}
-      {isLoggedIn && (
-        <div className="add-review-container">
-          <button className="add-review-button" onClick={() => handleAddReviewClick(setShowReviewDialog)}>
-            Add Your Review
-          </button>
-        </div>
-      )}
+      <div className="add-review-container">
+        <button className="add-review-button" onClick={() => setShowReviewDialog(true)}>
+          Add Your Review
+        </button>
+      </div>
       {showReviewDialog && (
         <ReviewDialog
           isOpen={showReviewDialog}

@@ -18,7 +18,7 @@ function Dashboard() {
     const user = JSON.parse(window.sessionStorage.getItem("UserDetails"));
 
     if (!jwtToken) {
-      navigate("/");
+      navigate("/")
       showLogin();
     } else {
       if (user.AccountType === "Customer") {
@@ -35,7 +35,7 @@ function Dashboard() {
 
   const viewStorefront = () => {
     const user = JSON.parse(window.sessionStorage.getItem("UserDetails"));
-    console.log(user);
+    console.log(user)
     navigate(`/${user.Username}`);
     window.location.reload();
   };
@@ -43,15 +43,17 @@ function Dashboard() {
   return (
     <div className="dashboard-cont">
       <div className="dashboard-top-cont">
-        <div className="column-one"></div>
+        <div className="column-one"><strong>MarCom</strong></div>
         <div className="column-two"></div>
         <div className="column-three">
-          <button className="signout-btn" onClick={signout}>
-            Sign Out
-          </button>
-          <button className="view-storefront-btn" onClick={viewStorefront}>
-            View Storefront
-          </button>
+          <div className="button-container"> {/* Align buttons */}
+            <button className="signout-btn" onClick={signout}>
+              Sign Out
+            </button>
+            <button className="view-storefront-btn" onClick={viewStorefront}>
+              View Storefront
+            </button>
+          </div>
         </div>
       </div>
       <div className="dashboard-main-cont">

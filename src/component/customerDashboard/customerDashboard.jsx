@@ -27,7 +27,7 @@ function CustomerPage() {
   return (
     <div className="dashboard-cont">
       <div className="dashboard-top-cont">
-        <div className="column-one"></div>
+      <div className="column-one"><strong>MarCom</strong></div>
         <div className="column-two"></div>
         <div className="column-three"></div>
         {/* Apply the signout button with the signout-btn class */}

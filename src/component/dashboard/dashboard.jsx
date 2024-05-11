@@ -43,7 +43,9 @@ function Dashboard() {
   return (
     <div className="dashboard-cont">
       <div className="dashboard-top-cont">
-        <div className="column-one"><strong>MarCom</strong></div>
+        <div className="column-one">
+          <Link to="/" className="link-lightblue"><strong>MarCom</strong></Link>
+        </div>
         <div className="column-two"></div>
         <div className="column-three">
           <div className="button-container"> {/* Align buttons */}

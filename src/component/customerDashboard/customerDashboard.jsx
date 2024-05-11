@@ -29,7 +29,7 @@ function CustomerPage() {
     <div className="dashboard-cont">
       <div className="dashboard-top-cont">
         <div className="column-one">
-          <Link to="../homepage/landing"><strong>MarCom</strong></Link>
+        <Link to="/" className="link-lightblue"><strong>MarCom</strong></Link>
         </div>
         <div className="column-two"></div>
         <div className="column-three"></div>

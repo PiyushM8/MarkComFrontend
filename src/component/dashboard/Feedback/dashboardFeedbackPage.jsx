@@ -90,13 +90,13 @@ const DashboardFeedbackPage = () => {
     <div className="dashboard-feedback-page">
       <h2 className="page-title">Products and Reviews</h2>
       <div className="filter-section">
-        <label htmlFor="min-rating" style={{ color: "black" }}>Min Rating:</label>
+        <label htmlFor="min-rating">Min Rating:</label>
         <select id="min-rating" value={minRating} onChange={handleMinRatingChange}>
           {[1, 2, 3, 4, 5].map((rating) => (
             <option key={rating} value={rating}>{rating}</option>
           ))}
         </select>
-        <label htmlFor="max-rating" style={{ color: "black" }}>Max Rating:</label>
+        <label htmlFor="max-rating">Max Rating:</label>
         <select id="max-rating" value={maxRating} onChange={handleMaxRatingChange}>
           {[1, 2, 3, 4, 5].map((rating) => (
             <option key={rating} value={rating}>{rating}</option>

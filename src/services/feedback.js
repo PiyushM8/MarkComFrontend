@@ -12,6 +12,27 @@ export const createFeedback = async (feedback) =>
     }
 }
 
+export const createFeedbackOne = async (feedback) => {
+try {
+const response = await api.post(`${RouteConstants.FEEDBACK}`, feedback)
+return response;
+} catch (err) {
+console.log(err)
+return err.response;
+}
+}
+
+export const createFeedbackBySellerUsername = async (SellerUsername) =>
+{
+    try{
+        const response = await api.post(RouteConstants.FEEDBACK, SellerUsername)
+        return response;
+    }catch(err){
+        console.log(err)
+        return err.response;
+    }
+}
+
 export const getFeedbackByStoreName = async (storeName) =>
 {
     try{

@@ -13,6 +13,7 @@ export const hideLogin = () =>
     document.getElementById("login-form").style.display = "none"
 }
 
+
 export const hideRegistration = () =>
 {
     document.getElementById("registration-form").style.display = "none"

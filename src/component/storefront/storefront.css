@@ -158,4 +158,19 @@
     font-size: 16px;
 }
 
-
+.explore-sellers-button {
+    display: inline-block;
+    white-space: nowrap; 
+    width: auto; 
+    box-sizing: border-box;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    padding: 7px 10px;
+    text-decoration: none;
+  }
+  
+  .explore-sellers-button:hover {
+    background-color: #333;
+  }
+  

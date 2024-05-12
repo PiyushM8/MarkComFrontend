@@ -11,3 +11,14 @@ export const getUserByUsername = async (username) =>
         return err.response;
     }
 }
+
+export const getAllMerchants = async () =>
+{
+    try {
+        const response = await api.get(`${RouteConstants.USER}/merchants`);
+        return response;
+    } catch (err) {
+        console.log(err);
+        return err.response;
+    }
+}

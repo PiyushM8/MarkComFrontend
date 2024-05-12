@@ -11,9 +11,18 @@ function DashboardPaymentMethod() {
             <div className="db-page-item">
                 <div className="payment-table-cont">
                     <div className="payment-item-cont payment-item-head">
-                            <div className="payment-item-rating">
-                                placeholder
+                            <div className="payment-item-name">
+                                Cardholder Name
                             </div>                     
+                            <div className="payment-item-number">
+                                Card Number
+                            </div>              
+                            <div className="payment-item-exp">
+                                Expiration Date 
+                            </div>       
+                            <div className="payment-item-sec">
+                                Security Code
+                            </div>        
                     </div>
                 </div>
              </div>

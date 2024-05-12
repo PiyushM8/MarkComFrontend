@@ -1,18 +1,24 @@
-import { Link, useNavigate } from "react-router-dom"
-import "./productItem.css"
-import { deleteProductById } from "../../../services/product"
+import React from "react";
+import "./productItem.css";
+import { deleteProductById } from "../../../services/product";
 
-function ProductItem({ product })
-{
-    const deleteProduct = async () => {
-        const response = await deleteProductById(product.ProductId)
-        if(response.data.rowsAffected > 0)
-        {
-            window.location.reload()
-        }else{
-            alert("Product not deleted")
-        }
+function ProductItem({ product }) {
+  const deleteProduct = async () => {
+    const response = await deleteProductById(product.ProductId);
+    if (response.data.rowsAffected > 0) {
+      window.location.reload();
+    } else {
+      alert("Product not deleted");
     }
+  };
+
+  const handleViewProduct = () => {
+    window.location.href = `/${product.SellerUsername}/product/${product.ProductId}`;
+  };
+
+  const handleEditProduct = () => {
+    window.location.href = `/dashboard/products/edit/${product.ProductId}`;
+  };
 
     return (
         <div className="product-item-cont">
@@ -20,7 +26,7 @@ function ProductItem({ product })
                 {product.Title}
             </div>
             <div className="product-item-stock">
-                {product.Stock}
+                {product.Stock > 0 ? `${product.Stock} in stock` : "Out of Stock"}
             </div>
             <div className="product-item-price">
                 ${product.Price}
@@ -40,4 +46,4 @@ function ProductItem({ product })
     )
 }
 
-export default ProductItem
+export default ProductItem;

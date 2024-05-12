@@ -13,9 +13,11 @@ function DashboardCategoriesPage() {
                 <div className="cat-table-cont">
                     <div className="cat-item-cont cat-item-head">
                             <div className="cat-item-rating">
-                                Placeholder
+                                Product
                             </div>
-
+                            <div className="cat-item-category">
+                                Category/Department
+                            </div>
                     </div>
                 </div>
              </div>

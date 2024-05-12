@@ -1,103 +1,62 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getProducts } from "../../../services/product";
-import { getFeedbackByProductId } from "../../../services/feedback";
-import { getSellerByProductId } from "../../../services/feedback"; // Import the getSellerByProductId function
+import { getFeedbackByProductId, getSellerByProductId } from "../../../services/feedback";
+import "./dashboardFeedbackPage.css"; // CSS styling created
 
-// Helper function to get the storeName from the URL path
-const GetStoreNameFromURL = () => {
-  const location = useLocation();
-  const urlParts = location.pathname.split("/");
-  return urlParts.length > 1 ? urlParts[2] : ""; // Return the second part of the URL path if it exists, otherwise return an empty string
-};
+const Product = ({ product, minRating, maxRating }) => {
+  const productLink = `/${product.SellerUsername}/product/${product.ProductId}`;
 
-// Product component styling
-const productItemStyles = {
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  padding: "1rem",
-  border: "1px solid #ccc",
-  borderRadius: "4px",
-  boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-  transition: "box-shadow 0.3s ease",
-};
-
-const productImageStyles = {
-  width: "200px",
-  height: "200px",
-  objectFit: "cover",
-};
-
-const productTitleStyles = {
-  fontSize: "1.2rem",
-  fontWeight: "bold",
-  marginTop: "0.5rem",
-};
-
-const productPriceStyles = {
-  fontSize: "1rem",
-  fontWeight: "bold",
-  color: "green",
-};
-
-const productStockStyles = {
-  fontSize: "0.9rem",
-  color: "gray",
-};
-
-// Feedback component styling
-const feedbackListStyles = {
-  marginTop: "1rem",
-};
-
-const reviewItemStyles = {
-  padding: "0.5rem",
-  border: "1px solid #ccc",
-  borderRadius: "4px",
-  marginBottom: "0.5rem",
-  backgroundColor: "#f8f8f8",
-};
-
-const reviewRatingStyles = {
-  color: "goldenrod",
-  marginBottom: "0.5rem",
-};
-
-const reviewMessageStyles = {
-  fontSize: "0.9rem",
-  color: "#333", // Darker color for review message text
-};
-
-function Product({ product }) {
-  const storeName = GetStoreNameFromURL();
-
-  const productLink = `/${storeName}/product/${product.ProductId}`;
+  const goToProductPage = () => {
+    window.location.href = productLink;
+  };
 
   return (
-    <div className="store-product-item-cont">
+    <div className="product-item">
       <Link to={productLink}>
         <img
-          className="p-item-image"
+          className="product-image"
           src={`https://imagedelivery.net/BMDilndsvZPipd90__49rQ/${product.ProductImage}/public`}
           alt={product.Title}
         />
-        <div className="p-item-info">
-          <div>
-            <div className="product-text-cont p-item-title">{product.Title}</div>
-          </div>
-          <div className="p-item-extra-info">
-            <div className="product-text-cont">${product.Price}</div>
-            <div className="p-item-stock">{product.Stock > 1 ? `${product.Stock} in stock` : "Out of Stock"}</div>
-          </div>
-        </div>
       </Link>
+      <div className="product-info">
+        <div className="product-title">{product.Title}</div>
+        <div className="product-price">${product.Price}</div>
+        <div className="product-stock">
+          {product.Stock > 1 ? `${product.Stock} in stock` : "Out of Stock"}
+        </div>
+        {/* Button to go to product page */}
+        <button className="view-product-button" onClick={goToProductPage}>View Product</button>
+      </div>
+      <div className="feedback-list">
+        <p className="reviews-title">Reviews:</p>
+        {product.feedback &&
+          product.feedback
+            .filter((review) => review.Rating >= minRating && review.Rating <= maxRating) // Filter reviews based on rating
+            .map((review, index) => (
+              <div key={index} className="review-item">
+                <div className="review-rating">
+                  {Array.from({ length: review.Rating }, (_, i) => (
+                    <span key={i}>★</span>
+                  ))}
+                  <span className="rating-value">Rating: {review.Rating}</span>
+                </div>
+                <div className="review-message">
+                  <div>Seller: {product.SellerUsername}</div>
+                  {review.Message}
+                </div>
+              </div>
+            ))}
+      </div>
     </div>
   );
-}
+};
 
-function DashboardFeedbackPage() {
+const DashboardFeedbackPage = () => {
   const [products, setProducts] = useState([]);
+  const [minRating, setMinRating] = useState(1);
+  const [maxRating, setMaxRating] = useState(5);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -105,15 +64,10 @@ function DashboardFeedbackPage() {
         const productsResponse = await getProducts();
         const productsWithData = await Promise.all(
           productsResponse.data.map(async (product) => {
-            const feedbackResponse = await getFeedbackByProductId(
-              product.ProductId
-            );
+            const feedbackResponse = await getFeedbackByProductId(product.ProductId);
             const sellerResponse = await getSellerByProductId(product.ProductId);
-            return {
-              ...product,
-              feedback: feedbackResponse.data,
-              SellerUsername: sellerResponse.SellerUsername,
-            };
+            const sellerUsername = feedbackResponse.data.SellerUsername;
+            return { ...product, feedback: feedbackResponse.data, sellerUsername };
           })
         );
         setProducts(productsWithData);
@@ -124,42 +78,38 @@ function DashboardFeedbackPage() {
     fetchData();
   }, []);
 
+  const handleMinRatingChange = (event) => {
+    setMinRating(parseInt(event.target.value));
+  };
+
+  const handleMaxRatingChange = (event) => {
+    setMaxRating(parseInt(event.target.value));
+  };
+
   return (
-    <div>
-      <h2 style={{ textAlign: "center", marginBottom: "2rem", color: "black" }}>
-        Products and Reviews
-      </h2>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
-          gap: "2rem",
-        }}
-      >
+    <div className="dashboard-feedback-page">
+      <h2 className="page-title">Products and Reviews</h2>
+      <div className="filter-section">
+        <label htmlFor="min-rating">Min Rating:</label>
+        <select id="min-rating" value={minRating} onChange={handleMinRatingChange}>
+          {[1, 2, 3, 4, 5].map((rating) => (
+            <option key={rating} value={rating}>{rating}</option>
+          ))}
+        </select>
+        <label htmlFor="max-rating">Max Rating:</label>
+        <select id="max-rating" value={maxRating} onChange={handleMaxRatingChange}>
+          {[1, 2, 3, 4, 5].map((rating) => (
+            <option key={rating} value={rating}>{rating}</option>
+          ))}
+        </select>
+      </div>
+      <div className="product-list">
         {products.map((product) => (
-          <div key={product.ProductId}>
-            <Product product={product} />
-            <div style={feedbackListStyles}>
-          <p>
-            <span style={{ fontWeight: 'bold', color: 'black' }}>Reviews:</span> {product.SellerUsername}
-           </p>
-              {product.feedback &&
-                product.feedback.map((review, index) => (
-                  <div key={index} style={reviewItemStyles}>
-                    <div style={reviewRatingStyles}>
-                      {Array.from({ length: review.rating }, (_, i) => (
-                        <span key={i}>&#9733;</span>
-                      ))}
-                    </div>
-                    <div style={reviewMessageStyles}>{review.Message}</div>
-                  </div>
-                ))}
-            </div>
-          </div>
+          <Product key={product.ProductId} product={product} minRating={minRating} maxRating={maxRating} />
         ))}
       </div>
     </div>
   );
-}
+};
 
 export default DashboardFeedbackPage;

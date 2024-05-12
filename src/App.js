@@ -10,7 +10,7 @@ import InternalServerError from "./component/errors/500";
 import Login from "./component/auth/Login";
 import Register from "./component/auth/Register";
 import UserNavbar from "./component/userNavbar/usernavbar";
-
+import Sellers from "./component/navbar/sellers";
 
 function App() {
   const [ storeName, setStoreName ] = useState()
@@ -42,6 +42,7 @@ function App() {
         <Route path="/product/*" element={<ProductPage/>}/>
         <Route path="/404" element={<NotFound/>}/>
         <Route path="/500" element={<InternalServerError/>}/>
+        <Route path="/sellers" element={<Sellers/>}/>
       </Routes>
       <Register/>
       <Login/>

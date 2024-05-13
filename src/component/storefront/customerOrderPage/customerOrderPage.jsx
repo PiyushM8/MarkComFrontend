@@ -6,35 +6,30 @@ import { createFeedback } from "../../../services/feedback";
 import { showLogin } from "../../../utils/loginregister";
 import { createQuery } from "../../../services/query";
 
-function CustomerInvoicePage()
-{
+function CustomerInvoicePage() {
     const location = useLocation()
     const invoiceId = location.pathname.split("/")[3];
 
-    const [ rating, setRating ] = useState(0)
-    const [ ratingReason, setRatingReason ] = useState("")
-    const [ invoice, setInvoice] = useState({})
-    const [ queryData, setQueryData ] = useState({})
+    const [rating, setRating] = useState(0)
+    const [ratingReason, setRatingReason] = useState("")
+    const [invoice, setInvoice] = useState({})
+    const [queryData, setQueryData] = useState({})
 
-    const onload = async () => 
-    {
+    const onload = async () => {
         const response = await getInvoiceById(invoiceId)
-        
-        if(response.status === 401)
-        {
+
+        if (response.status === 401) {
             showLogin()
-        }else if(response.status === 403){
+        } else if (response.status === 403) {
             alert(response.data.message)
-        }else{
+        } else {
             setInvoice(response.data)
         }
     }
 
-    const displayRating = (e, rating) => 
-    {
+    const displayRating = (e, rating) => {
         const stars = document.querySelectorAll('.star');
-        if(rating >= 1 && rating <= 5)
-        {
+        if (rating >= 1 && rating <= 5) {
             setRating(rating)
             stars.forEach((star, index) => {
                 if (index < rating) {
@@ -50,7 +45,7 @@ function CustomerInvoicePage()
     const onChange = (e) => {
         setRatingReason(e.target.value)
     }
-    
+
     const onSubmit = async (e) => {
         e.preventDefault()
         console.log(rating)
@@ -64,16 +59,14 @@ function CustomerInvoicePage()
         console.log(invoiceId)
         const response = await createFeedback(feedback)
         console.log(response.status)
-        if(response.status === 200)
-        {
+        if (response.status === 200) {
             alert("Successfully Created Feedback")
-        }else{
+        } else {
             alert("Error creating the feedback")
         }
     }
 
-    const handleSubmit = async (e) => 
-    {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         queryData.Email = invoice.CustomerEmail;
         queryData.StoreName = location.pathname.split("/")[1]
@@ -81,15 +74,14 @@ function CustomerInvoicePage()
 
         const queryCreationStatus = queryResponse.status;
 
-        if(queryCreationStatus === 200)
-        {
+        if (queryCreationStatus === 200) {
             alert("Successfully Contacted Seller")
             window.location.href = queryResponse.data.link
-        }else if(queryCreationStatus === 400){
+        } else if (queryCreationStatus === 400) {
             alert("Bad request. Maybe missing email or reason")
-        }else if(queryCreationStatus === 401){
+        } else if (queryCreationStatus === 401) {
             alert("Not authorized. Pleaese log into your customer account")
-        }else if(queryCreationStatus === 500){
+        } else if (queryCreationStatus === 500) {
             alert("Internal Server Error")
         }
     }
@@ -108,13 +100,29 @@ function CustomerInvoicePage()
 
     return (
         <div className="customer-invoice-page-cont">
-            Customer Email: {invoice.CustomerEmail}<br/>
-            Order Price: {invoice.InvoicePrice}<br/>
-            Payment Method: {invoice.PaymentMethod}<br/>
-            Quantity: {invoice.Quantity}<br/>
-            Order Status: {invoice.InvoiceStatus}<br/>
-            OrderId: {invoice.InvoiceId}
+            <div className="invoice-p-top">
+                <div className="invoice-p-details">
+                    <h1 className="invoice-p-headers">Your Order For {invoice.Title}</h1>
+                    <p className="invoice-p-order-id">Order Id: {invoice.InvoiceId}</p>
 
+                    <b>Customer Email:</b> {invoice.CustomerEmail}<br />
+                    <b>Order Price:</b> ${(invoice.InvoicePrice / 100).toFixed(2)}<br />
+                    <b>Payment Method:</b> {invoice.PaymentMethod}<br />
+                    <b>Quantity:</b> {invoice.Quantity}<br />
+                    <b>Order Status:</b> {invoice.InvoiceStatus}<br />
+                </div>
+                <div className="invoice-contact-form">
+                    <h2 className="invoice-p-headers">Contact</h2>
+                    <form onSubmit={handleSubmit}>
+                        <h3>Reason</h3>
+                        <input placeholder="Reason for contacting" name="Reason" className="contact-reason-input" onChange={handleChange} />
+                        <h3>Message</h3>
+                        <textarea name="Content" className="contact-input" onChange={handleChange} placeholder="Type your message here..." />
+                        <input className="store-contact-form-submit" type="submit" value='Contact'/>
+                    </form>
+                </div>
+            </div>
+            <h2>Leave feedback on your order</h2>
             <form onSubmit={onSubmit}>
                 <div class="rating">
                     <span class="star" onClick={e => displayRating(e, 1)}>&#9733;</span>
@@ -124,17 +132,8 @@ function CustomerInvoicePage()
                     <span class="star" onClick={e => displayRating(e, 5)}>&#9733;</span>
                     <p id="ratingMessage"></p>
                 </div>
-                <textarea placeholder="Reason for your rating..." onChange={onChange}/>
-                <input type="submit" value="Submit"/>
-            </form>
-
-            <h1>Contact</h1>
-            <form className="store-contact-form" onSubmit={handleSubmit}>
-                <h3>Reason</h3>
-                <input name="Reason" onChange={handleChange}/>
-                <h3>Message</h3>
-                <textarea name="Content" onChange={handleChange} placeholder="Type your message here..."/>
-                <input className="store-contact-form-submit" type="submit"/> 
+                <textarea className="feedback-input" placeholder="Reason for your rating..." onChange={onChange} />
+                <input type="submit" value="Leave Feedback" className="leave-feedback-btn"/>
             </form>
         </div>
     )

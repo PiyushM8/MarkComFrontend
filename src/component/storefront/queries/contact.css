@@ -23,39 +23,3 @@
     width: 100%;
   }
   
-  .store-contact-form input,
-  .store-contact-form textarea {
-    padding: 10px;
-    width: calc(100% - 20px); /* Adjusted width  */
-    margin-bottom: 20px; /* Increased margin bottom */
-    box-sizing: border-box;
-  }
-  
-  .store-contact-form textarea {
-    min-height: 250px;
-    max-height: 250px;
-  }
-  
-  .store-contact-form-submit {
-    background-color: #8177f3;
-    color: white;
-    border-radius: 4px;
-    font-size: 15px;
-    font-weight: bold;
-    padding: 15px 30px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .store-contact-form-submit:hover {
-    background-color: #a080ec; /* Darker shade - hover */
-  }
-  
-  .store-contact-form-submit:active {
-    background-color: #a587eb; 
-  }
-  
-  .store-contact-form textarea:hover {
-    box-shadow: inset 0px 0px 5px rgb(135, 148, 154); /* Inset shadow on hover */
-  }
-  

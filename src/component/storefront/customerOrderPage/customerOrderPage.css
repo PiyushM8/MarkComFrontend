@@ -1,19 +1,86 @@
-.customer-invoice-page-cont{
-    margin: 100px auto;
-    width: 500px;
+.customer-invoice-page-cont {
+  display: flex;
+  flex-direction: column;
+  margin: 125px auto;
+  width: 70%;
+}
+
+.invoice-contact-form{
+  width: 50%;
+}
+
+.contact-reason-input
+{
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.contact-input {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 10px;
+  width: 100%;
+  min-height: 200px;
+  max-height: 200px;
+  min-width: none;
+}
+
+  
+.contact-input textarea:hover {
+  box-shadow: inset 0px 0px 5px rgb(135, 148, 154); /* Inset shadow on hover */
+  cursor: pointer;
 }
 
 .rating {
-    unicode-bidi: bidi-override;
-  }
-  
-  .star {
-    display: inline-block;
-    font-size: 24px;
-    cursor: pointer;
-    color: #ccc; /* Default color for unfilled stars */
-  }
-  
-  .star.filled {
-    color: orange; /* Color for filled stars */
-  }
+  unicode-bidi: bidi-override;
+}
+
+.feedback-input{
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 100px;
+  max-height: 100px;
+}
+
+.store-contact-form-submit{
+  padding: 10px 15px;
+  color: white;
+  background-color: black;
+  outline: none;
+  border: none;
+}
+
+.leave-feedback-btn{
+  padding: 5px 10px;
+  color: white;
+  background-color: black;
+}
+
+.star {
+  display: inline-block;
+  font-size: 24px;
+  cursor: pointer;
+  color: #ccc;
+  /* Default color for unfilled stars */
+}
+
+.star.filled {
+  color: orange;
+  /* Color for filled stars */
+}
+
+.invoice-p-headers {
+  margin: 0;
+}
+
+.invoice-p-order-id {
+  margin: 0 0 10px 0;
+  font-size: 12px;
+}
+
+.invoice-p-top{
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}

@@ -100,36 +100,38 @@ function CustomerInvoicePage() {
 
     return (
         <div className="customer-invoice-page-cont">
-            <div className="invoice-p-top">
-                <div className="invoice-p-details">
-                    <h1 className="invoice-p-headers">Your Order For {invoice.Title}</h1>
-                    <p className="invoice-p-order-id">Order Id: {invoice.InvoiceId}</p>
+            {invoice && (
+                <div className="invoice-p-top">
+                    <div className="invoice-p-details">
+                        <h1 className="invoice-p-headers">Your Order For {invoice.Title}</h1>
+                        <p className="invoice-p-order-id">Order Id: {invoice.InvoiceId}</p>
 
-                    <b>Customer Email:</b> {invoice.CustomerEmail}<br />
-                    <b>Order Price:</b> ${(invoice.InvoicePrice).toFixed(2)}<br />
-                    <b>Payment Method:</b> {invoice.PaymentMethod}<br />
-                    <b>Quantity:</b> {invoice.Quantity}<br />
-                    <b>Order Status:</b> {invoice.InvoiceStatus}<br />
+                        <b>Customer Email:</b> {invoice.CustomerEmail}<br />
+                        <b>Order Price:</b> ${(invoice.InvoicePrice || 0).toFixed(2)}<br />
+                        <b>Payment Method:</b> {invoice.PaymentMethod}<br />
+                        <b>Quantity:</b> {invoice.Quantity}<br />
+                        <b>Order Status:</b> {invoice.InvoiceStatus}<br />
+                    </div>
+                    <div className="invoice-contact-form">
+                        <h2 className="invoice-p-headers">Contact</h2>
+                        <form onSubmit={handleSubmit}>
+                            <h3>Reason</h3>
+                            <input placeholder="Reason for contacting" name="Reason" className="contact-reason-input" onChange={handleChange} />
+                            <h3>Message</h3>
+                            <textarea name="Content" className="contact-input" onChange={handleChange} placeholder="Type your message here..." />
+                            <input className="store-contact-form-submit" type="submit" value='Contact'/>
+                        </form>
+                    </div>
                 </div>
-                <div className="invoice-contact-form">
-                    <h2 className="invoice-p-headers">Contact</h2>
-                    <form onSubmit={handleSubmit}>
-                        <h3>Reason</h3>
-                        <input placeholder="Reason for contacting" name="Reason" className="contact-reason-input" onChange={handleChange} />
-                        <h3>Message</h3>
-                        <textarea name="Content" className="contact-input" onChange={handleChange} placeholder="Type your message here..." />
-                        <input className="store-contact-form-submit" type="submit" value='Contact'/>
-                    </form>
-                </div>
-            </div>
+            )}
             <h2>Leave feedback on your order</h2>
             <form onSubmit={onSubmit}>
-                <div class="rating">
-                    <span class="star" onClick={e => displayRating(e, 1)}>&#9733;</span>
-                    <span class="star" onClick={e => displayRating(e, 2)}>&#9733;</span>
-                    <span class="star" onClick={e => displayRating(e, 3)}>&#9733;</span>
-                    <span class="star" onClick={e => displayRating(e, 4)}>&#9733;</span>
-                    <span class="star" onClick={e => displayRating(e, 5)}>&#9733;</span>
+                <div className="rating">
+                    <span className="star" onClick={e => displayRating(e, 1)}>&#9733;</span>
+                    <span className="star" onClick={e => displayRating(e, 2)}>&#9733;</span>
+                    <span className="star" onClick={e => displayRating(e, 3)}>&#9733;</span>
+                    <span className="star" onClick={e => displayRating(e, 4)}>&#9733;</span>
+                    <span className="star" onClick={e => displayRating(e, 5)}>&#9733;</span>
                     <p id="ratingMessage"></p>
                 </div>
                 <textarea className="feedback-input" placeholder="Reason for your rating..." onChange={onChange} />

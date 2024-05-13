@@ -1,6 +1,7 @@
 import React from "react";
 import "./productItem.css";
 import { deleteProductById } from "../../../services/product";
+import { Link } from "react-router-dom";
 
 function ProductItem({ product }) {
   const deleteProduct = async () => {

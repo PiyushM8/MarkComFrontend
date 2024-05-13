@@ -5,7 +5,6 @@ import ProductList from "./products/productList";
 import Queries from "./queries/queries";
 import DashboardInvoicePage from "./invoices/dashboardInvoicePage";
 import DashboardFeedbackPage from "./Feedback/dashboardFeedbackPage";
-import DashboardCouponPage from "./coupons/dashboardCouponPage";
 import DashboardPaymentMethod from "./payment/dashboardPaymentMethod";
 import DashboardCategoriesPage from "./categories/dashboardCatergoriesPage";
 import { showLogin } from "../../utils/loginregister";
@@ -75,9 +74,7 @@ function Dashboard() {
           <Link to={"/dashboard/categories"} className="db-n-item">
             Categories
           </Link>
-          <Link to={"/dashboard/coupons"} className="db-n-item">
-            Coupons
-          </Link>
+
           <Link to={"/dashboard/feedback"} className="db-n-item">
             Feedback
           </Link>
@@ -92,7 +89,6 @@ function Dashboard() {
               path="/categories"
               element={<DashboardCategoriesPage />}
             />
-            <Route path="/coupons" element={<DashboardCouponPage />} />
             <Route path="/feedback" element={<DashboardFeedbackPage />} />
           </Routes>
         </div>

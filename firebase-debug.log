@@ -1,0 +1,47 @@
+[debug] [2024-05-12T21:34:20.996Z] ----------------------------------------------------------------------
+[debug] [2024-05-12T21:34:20.998Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\paulk\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2024-05-12T21:34:20.998Z] CLI Version:   13.3.0
+[debug] [2024-05-12T21:34:20.998Z] Platform:      win32
+[debug] [2024-05-12T21:34:20.999Z] Node Version:  v20.7.0
+[debug] [2024-05-12T21:34:20.999Z] Time:          Sun May 12 2024 17:34:20 GMT-0400 (Eastern Daylight Time)
+[debug] [2024-05-12T21:34:20.999Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-05-12T21:34:21.070Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-05-12T21:34:21.070Z] > authorizing via signed-in user (luvgoddesst@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\paulk\Desktop\SProject\marcom
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2024-05-12T21:34:30.335Z] Using project from CLI flag: marcom-6ffbd
+[debug] [2024-05-12T21:34:30.336Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/marcom-6ffbd [none]
+[debug] [2024-05-12T21:34:30.645Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/marcom-6ffbd 200
+[debug] [2024-05-12T21:34:30.646Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/marcom-6ffbd {"projectId":"marcom-6ffbd","projectNumber":"423247425671","displayName":"marcom","name":"projects/marcom-6ffbd","resources":{"hostingSite":"marcom-6ffbd","storageBucket":"marcom-6ffbd.appspot.com","locationId":"us-central"},"state":"ACTIVE","etag":"1_4d137ec6-8a5f-4811-9504-7407834a498f"}
+[info] i  Using project marcom-6ffbd (marcom) 
+[info] 
+=== Hosting:github Setup
+[info] 
+[info] i  Detected a .git folder at C:\Users\paulk\Desktop\SProject\marcom 
+[info] i  Authorizing with GitHub to upload your service account to a GitHub repository's secrets store. 
+[info] 
+[info] Visit this URL on this device to log in:
+[info] https://github.com/login/oauth/authorize?client_id=89cf50f02ac6aaed3484&state=968549446&redirect_uri=http%3A%2F%2Flocalhost%3A9005&scope=read%3Auser%20repo%20public_repo
+[info] 
+[info] Waiting for authentication...

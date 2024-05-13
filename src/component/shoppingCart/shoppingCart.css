@@ -1,5 +1,16 @@
+.shopping-cart-checkout-page{
+    display: flex;
+    margin: auto;
+    width: 90%;
+    gap: 50px;
+}
+
+.shopping-cart-section{
+    width: 70%;
+}
+
 .shopping-cart-cont{
-    width: 80%;
+    width: 100%;
     margin: auto;
 }
 
@@ -50,4 +61,53 @@
     display: none;
     margin: auto;
     width: 75%;
+}
+
+.checkout-section{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-num-and-expiration-date-cvv{
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-info-header{
+    margin: 5px 0;
+}
+
+.card-number-input{
+    width: 140px;
+    padding: 7px 10px;
+}
+
+.card-month{
+    width: 30px;
+    padding: 7px 10px;
+}
+
+.card-cvv-input{
+    width: 30px;
+    padding: 7px 10px;
+}
+
+.card-year{
+    width: 30px;
+    padding: 7px 10px;
+}
+
+.order-button{
+    padding: 8px;
+    margin: 10px 0;
+    font-size: 16px;
+    border: none;
+    background-color: rgb(103, 135, 222);
+    color: white;
+}
+
+.order-button:hover{
+    cursor: pointer;
+    font-weight: bold;
 }

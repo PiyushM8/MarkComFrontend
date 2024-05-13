@@ -106,7 +106,7 @@ function CustomerInvoicePage() {
                     <p className="invoice-p-order-id">Order Id: {invoice.InvoiceId}</p>
 
                     <b>Customer Email:</b> {invoice.CustomerEmail}<br />
-                    <b>Order Price:</b> ${(invoice.InvoicePrice / 100).toFixed(2)}<br />
+                    <b>Order Price:</b> ${(invoice.InvoicePrice).toFixed(2)}<br />
                     <b>Payment Method:</b> {invoice.PaymentMethod}<br />
                     <b>Quantity:</b> {invoice.Quantity}<br />
                     <b>Order Status:</b> {invoice.InvoiceStatus}<br />

@@ -65,3 +65,4 @@ export const getSellerByProductId = async (productId) =>
     return err.response;
   }
 }
+

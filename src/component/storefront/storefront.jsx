@@ -11,6 +11,7 @@ import UserNavbar from "../userNavbar/usernavbar"
 import Sellers from "./sellers/sellers"
 import { showLogin } from "../../utils/loginregister" // Importing showLogin function
 import Home from "../homepage/landing" // Import
+import ProductSearch from "./productSearch/productSearch" // Importing productSearch function
 
 function StoreFront({ storeName }) {
   const [reviews, setReviews] = useState([
@@ -41,6 +42,7 @@ function StoreFront({ storeName }) {
               <Link to={`/${storeName}/reviews`} className="storefront-nav-link">Reviews</Link>
               <Link to={`/${storeName}#products`} className="storefront-nav-link product-nav">Products</Link>
               <Link to={`/${storeName}/sellers`} className="storefront-nav-link explore-sellers-button"> Explore Sellers </Link>
+              <Link to={`/${storeName}/productSearch`} className="storefront-nav-link explore-sellers-button"> Product Search </Link>
             </div>
           </div>
         </div>
@@ -57,6 +59,7 @@ function StoreFront({ storeName }) {
           <Route path="/sellers" element={<Sellers />} />
           <Route path="/showLogin" element={<showLogin/>} />
           <Route path="/home" element={<Home />} />
+          <Route path="/productSearch" element={<ProductSearch />} />
         </Routes>
       </div>
     </div>

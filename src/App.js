@@ -11,6 +11,7 @@ import Login from "./component/auth/Login";
 import Register from "./component/auth/Register";
 import UserNavbar from "./component/userNavbar/usernavbar";
 import Sellers from "./component/navbar/sellers";
+import FindProducts from "./component/navbar/findProducts";
 
 function App() {
   const [ storeName, setStoreName ] = useState()
@@ -43,6 +44,7 @@ function App() {
         <Route path="/404" element={<NotFound/>}/>
         <Route path="/500" element={<InternalServerError/>}/>
         <Route path="/sellers" element={<Sellers/>}/>
+        <Route path="/findProducts" element={<FindProducts/>}/>
       </Routes>
       <Register/>
       <Login/>

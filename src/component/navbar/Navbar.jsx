@@ -40,8 +40,11 @@ function Navbar() {
               <div>Login</div>
             </div>
           </div>
-          <Link className="nav-item" to={"sellers"}>
+          <Link className="nav-item" to={"/sellers"}>
             <div>Find Sellers</div>
+          </Link>
+          <Link className="nav-item" to={"/findProducts"}>
+            <div>Search for Products</div>
           </Link>
           <Link to="/customer" id="nav-dashboard-btn" style={{ display: "none" }}>
             Go to Dashboard

@@ -57,3 +57,14 @@ export const deleteProductById = async (productId) =>
         return err.response;
     }
 }
+
+export const getAllProducts = async () =>
+{
+    try {
+        const response = await api.get(`${RouteConstants.PRODUCT}/all`);
+        return response;
+    } catch (err) {
+        console.log(err);
+        return err.response;
+    }
+}

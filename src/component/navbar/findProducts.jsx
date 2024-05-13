@@ -28,12 +28,13 @@ function FindProductsPage() {
   }, []);
 
   const handleSearch = (event) => {
-    setSearchTerm(event.target.value);
+    setSearchTerm(event.target.value.toLowerCase());
   };
-
+  
   const filteredProducts = products
     .filter((product) => {
-      return product.Title.toLowerCase().includes(searchTerm.toLowerCase());
+      
+      return product.Title.toLowerCase().startsWith(searchTerm);
     })
     .sort((a, b) => a.Title.localeCompare(b.Title)); 
 

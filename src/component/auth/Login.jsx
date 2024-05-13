@@ -37,8 +37,10 @@ function Login()
                 {
                     if(user.AccountType === "Customer")
                     {
+                        alert("You have logged in as a Customer");
                         navigate("/customer")
                     }else if(user.AccountType === "Merchant"){
+                        alert("You have logged in as a Merchant");
                         navigate("/dashboard")
                     }
                 }else{

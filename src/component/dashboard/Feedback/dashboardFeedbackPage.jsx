@@ -24,7 +24,7 @@ const Product = ({ product, minRating, maxRating }) => {
         <div className="product-title">{product.Title}</div>
         <div className="product-price">${product.Price}</div>
         <div className="product-stock">
-          {product.Stock > 1 ? `${product.Stock} in stock` : "Out of Stock"}
+          {product.Stock >= 1 ? `${product.Stock} in stock` : "Out of Stock"}
         </div>
         {/* Button to go to product page */}
         <button className="view-product-button" onClick={goToProductPage}>View Product</button>

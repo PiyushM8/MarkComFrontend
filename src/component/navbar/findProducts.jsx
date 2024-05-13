@@ -6,7 +6,6 @@ import './findProducts.css';
 function FindProductsPage() {
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [sortAsc, setSortAsc] = useState(true);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -31,24 +30,9 @@ function FindProductsPage() {
     setSearchTerm(event.target.value.toLowerCase());
   };
   
-  const filteredProducts = products
-    .filter((product) => {
-      
-      return product.Title.toLowerCase().startsWith(searchTerm);
-    })
-    .sort((a, b) => a.Title.localeCompare(b.Title)); 
-
-  const sortProducts = () => {
-    const sortedProducts = [...filteredProducts].sort((a, b) => {
-      if (sortAsc) {
-        return a.Title.localeCompare(b.Title);
-      } else {
-        return b.Title.localeCompare(a.Title);
-      }
-    });
-    setProducts(sortedProducts);
-    setSortAsc(!sortAsc);
-  };
+  const filteredProducts = products.filter((product) => {
+    return product.Title.toLowerCase().startsWith(searchTerm);
+  });
 
   const redirectToProductPage = (sellerUsername, productId) => {
     window.location.href = `/${sellerUsername}/product/${productId}`;
@@ -67,9 +51,6 @@ function FindProductsPage() {
             onChange={handleSearch}
             className="search-input"
           />
-          <button onClick={sortProducts} className="sort-button">
-            {sortAsc ? 'Sort A-Z' : 'Sort Z-A'}
-          </button>
         </div>
         {loading ? (
           <p>Loading...</p>
@@ -84,8 +65,8 @@ function FindProductsPage() {
                   <p>Description: {product.Description}</p>
                   <p>Price: {product.Price}</p>
                   <p>Stock: {product.Stock}</p>
-                  <div className="product-image-container"> {}
-                    <img src={`https://imagedelivery.net/BMDilndsvZPipd90__49rQ/${product.ProductImage}/public`} alt="Product" className="product-image" /> {/* Updated image source */}
+                  <div className="product-image-container">
+                    <img src={`https://imagedelivery.net/BMDilndsvZPipd90__49rQ/${product.ProductImage}/public`} alt="Product" className="product-image" />
                   </div>
                   <p>Seller Username: {product.SellerUsername}</p>
                   <button onClick={() => redirectToProductPage(product.SellerUsername, product.ProductId)}>View Product</button>

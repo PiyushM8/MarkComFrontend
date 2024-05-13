@@ -66,9 +66,6 @@ function ProductSearchPage() {
             onChange={handleSearch}
             className="search-input"
           />
-          <button onClick={sortProducts} className="sort-button">
-            {sortAsc ? 'Sort A-Z' : 'Sort Z-A'}
-          </button>
         </div>
         {loading ? (
           <p>Loading...</p>
